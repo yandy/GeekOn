@@ -20,10 +20,16 @@ block header
               a(href="/projects") 项目
             li
               a(href="/geeks") 极客
-            li
-              a(href="/signup") 注册
-            li
-              a(href="/login") 登录
+            if !user
+              li
+                a(href="/signup") 注册
+              li
+                a(href="/login") 登录
+            else
+              li
+                a(href="/account") #{user.username}
+              li
+                a(href="/logout") 登出
 
 block footer
   div.container

@@ -9,6 +9,10 @@
     "express": "3.2.0",
     "jade": "*",
     "connect": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "connect-flash":"*",
+    "passport": "*",
+    "passport-local": "*",
+    "bcrypt": "*"
   }
 }
