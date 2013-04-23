@@ -1,0 +1,30 @@
+extends layout
+
+block header
+  div.navbar.navbar-inverse
+    div.navbar-inner
+      div.container
+
+        button.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        a.brand(href="/") GeekOn
+
+        div.nav-collapse.collapse
+          ul.nav
+            li
+              a(href="/events") 活动
+            li
+              a(href="/projects") 项目
+            li
+              a(href="/geeks") 极客
+            li
+              a(href="/signup") 注册
+            li
+              a(href="/login") 登录
+
+block footer
+  div.container
+    p footer
