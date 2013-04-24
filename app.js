@@ -1,44 +1,40 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express');
-var models = require('./models');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
-var mongoose = require('mongoose');
+var fs = require('fs');
 var passport = require('passport');
+var path = require('path');
+var http = require('http');
 
-var app = express();
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config')[env]
+var auth = require('./config/middlewares/authorization')
+var mongoose = require('mongoose');
 
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.compress());
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-routes.route(app);
-
-mongoose.connect('mongodb://localhost/geekon');
+// connect db
+mongoose.connect(config.db);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongodb connection error:'));
 
+// load models
+var models_path = path.join(__dirname, 'app', 'models');
+fs.readdirSync(models_path).forEach(function (file) {
+  require(path.join(models_path, file));
+});
+
+// passport config
+require('./config/passport')(passport, config);
+
+var app = express();
+
+// express settings
+require('./config/express')(app, config, passport);
+
+// load routes
+require('./config/routes')(app, passport, auth);
+
+// start app
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
