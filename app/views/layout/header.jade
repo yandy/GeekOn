@@ -1,5 +1,3 @@
-extends layout
-
 block header
   div.navbar.navbar-inverse
     div.navbar-inner
@@ -24,13 +22,9 @@ block header
               li
                 a(href="/signup") 注册
               li
-                a(href="/login") 登录
+                a(href="/login") login
             else
               li
                 a(href="/account") #{user.username}
               li
                 a(href="/logout") 登出
-
-block footer
-  div.container
-    p footer

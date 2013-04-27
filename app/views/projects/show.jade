@@ -1,0 +1,13 @@
+extends ../layout/layout
+
+block content
+  div.container
+    p project name:	#{project.name}
+    p project preview: #{project.preview}
+    p
+    br
+    h2 Comments
+    each comment in project.comments
+      include comment/comments
+    include comment/add_comment
+

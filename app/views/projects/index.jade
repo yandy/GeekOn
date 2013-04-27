@@ -1,0 +1,15 @@
+extends ../layout/layout
+
+block content
+  a(href='/create_project') create project
+  each project in projects
+    .project
+      a.title(href='/project/'+project._id, title=project.name) #{project.name}
+      p=project.preview
+      .author
+        span= project.createdAt
+        span &nbsp;| Author :&nbsp;
+        a(href="/user/"+project.provider._id)=project.provider
+        | &nbsp;|&nbsp;
+
+

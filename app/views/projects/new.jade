@@ -1,0 +1,16 @@
+extends ../layout/layout
+
+block content
+  div.container
+    form(method="post", action="/create_project")
+      div
+        label project name:
+        input(type="text", name="name")
+      div
+        label project preview:
+        input(type="text", name="preview")
+      div
+        label project requirement:
+        input(type="text", name="requirement")
+      div
+        input(type="submit", value="Submit")

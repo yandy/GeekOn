@@ -1,0 +1,36 @@
+extends ../layout/layout
+
+block content
+  .row
+      .offset1.span5
+        a(href="/auth/facebook")
+          img(src="/img/facebook.png")
+        a(href="/auth/github")
+          img(src="/img/github.png")
+        a(href="/auth/twitter")
+          img(src="/img/twitter.png")
+        a(href="/auth/google")
+          img(src="/img/google.png")
+      .span6
+        if (typeof errors !== 'undefined')
+          .fade.in.alert.alert-block.alert-error
+            a.close(data-dismiss="alert", href="javascript:void(0)") x
+            ul
+              each error in errors
+                li= error.type
+  div.container
+    form(method="post", action="/signup")
+      div
+        label 用户名:
+        input(type="text", name="username")
+      div
+        label e-mail:
+        input(type="text", name="email")
+      div
+        label 口令:
+        input(type="password", name="password")
+      div
+        label 确认口令: 
+        input(type="password", name="password_confirmation")
+      div
+        input(type="submit", value="Submit")

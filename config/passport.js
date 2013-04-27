@@ -1,18 +1,19 @@
 var LocalStrategy = require('passport-local').Strategy
-var User = require('mongoose').model('User');
+    ,GitHubStrategy = require('passport-github').Strategy
+    ,User = require('mongoose').model('User')
 
 module.exports = function (passport, config) {
-
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
+    User.findOne({_id: id}, function (err, user) {
       done(err, user);
     });
   });
 
+ // use local strategy
   passport.use(new LocalStrategy(function (username, password, done) {
     User.findOne({username: username}, function (err, user) {
       if (err) return done(err);
@@ -27,5 +28,34 @@ module.exports = function (passport, config) {
       });
     });
   }));
+
+ // use github strategy
+  passport.use(new GitHubStrategy({
+      clientID: config.github.clientID,
+      clientSecret: config.github.clientSecret,
+      callbackURL: config.github.callbackURL,
+      customHeaders: {"User-Agent" : "I don't know"}
+    },
+    function(accessToken, refreshToken, profile, done) {
+      User.findOne({ 'github.id': profile.id }, function (err, user) {
+        if (!user) {
+          user = new User({
+              name: profile.displayName
+            , email: profile.emails[0].value
+            , username: profile.username
+            , provider: 'github'
+            , github: profile._json
+          })
+          user.save(function (err) {
+            if (err) console.log(err)
+            return done(err, user)
+          })
+        } else {
+
+          return done(err, user)
+        }
+      })
+    }
+  ));
 
 };
