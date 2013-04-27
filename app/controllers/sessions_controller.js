@@ -3,29 +3,30 @@ var User = mongoose.model('User');
 var passport = require('passport');
 
 exports.new = function (req, res) {
-  res.render('sessions/new', { user: req.user,
-                     message: req.session.message,
-                       title: "登录"});
+  res.render('sessions/new', { 
+                              user: new User(),
+                              message: req.session.message,
+                              title: "登录"});
 };
 
 exports.create = function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) {return next(err);}
     if (!user) {
-      return res.render('/login', {
-                                      title: 'login',
-                                      user: new User()
-                                     })
+      req.flash('error','sorry, please check your name and password!');
+      return res.redirect('/login');
     };
     req.logIn(user, function (err) {
       if (err) {return next(err);}
+      req.flash('success','login');
       return res.redirect('/user/' + user.id);
     });
   })(req, res, next);
 };
 
 exports.destroy = function (req, res) {
-  req.user = null;  
+  req.session.user = null;  
+  req.user = null;
   req.logout();
   res.redirect('/');
 }

@@ -14,15 +14,15 @@ exports.project = function(req, res, next, id){
 exports.new = function(req, res){
 	res.render( 'projects/new', {
 		title: 'new Project',
-		project: new Project({provider: req.user}),
-		user: req.user
+		project: new Project({provider: req.session.user}),
+		user: req.session.user
 	} );
 };
 
 exports.create = function (req, res) {
 	var project = new Project(req.body)
-	project.provider = req.user._id;
-	project.Participants.push(req.user._id);
+	project.provider = req.session.user._id;
+	project.Participants.push(req.session.user._id);
 
 	project.save(function (err, project) {
 		if (err) {
@@ -43,7 +43,7 @@ exports.show = function (req, res) {
 	res.render('projects/show', {
 									project: req.project,
 									title: req.project.name,
-									user: req.user
+									user: req.session.user
 								});
 };
 
@@ -52,7 +52,7 @@ exports.index = function (req,res) {
 		if(!err){
 			res.render('projects/index', {title: 'all projects',
 										  projects: projects, 
-										  user: req.user
+										  user: req.session.user
 										});
 		}else {
 			res.redirect('/');	

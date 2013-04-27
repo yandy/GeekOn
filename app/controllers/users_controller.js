@@ -8,7 +8,7 @@ exports.user = function (req, res, next, id) {
     .exec(function (err, user) {
       if (err) return next(err)
       if (!user) return next(new Error('Failed to load User ' + id))
-      req.user = user
+      req.session.user = user
       next()
     })
 }
@@ -18,14 +18,16 @@ exports.signin = function (req, res) {}
 /**
  * Auth callback
  */
-
 exports.authCallback = function (req, res, next) {
-  res.redirect('/')
+    req.flash('success','Signup');
+    console.log(req.user);
+    req.session.user = req.user;
+    res.redirect('/')
 }
 
 exports.show = function (req, res) {
-	res.render('users/show', { user: req.user,
-		title: "账户"});
+	res.render('users/show', { user: req.session.user,
+		                      title: "账户"});
 };
 
 exports.new = function (req, res) {
@@ -41,11 +43,15 @@ exports.create = function (req, res) {
 	if (req.body["password_confirmation"] == user.password) {
 		user.save(function (err) {
 			if (err) {
+                req.flash('error','some mistakes have appeared');
 				return res.render('users/new', { errors: err.errors, user: user });
 			}
 			req.logIn(user, function(err) {
 				if (err) return next(err)
-				return res.redirect('/user/'+user._id);	
+                    req.session.user = req.user;
+                    console.log(req.session.user);
+                   req.flash('success','Signup');
+               return res.redirect('/user/'+user._id);	
 			})
 		});
 	}else{

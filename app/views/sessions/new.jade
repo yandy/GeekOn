@@ -2,9 +2,6 @@ extends ../layout/layout
 
 block content
   div.container
-    if message
-      p #{message}
-
     form(method="post", action="/login")
       div
         label 用户名:

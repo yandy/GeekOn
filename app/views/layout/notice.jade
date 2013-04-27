@@ -1,0 +1,7 @@
+block notice
+      if locals.error
+          div.alert.alert-error
+            h4 Warning! #{locals.error}...
+      if locals.success
+          div.alert.alert-success
+            h4 Success! #{locals.success}...

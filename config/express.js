@@ -1,5 +1,6 @@
 var express = require('express')
 var path = require('path')
+var flash = require('connect-flash');
 
 module.exports = function (app, config, passport) {
   // all environments
@@ -15,9 +16,16 @@ module.exports = function (app, config, passport) {
   app.use(express.session({secret:'geekon'}));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(flash());
+  app.use(function (req, res, next) {
+   res.locals.error = req.flash('error').toString();
+   res.locals.success = req.flash('success').toString();
+   res.locals.user = req.session ? req.session.user:'';
+   next();
+ });
   app.use(app.router);
   app.use(express.static(path.join(config.root, 'public')));
-
+  
   // development only
   if ('development' == app.get('env')) {
     app.use(express.errorHandler());

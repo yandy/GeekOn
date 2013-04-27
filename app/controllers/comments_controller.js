@@ -1,6 +1,6 @@
 exports.create = function (req, res) {
     var project = req.project;
-    var user = req.user;
+    var user = req.session.user;
     
     if (!req.body['comment']) return res.redirect('/project/'+ project._id);
     project.addComment(user, req.body['comment'], function (err) {

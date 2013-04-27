@@ -18,13 +18,14 @@ block header
               a(href="/projects") 项目
             li
               a(href="/geeks") 极客
-            if !user
+            if locals.user && locals.user.username
+              li
+                a(href="/account") #{locals.user.username}
+              li
+                a(href="/logout") 登出
+            else 
               li
                 a(href="/signup") 注册
               li
                 a(href="/login") login
-            else
-              li
-                a(href="/account") #{user.username}
-              li
-                a(href="/logout") 登出
+              
