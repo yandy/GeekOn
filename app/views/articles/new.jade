@@ -1,0 +1,13 @@
+extends ../layout/layout
+
+block content
+  div.container
+    form(method="post", action="/create_article")
+      div
+        label title:
+        input(type="text", name="title")
+      div
+        label content:
+        input(type="text", name="body")
+      div
+        input(type="submit", value="Submit")

@@ -2,12 +2,7 @@ block header
   div.navbar.navbar-inverse
     div.navbar-inner
       div.container
-
-        button.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-
+  
         a.brand(href="/") GeekOn
 
         div.nav-collapse.collapse
@@ -20,12 +15,22 @@ block header
               a(href="/geeks") 极客
             if locals.user && locals.user.username
               li
-                a(href="/account") #{locals.user.username}
+                img(src='#{locals.user.avatar_url}',height=35,width=35)
+              li
+                a(href="/user/#{locals.user._id}") #{locals.user.name}
               li
                 a(href="/logout") 登出
             else 
               li
                 a(href="/signup") 注册
               li
-                a(href="/login") login
-              
+                .btn-group
+                  a.btn.btn-inverse.dropdown-toggle(data-toggle="dropdown",href="#") Login
+                    span.caret
+                  ul.dropdown-menu 
+                    li
+                      a(href="login") Login
+                    li
+                      section
+                        img(src="/img/github.png",width=20,height=20) 
+                        a(href="/auth/github") By Github

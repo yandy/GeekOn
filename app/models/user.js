@@ -4,17 +4,19 @@ var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  name: String,
-  username: String,
-  password: String,
-  email: String,
-  provider: String,
-  github: {}
+   name: { type: String, default: ''}
+   ,username: { type: String, required: true}
+   ,password: String
+   ,avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'}
+   ,email: {type: String, required: true, index: {unique: true, dropDups: true}}
+   ,provider: { type: String, required: true}
+   ,github: {}
+   ,isAdmin:{type: Boolean, default: false}
 });
 
 UserSchema.pre('save', function (next) {
   var user = this;
-  user.name = user.username.trim();
+  user.name = user.name || user.username;
   if (!user.isModified('password')) return next();
 
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {

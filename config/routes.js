@@ -1,5 +1,7 @@
 module.exports = function (app, passport, auth) {
 
+  var comment = require('../app/controllers/comments_controller');
+
   var user = require('../app/controllers/users_controller')
   app.get('/signup', user.new);
   app.post('/signup', user.create);
@@ -19,10 +21,18 @@ module.exports = function (app, passport, auth) {
   app.delete('/destroy_project', project.destroy);
   app.get('/project/:projectId', project.show);
   app.get('/projects', project.index);
-    var comment = require('../app/controllers/comments_controller');
-    app.post('/project/:projectId/create_comment', comment.create);
+  app.post('/project/:projectId/create_comment', comment.create);
   app.param('projectId', project.project)
   
+  var article = require('../app/controllers/articles_controller');
+  app.get('/create_article', article.new);
+  app.post('/create_article', article.create);
+  app.delete('/destroy_article', article.destroy);
+  app.get('/article/:articleId', article.show);
+  app.get('/Article', article.index);
+  app.post('/article/:articleId/create_comment', comment.create);
+  app.param('articleId', article.article)
+
 
   var geek = require('../app/controllers/geek');
   app.get('/geeks', geek.list);

@@ -20,7 +20,6 @@ exports.signin = function (req, res) {}
  */
 exports.authCallback = function (req, res, next) {
     req.flash('success','Signup');
-    console.log(req.user);
     req.session.user = req.user;
     res.redirect('/')
 }
@@ -33,7 +32,7 @@ exports.show = function (req, res) {
 exports.new = function (req, res) {
 	res.render('users/new', {
 		title: 'Sign up',
-		user: new User()
+		user: new User({})
 	})
 };
 
@@ -44,12 +43,14 @@ exports.create = function (req, res) {
 		user.save(function (err) {
 			if (err) {
                 req.flash('error','some mistakes have appeared');
-				return res.render('users/new', { errors: err.errors, user: user });
+				return res.render('users/new', { 
+                                                    title: 'error',
+                                                    errors: err.errors,
+                                                    user: user });
 			}
 			req.logIn(user, function(err) {
 				if (err) return next(err)
-                    req.session.user = req.user;
-                    console.log(req.session.user);
+                   req.session.user = req.user;
                    req.flash('success','Signup');
                return res.redirect('/user/'+user._id);	
 			})
@@ -57,7 +58,7 @@ exports.create = function (req, res) {
 	}else{
 		res.render('users/new', {
 			title: 'Sign up',
-			user: new User()
+			user: new User({})
 		})
 	}
 

@@ -39,7 +39,6 @@ exports.create = function (req, res) {
 };
 
 exports.show = function (req, res) {
-	console.log(req.project);
 	res.render('projects/show', {
 									project: req.project,
 									title: req.project.name,

@@ -45,13 +45,13 @@ module.exports = function (passport, config) {
             , username: profile.username
             , provider: 'github'
             , github: profile._json
+            , avatar_url: profile.github[avatar_url]
           })
           user.save(function (err) {
             if (err) console.log(err)
             return done(err, user)
           })
         } else {
-
           return done(err, user)
         }
       })

@@ -2,12 +2,12 @@ extends ../layout/layout
 
 block content
   div.container
-    p project name:	#{project.name}
-    p project preview: #{project.preview}
+    p title: #{article.title}
+    p content: #{article.body}
     p
     br
     h2 Comments
-    each comment in project.comments
+    each comment in article.comments
       include ../comment/comments
     if locals.user
         include comment/add_comment
