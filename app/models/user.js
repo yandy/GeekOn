@@ -12,6 +12,7 @@ var UserSchema = new Schema({
    ,provider: { type: String, required: true}
    ,github: {}
    ,isAdmin:{type: Boolean, default: false}
+   ,createdAt: { type: Date, default : Date.now }
 });
 
 UserSchema.pre('save', function (next) {
@@ -37,4 +38,16 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
+UserSchema.statics = {
+
+  list: function (options, cb) {
+    var criteria = options.criteria || {}
+
+    this.find(criteria)
+      .sort({'createdAt': -1}) // sort by date
+      .limit(options.perPage)
+      .skip(options.perPage * options.page)
+      .exec(cb)
+  }
+}
 mongoose.model('User', UserSchema);

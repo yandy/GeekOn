@@ -2,18 +2,32 @@ extends ../layout/layout
 
 block content
   div.container
-    form(method="post", action="/signup")
-      div
-        label 用户名:
-        input(type="text", name="username")
-      div
-        label e-mail:
-        input(type="text", name="email")
-      div
-        label 口令:
-        input(type="password", name="password")
-      div
-        label 确认口令: 
-        input(type="password", name="password_confirmation")
-      div
-        input(type="submit", value="Submit")
+  
+    form.signup.form-horizontal(action="/signup", method="post")
+    
+      .control-group
+        label.control-label(for='Email') Email
+        .controls
+          input#email(type='text', name="email", placeholder='Email', value=user.email)
+
+      .control-group
+        label.control-label(for='username') Username
+        .controls
+          input#username(type='text', name="username", placeholder='Username', value=user.username)
+
+      .control-group
+        label.control-label(for='password') Password
+        .controls
+          input#password(type='password', name="password", placeholder='Password')
+
+      .control-group
+        label.control-label(for='password') password_confirmation
+        .controls
+          input#password(type='password', name="password_confirmation", placeholder='Password')
+
+
+      .form-actions
+        button.btn.btn-primary(type='submit') Sign up
+        &nbsp;
+        | or&nbsp;
+        a.show-login(href="/login") login

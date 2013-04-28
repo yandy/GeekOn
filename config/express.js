@@ -1,6 +1,7 @@
 var express = require('express')
 var path = require('path')
 var flash = require('connect-flash');
+var helpers = require('view-helpers');
 
 module.exports = function (app, config, passport) {
   // all environments
@@ -16,6 +17,7 @@ module.exports = function (app, config, passport) {
   app.use(express.session({secret:'geekon'}));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(helpers('geekon'));
   app.use(flash());
   app.use(function (req, res, next) {
    res.locals.error = req.flash('error').toString();

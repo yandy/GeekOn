@@ -35,6 +35,17 @@ ProjectSchema.statics = {
       .exec(cb)
   },
 
+  list: function (options, cb) {
+    var criteria = options.criteria || {}
+
+    this.find(criteria)
+      .populate('provider', 'username')
+      .sort({'createdAt': -1}) // sort by date
+      .limit(options.perPage)
+      .skip(options.perPage * options.page)
+      .exec(cb)
+  }
+
 }
 
 mongoose.model('Project', ProjectSchema);

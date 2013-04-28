@@ -1,0 +1,13 @@
+extends ../layout/layout
+
+block main
+  h1 Users
+block content
+  each user in users
+    img(src='#{user.avatar_url}',height=20,width=20)
+    a(href="/user/#{user._id}") #{user.name}
+    br
+  if (pages > 1)
+    .pagination
+      ul
+        != createPagination(pages, page)

@@ -18,6 +18,7 @@ exports.create = function (req, res, next) {
     };
     req.logIn(user, function (err) {
       if (err) {return next(err);}
+      req.session.user = req.user;
       req.flash('success','login');
       return res.redirect('/user/' + user.id);
     });
@@ -27,7 +28,6 @@ exports.create = function (req, res, next) {
 exports.destroy = function (req, res) {
   req.flash('success','logout');
   req.session.user = null;  
-  req.user = null;
   req.logout();
   res.redirect('/');
 }

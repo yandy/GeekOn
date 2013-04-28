@@ -17,6 +17,7 @@
     "passport-facebook": "*",
     "passport-twitter": "*",
     "passport-google-oauth": "*",
+    "view-helpers": "*",
     "bcrypt": "*"
   }
 }

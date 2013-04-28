@@ -15,7 +15,6 @@ exports.new = function(req, res){
 	res.render( 'projects/new', {
 		title: 'new Project',
 		project: new Project({provider: req.session.user}),
-		user: req.session.user
 	} );
 };
 
@@ -42,21 +41,28 @@ exports.show = function (req, res) {
 	res.render('projects/show', {
 									project: req.project,
 									title: req.project.name,
-									user: req.session.user
 								});
 };
 
 exports.index = function (req,res) {
-	Project.find(function (err, projects){
-		if(!err){
-			res.render('projects/index', {title: 'all projects',
-										  projects: projects, 
-										  user: req.session.user
-										});
-		}else {
-			res.redirect('/');	
-		};
-	});
+	var page = req.param('page') > 0 ? req.param('page') : 0
+  	var perPage = 15
+  	var options = {
+  		perPage: perPage,
+  		page: page
+  	}
+
+  Project.list(options, function(err, projects) {
+    if (err) return res.render('500')
+    Project.count(function (err, count) {
+      res.render('projects/index', {
+        title: 'List of Articles',
+        projects: projects,
+        page: page,
+        pages: count / perPage
+      })
+    })
+  })
 
 }
 

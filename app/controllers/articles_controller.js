@@ -37,6 +37,7 @@ exports.create = function (req, res) {
       })
     }
     else {
+      req.flash('success','Wa Wa Wa , a new article');
       res.redirect('/article/'+article._id)
     }
   })
@@ -65,14 +66,22 @@ exports.destroy = function(req, res){
 
 
 exports.index = function(req, res){
-  Project.find(function (err, articles){
-      if(!err){
-        res.render('articles/index', {title: 'all articles',
-                        articles: articles 
-                      });
-      }else {
-        res.redirect('/');  
-      };
-    });
+  var page = req.param('page') > 0 ? req.param('page') : 0
+  var perPage = 15
+  var options = {
+    perPage: perPage,
+    page: page
+  }
 
+  Article.list(options, function(err, articles) {
+    if (err) return res.render('500')
+    Article.count().exec(function (err, count) {
+      res.render('articles/index', {
+        title: 'List of Articles',
+        articles: articles,
+        page: page,
+        pages: count / perPage
+      })
+    })
+  })
 }

@@ -14,11 +14,14 @@ module.exports = function (passport, config) {
   });
 
  // use local strategy
-  passport.use(new LocalStrategy(function (username, password, done) {
-    User.findOne({username: username}, function (err, user) {
-      if (err) return done(err);
-      if (!user) return done(null, false, {message: 'Unkown user '+ username});
-      user.comparePassword(password, function (err, isMatch) {
+  passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password'}
+    ,function (email, password, done) {
+        User.findOne({ email: email }, function (err, user) {
+        if (err) { return done(err) }
+        if (!user) {
+          return done(null, false, { message: 'Unknown user' })
+        }
+        user.comparePassword(password, function (err, isMatch) {
         if (err) return done(err);
         if (isMatch) {
           return done(null, user);
@@ -26,7 +29,7 @@ module.exports = function (passport, config) {
           return done(null, false, {message:'Invalid password'});
         }
       });
-    });
+      })
   }));
 
  // use github strategy
@@ -43,9 +46,9 @@ module.exports = function (passport, config) {
               name: profile.displayName
             , email: profile.emails[0].value
             , username: profile.username
+            , avatar_url: profile._json.avatar_url
             , provider: 'github'
             , github: profile._json
-            , avatar_url: profile.github[avatar_url]
           })
           user.save(function (err) {
             if (err) console.log(err)
