@@ -43,7 +43,7 @@ ProjectSchema.statics = {
     var criteria = options.criteria || {}
 
     this.find(criteria)
-      .populate('provider', 'username')
+      .populate('provider', 'username avatar_url')
       .sort({'createdAt': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)

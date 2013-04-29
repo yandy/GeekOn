@@ -6,6 +6,7 @@ var helpers = require('view-helpers');
 module.exports = function (app, config, passport) {
   // all environments
   app.set('port', process.env.PORT || 3000);
+  //app.set('port', 8080);
   app.set('views', path.join(config.root, 'app', 'views'));
   app.set('view engine', 'jade');
   app.use(express.favicon());

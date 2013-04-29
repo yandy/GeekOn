@@ -1,15 +1,29 @@
 extends ../layout/layout
 
 block content
-  a(href='/create_project') create project
-  each project in projects
-    .project
-      a.title(href='/project/'+project._id, title=project.name) #{project.name}
-      p=project.preview
-      .author
-        span= project.createdAt
-        span &nbsp;| Author :&nbsp;
-        a(href="/user/"+project.provider._id)=project.provider.username
-        | &nbsp;|&nbsp;
+  div.row.projects
+    div.span6
+      each project in projects
+        .project.project_line
+          div.avatar.pull-left
+            a
+              img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
+          div.right_info
+            div.pull-right.replies
+              p 10000
+          div.infos
+            div.title
+              a.title(href='/project/'+project._id, title=project.name) #{project.name}
+            div.info
+              p=project.preview
+            div.extra  
+              .author
+                span= formatDate(project.createdAt, "%b %d, %Y at %I:%M %p")
+                span &nbsp;| Author :&nbsp;
+                a(href="/user/"+project.provider._id)=project.provider.username
+                | &nbsp;|&nbsp;
+    div.span2.box
+       div.btn-group
+         a.btn.btn-success(href='/create_project') create project
 
 
