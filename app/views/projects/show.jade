@@ -4,7 +4,11 @@ block content
   div.container
     p project name:	#{project.name}
     p project preview: #{project.preview}
+    h2 Participants
+    each participant in project.participants
+      include participant/participants
     p
+        a(href='/project/#{project.id}/follow') follow
     br
     h2 Comments
     each comment in project.comments

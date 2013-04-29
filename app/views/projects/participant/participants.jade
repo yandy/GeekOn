@@ -1,0 +1,7 @@
+
+if (participant && participant.user)
+  .comment
+    a(href="/user/"+participant.user._id) #{participant.user.name}
+
+    br
+    span.date #{participant.createdAt}

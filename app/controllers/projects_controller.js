@@ -21,7 +21,7 @@ exports.new = function(req, res){
 exports.create = function (req, res) {
 	var project = new Project(req.body)
 	project.provider = req.session.user._id;
-	project.Participants.push(req.session.user._id);
+	project.participants.push({ user: req.session.user._id});
 
 	project.save(function (err, project) {
 		if (err) {
@@ -71,4 +71,13 @@ exports.destroy = function (req, res) {
 	project.remove(function(err){
 		res.redirect('/projects');
 	})
+};
+
+exports.follow = function (req, res) {
+    console.log('come  into follow');
+    var project = req.project;
+    project.participants.push({user: req.session.user._id});
+    project.save(function (err, project){
+        res.redirect('/project/'+ project.id);
+    })
 };

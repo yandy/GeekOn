@@ -23,6 +23,7 @@ module.exports = function (app, passport, auth) {
   app.get('/project/:projectId', project.show);
   app.get('/projects', project.index);
   app.post('/project/:projectId/create_comment', auth.Authenticated, comment.create);
+  app.get('/project/:projectId/follow', auth.Authenticated, project.follow);
   app.param('projectId', project.project)
   
   var article = require('../app/controllers/articles_controller');

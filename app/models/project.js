@@ -6,7 +6,10 @@ var ProjectSchema = new Schema({
 	provider: {type : Schema.ObjectId, ref : 'User'},
 	preview: String,
 	requirement: String,
-	Participants: [{type : Schema.ObjectId, ref : 'User'}],
+	participants: [{
+        user: {type : Schema.ObjectId, ref : 'User'},
+        createdAt: { type : Date, default : Date.now }
+    }],
 	comments: [{
 		body: { type : String, default : '' },
 		user: { type : Schema.ObjectId, ref : 'User' },
@@ -30,7 +33,8 @@ ProjectSchema.statics = {
   
   load: function (id, cb) {
     this.findOne({ _id : id })
-      .populate('user', 'name email')
+      .populate('provider', 'username')
+      .populate('participants.user')
       .populate('comments.user')
       .exec(cb)
   },
