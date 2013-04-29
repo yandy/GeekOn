@@ -5,7 +5,6 @@ var passport = require('passport');
 exports.new = function (req, res) {
   res.render('sessions/new', { 
                               user: new User({}),
-                              message: req.session.message,
                               title: "登录"});
 };
 
@@ -18,7 +17,7 @@ exports.create = function (req, res, next) {
     };
     req.logIn(user, function (err) {
       if (err) {return next(err);}
-      req.session.user = req.user;
+      req.session.user = user;
       req.flash('success','login');
       return res.redirect('/user/' + user.id);
     });

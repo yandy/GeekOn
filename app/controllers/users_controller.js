@@ -7,25 +7,23 @@ exports.user = function (req, res, next, id) {
     .findOne({ _id : id }, function (err, user) {
       if (err) return next(err)
       if (!user) return next(new Error('Failed to load User ' + id))
-      req.user = user;
+      req.profile = user;
       next();
     })
 }
 
 exports.signin = function (req, res) {}
 
-/**
- * Auth callback
- */
 exports.authCallback = function (req, res, next) {
     req.flash('success','Signup');
     req.session.user = req.user;
+    req.user = null;
     res.redirect('/')
 }
 
 exports.show = function (req, res) {
 	res.render('users/show', { 
-                              user: req.user,
+                              profile: req.profile,
 		                          title: "账户"});
 };
 
@@ -50,8 +48,9 @@ exports.create = function (req, res) {
 			}
 			req.logIn(user, function(err) {
 				if (err) return next(err)
-                   req.flash('success','Signup');
-               return res.redirect('/user/'+user._id);	
+        req.flash('success','Signup');
+        req.session.user = user;
+        return res.redirect('/user/'+user._id);	
 			})
 		});
 	}else{
