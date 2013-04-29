@@ -11,6 +11,10 @@ var UserSchema = new Schema({
    ,email: {type: String, required: true, index: {unique: true, dropDups: true}}
    ,provider: { type: String, required: true}
    ,github: {}
+   ,joined_projects: [{
+        project: {type : Schema.ObjectId, ref : 'Project'},
+        createdAt: { type : Date, default : Date.now }
+    }]
    ,isAdmin:{type: Boolean, default: false}
    ,createdAt: { type: Date, default : Date.now }
 });
@@ -39,6 +43,14 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 };
 
 UserSchema.statics = {
+
+  
+  load: function (id, cb) {
+    this.findOne({ _id : id })
+      .populate('joined_projects.project')
+      .populate('joined_projects.project.provider')
+      .exec(cb)
+  },
 
   list: function (options, cb) {
     var criteria = options.criteria || {}

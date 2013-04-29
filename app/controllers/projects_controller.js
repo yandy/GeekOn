@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
+var User = mongoose.model('User');
 
 exports.project = function(req, res, next, id){
-  var User = mongoose.model('User')
   Project.load(id, function (err, project) {
     if (err) return next(err)
-    if (!project) return next(new Error('Failed to load article ' + id))
+    if (!project) return next(new Error('Failed to load project' + id))
     req.project = project;
     next()
   })
@@ -22,19 +22,16 @@ exports.create = function (req, res) {
 	var project = new Project(req.body)
 	project.provider = req.session.user._id;
 	project.participants.push({ user: req.session.user._id});
-
-	project.save(function (err, project) {
-		if (err) {
-			res.render('projects/new', {
-				title: 'New Project',
-				project: project,
-				errors: err.errors
-			})
-		}
-		else {
-			res.redirect('/project/'+ project.id);
-		}
-	})
+  project.save( function(err, project){
+      User.findOne(
+        {_id: req.session.user._id} ,function (err, user){
+                          if (err) return next(err)
+                          if (!user) return next(new Error('Failed to load user ' + id))
+                          user.joined_projects.push({project: project._id});
+                          user.save();
+                          res.redirect('/project/'+ project.id); 
+                });
+  })
 };
 
 exports.show = function (req, res) {
@@ -56,7 +53,7 @@ exports.index = function (req,res) {
     if (err) return res.render('500')
     Project.count(function (err, count) {
       res.render('projects/index', {
-        title: 'List of Articles',
+        title: 'List of Projects',
         projects: projects,
         page: page,
         pages: count / perPage
@@ -77,7 +74,15 @@ exports.follow = function (req, res) {
     console.log('come  into follow');
     var project = req.project;
     project.participants.push({user: req.session.user._id});
-    project.save(function (err, project){
-        res.redirect('/project/'+ project.id);
-    })
+    project.save();
+    console.log(project.participants);
+    User.findOne({_id: req.session.user._id} ,function (err, user){
+          console.log(user);
+          if (err) return next(err)
+          if (!user) return next(new Error('Failed to load user ' + id))
+          user.joined_projects.push({project: req.project._id});
+          user.save();
+          res.redirect('/project/'+ project.id);
+        });
+
 };

@@ -3,13 +3,13 @@ var User = mongoose.model('User');
 
 
 exports.user = function (req, res, next, id) {
-  User
-    .findOne({ _id : id }, function (err, user) {
-      if (err) return next(err)
-      if (!user) return next(new Error('Failed to load User ' + id))
-      req.profile = user;
-      next();
-    })
+
+  User.load(id, function (err, user) {
+    if (err) return next(err)
+    if (!user) return next(new Error('Failed to load user ' + id))
+    req.profile = user;
+    next()
+  })
 }
 
 exports.signin = function (req, res) {}
