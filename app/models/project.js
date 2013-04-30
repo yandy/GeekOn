@@ -1,11 +1,33 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var marked = require('marked');
+
+marked.setOptions({
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  langPrefix: 'language-',
+  highlight: function(code, lang) {
+    if (lang === 'js') {
+      return highlighter.javascript(code);
+    }
+    return code;
+  }
+});
 
 var ProjectSchema = new Schema({
 	name: String,
 	provider: {type : Schema.ObjectId, ref : 'User'},
+
 	preview: String,
+  preview_html: String,
+
 	requirement: String,
+  requirement_html: String,
+
 	participants: [{
         user: {type : Schema.ObjectId, ref : 'User'},
         createdAt: { type : Date, default : Date.now }
@@ -17,6 +39,13 @@ var ProjectSchema = new Schema({
 	}],
 	createdAt: { type: Date, default : Date.now }
 });
+
+ProjectSchema.pre('save', function(next) {
+  if (!this.isNew) return next()
+  this.preview_html = marked(this.preview);
+  this.requirement_html =marked(this.requirement);
+  next()
+})
 
 ProjectSchema.methods = {
 	addComment: function (user, comment, cb) {
