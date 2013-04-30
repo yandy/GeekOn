@@ -3,7 +3,8 @@ extends ../layout/layout
 block content
   div.container
     p project name:	#{project.name}
-    p project preview: #{project.preview_html}
+    p project preview: !{project.preview_html}
+    p project content: !{project.requirement_html}
     h2 Participants
     each participant in project.participants
       include participant/participants

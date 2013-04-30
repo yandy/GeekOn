@@ -6,21 +6,28 @@ var mongoose = require('mongoose')
 var ArticleSchema = new Schema({
   title: {type : String, default : '', trim : true},
   body: {type : String, default : '', trim : true},
- // body_html: { type: String, default: '', trim: true},
+  body_html: { type: String, default: '', trim: true},
   comments: [{
     body: { type : String, default : '' },
+    body_html: { type: String, default: ''},
     user: { type : Schema.ObjectId, ref : 'User' },
     createdAt: { type : Date, default : Date.now }
   }],
   createdAt  : {type : Date, default : Date.now}
 })
 
+ArticleSchema.pre('save', function(next) {
+  if (!this.isNew) return next()
+  this.body_html = marked(this.body);
+  next()
+})
+
 ArticleSchema.methods = {
 
   addComment: function (user, comment, cb) {
-
     this.comments.push({
       body: comment,
+      body_html: marked(comment),
       user: user._id
     })
     this.save(cb)
@@ -33,7 +40,7 @@ ArticleSchema.statics = {
   
   load: function (id, cb) {
     this.findOne({ _id : id })
-      .populate('user', 'name email')
+      .populate('user')
       .populate('comments.user')
       .exec(cb)
   },
@@ -42,7 +49,7 @@ ArticleSchema.statics = {
     var criteria = options.criteria || {}
 
     this.find(criteria)
-      .populate('user', 'name')
+      .populate('user')
       .sort({'createdAt': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)

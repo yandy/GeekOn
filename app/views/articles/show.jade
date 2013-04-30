@@ -3,7 +3,7 @@ extends ../layout/layout
 block content
   div.container
     p title: #{article.title}
-    p content: #{article.body}
+    p content: !{article.body_html}
     p
     br
     h2 Comments

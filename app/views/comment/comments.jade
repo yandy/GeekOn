@@ -2,7 +2,6 @@
 if (comment && comment.user)
   .comment
     a(href="/users/"+comment.user._id) #{comment.user.name}
-    |  :&nbsp;
-    != comment.body
+    p !{comment.body_html}
     br
     span.date #{comment.createdAt}

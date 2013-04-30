@@ -34,6 +34,7 @@ var ProjectSchema = new Schema({
     }],
 	comments: [{
 		body: { type : String, default : '' },
+    body_html: { type: String, default: ''},
 		user: { type : Schema.ObjectId, ref : 'User' },
 		createdAt: { type : Date, default : Date.now }
 	}],
@@ -51,6 +52,7 @@ ProjectSchema.methods = {
 	addComment: function (user, comment, cb) {
 		this.comments.push({
 			body: comment,
+      body_html: marked(comment),
 			user: user._id
 		})
 		this.save(cb)
