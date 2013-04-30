@@ -24,6 +24,7 @@ module.exports = function (app, config, passport) {
    res.locals.error = req.flash('error').toString();
    res.locals.success = req.flash('success').toString();
    res.locals.user = req.session ? req.session.user:'';
+   res.locals.info = req.flash('info').toString();
    next();
  });
   app.use(app.router);

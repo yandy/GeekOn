@@ -1,6 +1,36 @@
 body{
     background-image: url(/img/background.jpg); 
 }
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #000;
+    padding: 10px;
+}
+.notice {
+    text-align:center; 
+    margin-bottom:10px;
+    padding: 8px 35px 8px 14px;
+    font-size: 13px;
+    line-height: 18px;
+    border-radius: 4px;
+    border: 1px solid #fbeed5;
+}
+
+.navbar-fixed-top {
+    position: static;
+    right: 0;
+    left: 0;
+    margin-bottom: 20px;
+}
+
+.block {
+    border: 1px solid #000;
+    width: 900px;
+    background-color: green;
+}
+
 .project {
     border: 1px solid #000;
     border-bottom: none;
@@ -18,12 +48,18 @@ body{
 .extra {
     margin-left: 48px;
 }
-.content {
-    width: 900px;
-    margin: 0 auto;
-    border: 1px solid #000;
-    padding: 10px;
-}
+
 .box {
     border: 1px solid #000;
+}
+
+.footer {
+     border: 1px solid #000;
+     min-width: 940px;
+     margin-bottom: 30px;
+     margin-top: 10px;
+     padding: 0;
+     text-shadow: 0 1px 0 #fff;
+     text-align: center;
+     display: block;
 }
