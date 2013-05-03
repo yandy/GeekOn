@@ -1,7 +1,6 @@
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-
-
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var marked = require('marked');
 
 var ArticleSchema = new Schema({
   title: {type : String, default : '', trim : true},
@@ -37,7 +36,7 @@ ArticleSchema.methods = {
 
 
 ArticleSchema.statics = {
-  
+
   load: function (id, cb) {
     this.findOne({ _id : id })
       .populate('user')
@@ -57,7 +56,7 @@ ArticleSchema.statics = {
   }
 
 
- 
+
 }
 
 mongoose.model('Article', ArticleSchema)

@@ -1,5 +1,5 @@
 body{
-    background-image: url(/img/background.jpg); 
+    background-image: url(/img/background.jpg);
 }
 .project {
     border: 1px solid #000;
@@ -23,7 +23,4 @@ body{
     margin: 0 auto;
     border: 1px solid #000;
     padding: 10px;
-}
-.box {
-    border: 1px solid #000;
 }

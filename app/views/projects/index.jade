@@ -16,13 +16,13 @@ block content
               a.title(href='/project/'+project._id, title=project.name) #{project.name}
             div.info
               p=project.preview
-            div.extra  
+            div.extra
               .author
                 span= formatDate(project.createdAt, "%b %d, %Y at %I:%M %p")
                 span &nbsp;| Author :&nbsp;
                 a(href="/user/"+project.provider._id)=project.provider.username
                 | &nbsp;|&nbsp;
-    div.span2.box
+    div.span2
        div.btn-group
          a.btn.btn-success(href='/create_project') create project
 
