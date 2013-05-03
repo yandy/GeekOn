@@ -18,7 +18,7 @@ block content
               p=project.preview
             div.extra
               .author
-                span= formatDate(project.createdAt, "%b %d, %Y at %I:%M %p")
+                span= formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
                 span &nbsp;| Author :&nbsp;
                 a(href="/user/"+project.provider._id)=project.provider.username
                 | &nbsp;|&nbsp;

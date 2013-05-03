@@ -10,16 +10,16 @@ var ArticleSchema = new Schema({
     body: { type : String, default : '' },
     body_html: { type: String, default: ''},
     user: { type : Schema.ObjectId, ref : 'User' },
-    createdAt: { type : Date, default : Date.now }
+    created_at: { type : Date, default : Date.now }
   }],
-  createdAt  : {type : Date, default : Date.now}
-})
+  created_at  : {type : Date, default : Date.now}
+});
 
 ArticleSchema.pre('save', function(next) {
-  if (!this.isNew) return next()
+  if (!this.isNew) return next();
   this.body_html = marked(this.body);
-  next()
-})
+  next();
+});
 
 ArticleSchema.methods = {
 
@@ -28,35 +28,31 @@ ArticleSchema.methods = {
       body: comment,
       body_html: marked(comment),
       user: user._id
-    })
-    this.save(cb)
+    });
+    this.save(cb);
   }
 
-}
-
+};
 
 ArticleSchema.statics = {
-
   load: function (id, cb) {
     this.findOne({ _id : id })
       .populate('user')
       .populate('comments.user')
-      .exec(cb)
+      .exec(cb);
   },
 
   list: function (options, cb) {
-    var criteria = options.criteria || {}
+    var criteria = options.criteria || {};
 
     this.find(criteria)
       .populate('user')
-      .sort({'createdAt': -1}) // sort by date
+      .sort({'created_at': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)
-      .exec(cb)
+      .exec(cb);
   }
 
+};
 
-
-}
-
-mongoose.model('Article', ArticleSchema)
+mongoose.model('Article', ArticleSchema);

@@ -2,16 +2,18 @@ module.exports = function (app, passport, auth) {
 
   var comment = require('../app/controllers/comments_controller');
 
-  var user = require('../app/controllers/users_controller')
+  var user = require('../app/controllers/users_controller');
   app.get('/signup', user.new);
   app.post('/signup', user.create);
   app.get('/user/:userId', user.show);
   app.get('/auth/github', passport.authenticate('github'), user.signin);
-  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), user.authCallback)
+  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), user.authCallback);
   app.get('/geeks',user.index);
-  app.param('userId', user.user)
+  app.get('/user/:userId/edit', user.edit);
+  app.put('/user/:userId', user.update);
+  app.param('userId', user.user);
 
-  var session = require('../app/controllers/sessions_controller')
+  var session = require('../app/controllers/sessions_controller');
   app.get('/login', session.new);
   app.post('/login',session.create);
   app.get('/logout', session.destroy);
@@ -24,8 +26,8 @@ module.exports = function (app, passport, auth) {
   app.get('/projects', project.index);
   app.post('/project/:projectId/create_comment', auth.Authenticated, comment.create);
   app.get('/project/:projectId/follow', auth.Authenticated, project.follow);
-  app.param('projectId', project.project)
-  
+  app.param('projectId', project.project);
+
   var article = require('../app/controllers/articles_controller');
   app.get('/create_article', article.new);
   app.post('/create_article', article.create);
@@ -33,13 +35,9 @@ module.exports = function (app, passport, auth) {
   app.get('/article/:articleId', article.show);
   app.get('/articles', article.index);
   app.post('/article/:articleId/create_comment', auth.Authenticated,comment.create);
-  app.param('articleId', article.article)
-
-
-  var activity = require('../app/controllers/activity');
-  app.get('/events', activity.list);
+  app.param('articleId', article.article);
 
   var home = require('../app/controllers/home_controller');
   app.get('/', home.index);
-  
-}
+
+};

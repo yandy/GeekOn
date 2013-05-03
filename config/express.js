@@ -1,5 +1,5 @@
-var express = require('express')
-var path = require('path')
+var express = require('express');
+var path = require('path');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
 
@@ -28,9 +28,9 @@ module.exports = function (app, config, passport) {
  });
   app.use(app.router);
   app.use(express.static(path.join(config.root, 'public')));
-  
+
   // development only
   if ('development' == app.get('env')) {
     app.use(express.errorHandler());
   }
-}
+};

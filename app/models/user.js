@@ -4,19 +4,19 @@ var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-   name: { type: String, default: ''}
-   ,username: { type: String, required: true}
-   ,password: String
-   ,avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'}
-   ,email: {type: String, required: true, index: {unique: true, dropDups: true}}
-   ,provider: { type: String, required: true}
-   ,github: {}
-   ,joined_projects: [{
-        project: {type : Schema.ObjectId, ref : 'Project'},
-        createdAt: { type : Date, default : Date.now }
-    }]
-   ,isAdmin:{type: Boolean, default: false}
-   ,createdAt: { type: Date, default : Date.now }
+  name: { type: String, default: ''},
+  username: { type: String, required: true},
+  password: String,
+  avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'},
+  email: {type: String, required: true, index: {unique: true, dropDups: true}},
+  provider: { type: String, required: true},
+  github: {},
+  joined_projects: [{
+    project: {type : Schema.ObjectId, ref : 'Project'},
+    created_at: { type : Date, default : Date.now }
+  }],
+  is_admin:{type: Boolean, default: false},
+  created_at: { type: Date, default : Date.now }
 });
 
 UserSchema.pre('save', function (next) {
@@ -44,22 +44,22 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 
 UserSchema.statics = {
 
-  
+
   load: function (id, cb) {
     this.findOne({ _id : id })
-      .populate('joined_projects.project')
-      .populate('joined_projects.project.provider')
-      .exec(cb)
+    .populate('joined_projects.project')
+    .populate('joined_projects.project.provider')
+    .exec(cb);
   },
 
   list: function (options, cb) {
-    var criteria = options.criteria || {}
+    var criteria = options.criteria || {};
 
     this.find(criteria)
-      .sort({'createdAt': -1}) // sort by date
+      .sort({'created_at': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)
-      .exec(cb)
-  }
-}
-mongoose.model('User', UserSchema);
+      .exec(cb);
+    }
+  };
+  mongoose.model('User', UserSchema);

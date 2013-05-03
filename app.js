@@ -8,8 +8,8 @@ var path = require('path');
 var http = require('http');
 
 var env = process.env.NODE_ENV || 'development';
-var config = require('./config/config')[env]
-var auth = require('./config/middlewares/authorization')
+var config = require('./config/config')[env];
+var auth = require('./config/middlewares/authorization');
 var mongoose = require('mongoose');
 
 // connect db
