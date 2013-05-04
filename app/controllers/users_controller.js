@@ -5,7 +5,7 @@ var User = mongoose.model('User');
 exports.user = function (req, res, next, id) {
   User.load(id, function (err, user) {
     if (err) return next(err);
-    if (!user) return next(new Error('Failed to load user ' + id));
+    if (!user) return res.render('404');
     req.profile = user;
     next();
   });
@@ -23,42 +23,50 @@ exports.authCallback = function (req, res, next) {
 exports.show = function (req, res) {
   res.render('users/show', {
     profile: req.profile,
-    title: "账户"});
+    title: '账户'});
 };
 
 exports.new = function (req, res) {
   res.render('users/new', {
-    title: 'Sign up',
+    title: '注册',
     user: new User({})
   });
 };
 
-exports.create = function (req, res) {
+exports.create = function (req, res, next) {
   var user = new User(req.body);
-  user.provider = 'local';
-  if (req.body["password_confirmation"] == user.password) {
-    user.save(function (err) {
-      if (err) {
-        req.flash('error','some mistakes have appeared');
-        return res.render('users/new', {
-          title: 'error',
-          errors: err.errors,
-          user: user});
+  console.log(user);
+  user.validateUsername(function (err, isValid, message) {
+    if (err) return next(err);
+    if (!isValid) {
+      req.flash('error', message);
+      return res.redirect('/signup');
+    }
+
+    user.validateEmail(function (err, isValid, message) {
+      if (err) return next(err);
+      if (!isValid) {
+        req.flash('error', message);
+        return res.redirect('/signup');
       }
-      req.logIn(user, function(err) {
+
+      if (req.body["password_confirmation"] !== user.password) {
+        req.flash('error', '两次输入的口令不一致！');
+        return res.redirect('/signup');
+      }
+
+      user.provider = 'local';
+      user.save(function (err) {
         if (err) return next(err);
-        req.flash('success','Signup');
-        req.session.user = user;
-        return res.redirect('/user/'+user._id);
+        req.logIn(user, function(err) {
+          if (err) return next(err);
+          req.flash('success','注册成功！');
+          req.session.user = user;
+          return res.redirect('/users/'+ user.username);
+        });
       });
     });
-  } else {
-    res.render('users/new', {
-      title: 'Sign up',
-      user: new User({})
-    });
-  }
-
+  });
 };
 
 exports.index = function(req, res){
@@ -84,10 +92,10 @@ exports.index = function(req, res){
 };
 
 exports.edit = function (req, res) {
-   res.render('users/edit', {
-    title: 'Edit '+req.profile.name,
-    profile: req.profile
-  });
+ res.render('users/edit', {
+  title: 'Edit '+req.profile.name,
+  profile: req.profile
+});
 };
 
 exports.update = function (req, res) {

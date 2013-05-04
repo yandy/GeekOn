@@ -13,24 +13,22 @@ module.exports = function (passport, config) {
     });
   });
 
- // use local strategy
- passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password'},
-              function (email, password, done) {
-                User.findOne({ email: email }, function (err, user) {
-                  if (err) return done(err);
-                  if (!user) {
-                    return done(null, false, { message: 'Unknown user' });
-                  }
-                  user.comparePassword(password, function (err, isMatch) {
-                    if (err) return done(err);
-                    if (isMatch) {
-                      return done(null, user);
-                    } else{
-                      return done(null, false, {message:'Invalid password'});
-                    }
-                  });
-                });
-              }));
+  // use local strategy
+  passport.use(new LocalStrategy(function (username, password, done) {
+    User.findOne({$or:[{username: username}, {email: username}]}, function (err, user) {
+      if (err) return done(err);
+      if (!user) return done(null, false, {message: '该用户不存在！'});
+
+      user.comparePassword(password, function (err, isMatch) {
+        if (err) return done(err);
+        if (isMatch) {
+          return done(null, user);
+        } else{
+          return done(null, false, {message:'口令不正确！'});
+        }
+      });
+    });
+  }));
 
  // use github strategy
  passport.use(new GitHubStrategy({

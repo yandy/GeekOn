@@ -21,20 +21,20 @@ block header
               li
                 img(src='#{locals.user.avatar_url}',height=30,width=30)
               li.dropdown
-                a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}") #{locals.user.name}
+                a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}") #{locals.user.name}
                   span.caret
-                ul.dropdown-menu 
+                ul.dropdown-menu
                   li
-                    a(href="/user/#{locals.user._id}") Account
+                    a(href="/users/#{locals.user.username}") Account
                   li
-                    a(href="/logout") 登出 
-            else 
+                    a(href="/logout") 登出
+            else
               li
                 a(href="/signup") 注册
               li.dropdown
                 a.dropdown-toggle(data-toggle="dropdown",href="#") Login
                   span.caret
-                ul.dropdown-menu 
+                ul.dropdown-menu
                   li
                     a(href="/login") Local
                   li

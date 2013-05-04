@@ -1,12 +1,6 @@
-extends layouts/layout
-
-block main
-  h1 Oops something went wrong
-  br
-  span 404
+extends layout/layout
 
 block content
-  #error-message-box
-    #error-stack-trace
-      pre
-        code!= error
+  .alert.alert-error
+    Oops Page Not Found
+
