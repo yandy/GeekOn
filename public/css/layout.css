@@ -1,18 +1,12 @@
 body{
-	padding:10px 45px 10px 45px;
+	padding:0px 30px 10px 30px;
 	background-color: #FDFEFF;
 }
 .border{
 	border:solid 1px black;
 
 }
-.border-navbar{
-	border-color: #86ACCD;
-	border-left-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
-	box-shadow: 4px 0px 1px 2px #93C3FD;
-}
+
 .border-nav{
 	border-color: #216BAC;
 	border-style: solid;
@@ -20,88 +14,153 @@ body{
 	border-radius: 3px;
 	box-shadow: 2px 2px 6px 1px #004B8D;
 }
-.border-footer{
-	border-color: #216BAC;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-}
 .nav{
-	padding-top: 10px;
+	padding-top: 6px;
+	padding-left: 20px;
 }
-#nav li{
-	width:100px;
-	text-align: center;
-
+/* Logo图片 */
+.span2 img{
+	width:80px;
+	margin-bottom: 10px;
 }
 
+/* 导航栏中间六个按钮 */
+.border-navbar{
+	border-color: #86ACCD;
+	border-left-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	box-shadow: 4px 0px 1px 2px #93C3FD;
+}
+#nav{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
 #nav a{
 	color:#002A50;
 }
-#container{
+#nav li{
+	width:90px;
+	text-align: center;
 }
 #nav ul{
 	margin:0px 5px 0px 5px;
 }
-.current-bottom{
-	border-bottom-style: inset;
-	border-color: #005CAB;
-	border-bottom-width: 4px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+
+/* 导航栏右侧登录/注册/微博按钮 */
+.nav-btn{
+	background-color: #E0F0FE;
+	border-radius: 4px;
+	text-align: center;
 }
-
-
+.nav-btn a{
+	color:#06266F;
+	text-decoration: none;
+}
+.nav-btn a:hover{
+	color: #0094FE;
+	box-shadow: 1px 1px 1px 1px blue;
+}
 .logout-in span ul li a{
 	text-align: left;
 }
 .logout-in span ul li a span{
 	color:#247893;
 }
-.follow-btn{
-	background-color: #B3CEEF;
-	border-radius: 5px;
+/* 首页 */
+.row-fluid.info{
+	height: 200px;
+	background-color: #E0F0FE;
+	border-radius: 8px;
 	text-align: center;
 }
-.logout-in .btn a{
-	color:white;
-	text-decoration: none;
-}
-
-
-.row-fluid.info{
-	height: 300px;
-	background-color: #E0F0FE;
-	border-radius: 8px;
-}
 .row-fluid.step{
-	height: 300px;
+	height: 200px;
 	background-color: #EDEDED;
 	border-radius: 8px;
+	text-align: center;
 }
 .row-fluid.prize{
-	height: 300px;
+	height: 200px;
 	background-color: #E0F0FE;
 	border-radius: 8px;
+	text-align: center;
 }
 .row-fluid.news{
-	height: 300px;
+	height: 200px;
 	background-color: #E8FFD7;
 	border-radius: 8px;
+	text-align: center;
 }
 .row-fluid.sponsor{
-	height: 300px;
+	height: 200px;
 	background-color: #E0F0FE;
 	border-radius: 8px;
+	text-align: center;
 }
 .row-fluid.contact{
-	height: 300px;
+	height: 200px;
 	background-color: #EAE0F7;
 	border-radius: 8px;
+	text-align: center;
 }
+
+/* 创意项目 */
+.new-project-btn{
+	background-color: #E0F0FE;
+	color:blue;
+}
+.new-project-btn:hover{
+	color: #0094FE;
+	text-decoration: none;
+	box-shadow: 1px 1px 1px 1px blue;
+}
+.project .span9{
+	background-color: #E0F0FE;
+	border-radius: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.right-side{
+}
+/* 创意项目的每个单元格 */
+.unit{
+	width:30%;
+	border:solid 1px #CCD0FE;
+	box-shadow: 1px 1px 4px 1px #E0F0FE;
+}
+.span4.unit{
+	width:30%;
+}
+.span4.unit:first-child{
+	margin-left: 25px;
+}
+.head-img{
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: #9DD0EF;
+}
+.desc{
+	border-top-style:solid;
+	border-top-width: 1px;
+	border-top-color: #9DD0EF;
+}
+.inf{
+	border-top-style:solid;
+	border-top-width: 1px;
+	border-top-color: #9DD0EF;
+}
+
+/* footer */
 .footer{
 	background-color: #E8FFD7;
 }
 .footer a{
 	color:#135086;
+}
+.border-footer{
+	border-color: #216BAC;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
 }

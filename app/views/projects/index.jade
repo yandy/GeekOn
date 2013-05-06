@@ -1,29 +1,38 @@
 extends ../layout/layout
 
 block content
-  div.row.projects
-    div.span6
-      each project in projects
-        .project.project_line
-          div.avatar.pull-left
-            a
-              img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
-          div.right_info
-            div.pull-right.replies
-              p 10000
-          div.infos
-            div.title
-              a.title(href='/project/'+project._id, title=project.name) #{project.name}
-            div.info
-              p=project.preview
-            div.extra
-              .author
-                span= formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
-                span &nbsp;| Author :&nbsp;
-                a(href="/user/"+project.provider._id)=project.provider.username
-                | &nbsp;|&nbsp;
+  div.row-fluid
     div.span2
-       div.btn-group
-         a.btn.btn-success(href='/create_project') create project
+      h4 项目列表
+    div.span2.offset5
+       a.new-project-btn(href='/create_project') 创建项目
 
+  div.row-fluid.project
 
+    div.span9
+      div.row-fluid.project-row
+       each project,i in projects
+            div.span4.unit
+              div.row-fluid.head
+                div.span3.head-img
+                  a
+                   img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
+                div.span9.head-info
+                  span 项目名称:
+                  a.title(href='/project/'+project._id, title=project.name) #{project.name}
+                  br
+                  span 项目提供者:
+                  a(href="/user/"+project.provider._id)=project.provider.username
+              div.row-fluid.desc
+                span 项目的内容：#{project.preview}
+              div.row-fluid.inf
+                a(href="#") 关注
+    div.span3.right-side
+      div.row-fluid.news
+        h4 最新动态
+      br
+      div.row-fluid.sponsor
+        h4 赞助信息
+      br
+      div.row-fluid.contact
+        h4 联系我们
