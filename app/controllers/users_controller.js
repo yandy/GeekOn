@@ -34,7 +34,12 @@ exports.new = function (req, res) {
 };
 
 exports.create = function (req, res, next) {
-  var user = new User(req.body);
+  var user = new User({
+    uname: req.body.username,
+    password: req.body.password,
+    uemail: req.body.email
+  });
+
   console.log(user);
   user.validateUsername(function (err, isValid, message) {
     if (err) return next(err);
@@ -47,6 +52,11 @@ exports.create = function (req, res, next) {
       if (err) return next(err);
       if (!isValid) {
         req.flash('error', message);
+        return res.redirect('/signup');
+      }
+
+      if (user.password.length < 6) {
+        req.flash('error', '请设置6位以上的口令');
         return res.redirect('/signup');
       }
 

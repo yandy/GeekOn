@@ -20,6 +20,7 @@
     "view-helpers": "*",
     "bcrypt": "*",
     "marked": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "validator" : "*"
   }
 }
