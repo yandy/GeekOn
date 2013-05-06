@@ -7,10 +7,10 @@ block content
     p Email：#{profile.email}
     h2 joined_projects
 
- .row
+  .row
     .span7
       form.form-horizontal(method="post", action="user/"+ profile._id, enctype="multipart/form-data")
-
+        input(type="hidden", name='_csrf', value=token)
         .control-group
           label.control-label(for='username') username
           .controls

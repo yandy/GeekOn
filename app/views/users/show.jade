@@ -11,12 +11,13 @@ block content
       p #{joined_project.project.provider.uname}
 
     if locals.user && locals.user.is_admin
-        form(method="post", action="/create_article")
-          div
-            label title:
-            input(type="text", name="title")
-          div
-            label content:
-            input(type="text", name="body")
-          div
-            input(type="submit", value="Submit")
+      form(method="post", action="/create_article")
+        input(type="hidden", name='_csrf', value=token)
+        div
+          label title:
+          input(type="text", name="title")
+        div
+          label content:
+          input(type="text", name="body")
+        div
+          input(type="submit", value="Submit")
