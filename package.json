@@ -13,12 +13,13 @@
     "connect-flash":"*",
     "passport": "*",
     "passport-local": "*",
-    "passport-github": "*", 
+    "passport-github": "*",
     "passport-facebook": "*",
     "passport-twitter": "*",
     "passport-google-oauth": "*",
     "view-helpers": "*",
     "bcrypt": "*",
-	"marked": "*"
+    "marked": "*",
+    "underscore": "*"
   }
 }

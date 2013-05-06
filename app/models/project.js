@@ -19,68 +19,67 @@ marked.setOptions({
 });
 
 var ProjectSchema = new Schema({
-	name: String,
-	provider: {type : Schema.ObjectId, ref : 'User'},
+  name: String,
+  provider: {type : Schema.ObjectId, ref : 'User'},
 
-	preview: String,
+  preview: String,
   preview_html: String,
 
-	requirement: String,
+  requirement: String,
   requirement_html: String,
 
-	participants: [{
-        user: {type : Schema.ObjectId, ref : 'User'},
-        createdAt: { type : Date, default : Date.now }
-    }],
-	comments: [{
-		body: { type : String, default : '' },
+  participants: [{
+    user: {type : Schema.ObjectId, ref : 'User'},
+    created_at: { type : Date, default : Date.now }
+  }],
+  comments: [{
+    body: { type : String, default : '' },
     body_html: { type: String, default: ''},
-		user: { type : Schema.ObjectId, ref : 'User' },
-		createdAt: { type : Date, default : Date.now }
-	}],
-	createdAt: { type: Date, default : Date.now }
+    user: { type : Schema.ObjectId, ref : 'User' },
+    created_at: { type : Date, default : Date.now }
+  }],
+  created_at: { type: Date, default : Date.now }
 });
 
 ProjectSchema.pre('save', function(next) {
-  if (!this.isNew) return next()
+  if (!this.isNew) return next();
   this.preview_html = marked(this.preview);
   this.requirement_html =marked(this.requirement);
-  next()
-})
+  next();
+});
 
 ProjectSchema.methods = {
-	addComment: function (user, comment, cb) {
-		this.comments.push({
-			body: comment,
+  addComment: function (user, comment, cb) {
+    this.comments.push({
+      body: comment,
       body_html: marked(comment),
-			user: user._id
-		})
-		this.save(cb)
-	}
+      user: user._id
+    });
+    this.save(cb);
+  }
 
-}
+};
+
 ProjectSchema.statics = {
-
-  
   load: function (id, cb) {
     this.findOne({ _id : id })
-      .populate('provider', 'username')
-      .populate('participants.user')
-      .populate('comments.user')
-      .exec(cb)
+    .populate('provider', 'username')
+    .populate('participants.user')
+    .populate('comments.user')
+    .exec(cb);
   },
 
   list: function (options, cb) {
-    var criteria = options.criteria || {}
+    var criteria = options.criteria || {};
 
     this.find(criteria)
-      .populate('provider', 'username avatar_url')
-      .sort({'createdAt': -1}) // sort by date
+    .populate('provider', 'username avatar_url')
+      .sort({'created_at': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)
-      .exec(cb)
-  }
+      .exec(cb);
+    }
 
-}
+  };
 
-mongoose.model('Project', ProjectSchema);
+  mongoose.model('Project', ProjectSchema);

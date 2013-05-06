@@ -7,8 +7,8 @@ block content
     .article
       a.title(href='/article/'+article._id, title=article.title) #{article.title}
       p !{article.body_html}
-      span=formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
-        
+      span=formatDate(article.created_at, "%b %d, %Y at %I:%M %p")
+
   if (pages > 1)
     .pagination
       ul

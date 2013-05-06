@@ -1,5 +1,5 @@
-var express = require('express')
-var path = require('path')
+var express = require('express');
+var path = require('path');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
 
@@ -23,15 +23,18 @@ module.exports = function (app, config, passport) {
   app.use(function (req, res, next) {
    res.locals.error = req.flash('error').toString();
    res.locals.success = req.flash('success').toString();
-   res.locals.user = req.session ? req.session.user:'';
-   res.locals.info = req.flash('info').toString();
+   res.locals.user = req.session ? req.session.user : '';
    next();
  });
   app.use(app.router);
   app.use(express.static(path.join(config.root, 'public')));
-  
+  app.use(function (req, res, next) {
+    res.status(404);
+    res.render('404');
+  });
+
   // development only
   if ('development' == app.get('env')) {
     app.use(express.errorHandler());
   }
-}
+};

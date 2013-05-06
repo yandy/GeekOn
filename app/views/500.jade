@@ -1,12 +1,5 @@
-extends layouts/layout
+extends layout/layout
 
 block main
-  h1 Oops something went wrong
-  br
-  span 500
-
-block content
-  #error-message-box
-    #error-stack-trace
-      pre
-        code!= error
+  .alert.alert-error
+    Oops Something went wrong

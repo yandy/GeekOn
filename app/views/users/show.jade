@@ -2,7 +2,7 @@ extends ../layout/layout
 
 block content
   div.container
-    
+
     p 用户名：#{profile.username}
     p Email：#{profile.email}
     h2 joined_projects
@@ -10,7 +10,7 @@ block content
       p #{joined_project.project.name}
       p #{joined_project.project.provider.name}
 
-    if locals.user && locals.user.isAdmin
+    if locals.user && locals.user.is_admin
         form(method="post", action="/create_article")
           div
             label title:
