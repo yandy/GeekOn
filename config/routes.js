@@ -2,7 +2,7 @@ module.exports = function (app, passport, auth) {
   var user = require('../app/controllers/users_controller');
   app.get('/signup', user.new);
   app.post('/signup', user.create);
-  app.get('/users/:user([a-z0-9]+$)', user.show);
+  app.get('/user/:user([a-z0-9]+$)', user.show);
   app.get('/auth/github', passport.authenticate('github'), user.signin);
   app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), user.authCallback);
   app.get('/geeks',user.index);

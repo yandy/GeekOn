@@ -7,7 +7,7 @@ block content
         .project.project_line
           div.avatar.pull-left
             a
-              img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
+              img(href='/user/project.provider.username',src='#{project.provider.avatar_url}')
           div.right_info
             div.pull-right.replies
               p 10000
@@ -20,7 +20,7 @@ block content
               .author
                 span= formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
                 span &nbsp;| Author :&nbsp;
-                a(href="/user/"+project.provider._id)=project.provider.username
+                a(href="/user/"+project.provider._id)=project.provider.uname
                 | &nbsp;|&nbsp;
     div.span2
        div.btn-group

@@ -21,6 +21,8 @@
     "bcrypt": "*",
     "marked": "*",
     "underscore": "*",
-    "validator" : "*"
+    "validator" : "*",
+    "nodemailer": "*",
+    "underscore": "*"
   }
 }

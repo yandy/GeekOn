@@ -3,12 +3,12 @@ extends ../layout/layout
 block content
   div.container
 
-    p 用户名：#{profile.username}
+    p 用户名：#{profile.uname}
     p Email：#{profile.email}
     h2 joined_projects
     each joined_project in profile.joined_projects
       p #{joined_project.project.name}
-      p #{joined_project.project.provider.name}
+      p #{joined_project.project.provider.uname}
 
     if locals.user && locals.user.is_admin
         form(method="post", action="/create_article")

@@ -4,16 +4,16 @@ block header
      div.span7
       p Logo和背景图
       div.span2.offset1.logout-in
-        if locals.user && locals.user.username
+        if locals.user && locals.user.uname
           span
             img(src='#{locals.user.avatar_url}',height=30,width=30)
           &nbsp;&nbsp;&nbsp;&nbsp
           span.dropdown.btn.btn-primary
-            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}") #{locals.user.name}
+            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}") #{locals.user.uname}
               span.caret
             ul.dropdown-menu
               li
-                a(href="/user/#{locals.user._id}")
+                a(href="/user/#{locals.user.username}")
                   i.icon-user
                   span 个人主页
               li

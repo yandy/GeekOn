@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-
+var Email = require('../mailers/email');
+var _ = require('underscore');
 
 exports.user = function (req, res, next, id) {
   User.load(id, function (err, user) {
@@ -68,11 +69,12 @@ exports.create = function (req, res, next) {
       user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);
+        Email.send_email;
         req.logIn(user, function(err) {
           if (err) return next(err);
           req.flash('success','注册成功！');
           req.session.user = user;
-          return res.redirect('/users/'+ user.username);
+          return res.redirect('/user/'+ user.username);
         });
       });
     });
@@ -109,5 +111,20 @@ exports.edit = function (req, res) {
 };
 
 exports.update = function (req, res) {
+  console.log(req.session.user);
+  var user = req.session.user
+  user = _.extend(user, req.body)
 
+ user.save(function (err, user) {
+    if (err) {
+      res.render('users/edit', {
+        title: 'Edit user',
+        user: user,
+        errors: err.errors
+      })
+    }
+    else {
+      res.redirect('/user/' + user.username)
+    }
+  })
 };
