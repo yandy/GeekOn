@@ -1,41 +1,58 @@
 block header
-  div.navbar.navbar-fixed-top
-    div.navbar-inner
-      div.container
-        a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.brand(href="/") GeekOn
-
-        div.nav-collapse.collapse
-          ul.nav
-            li
-              a(href="/articles") 活动
-            li
-              a(href="/projects") 项目
-            li
-              a(href="/geeks") 极客
-          ul.nav.pull-right
-            if locals.user && locals.user.username
-              li
+  div.nav.border-nav
+    div.row-fluid
+     div.span7
+        p Logo和背景图
+      div.span2.offset1.logout-in
+        if locals.user && locals.user.username
+              span
                 img(src='#{locals.user.avatar_url}',height=30,width=30)
-              li.dropdown
+              &nbsp;&nbsp;&nbsp;&nbsp
+              span.dropdown.btn.btn-primary
                 a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}") #{locals.user.name}
                   span.caret
-                ul.dropdown-menu 
+                ul.dropdown-menu
                   li
-                    a(href="/user/#{locals.user._id}") Account
+                    a(href="/user/#{locals.user._id}")
+                      i.icon-user
+                      span 个人主页
                   li
-                    a(href="/logout") 登出 
-            else 
-              li
-                a(href="/signup") 注册
-              li.dropdown
-                a.dropdown-toggle(data-toggle="dropdown",href="#") Login
-                  span.caret
-                ul.dropdown-menu 
-                  li
-                    a(href="/login") Local
-                  li
-                    a(href="/auth/github") Github
+                    a(href="/logout")
+                      i.icon-chevron-left
+                      span 登出
+            else
+                span.btn.btn-primary
+                  a(href="/signup") 注册
+                &nbsp;&nbsp;&nbsp;&nbsp
+                span.dropdown.btn.btn-primary
+                  a.dropdown-toggle(data-toggle="dropdown",href="#") 登录
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                      a(href="/login")
+                        i.icon-chevron-right
+                        span Local
+                    li
+                      a(href="/auth/github")
+                        i.icon-chevron-right
+                        span Github
+
+      div.span2.follow-btn
+        a(href="#") 官方微博关注
+    br
+    br
+    div.row-fluid#nav
+      div.span6.offset3.border-navbar
+        ul.nav.nav-pills
+          li
+            a(href="/") 首页
+          li
+            a(href="#") 最新动态
+          li
+            a(href="/articles") 活动详情
+          li
+            a(href="/projects") 创意项目
+          li
+            a(href="/geeks") Geek
+          li
+            a(href="#") 赞助合作
