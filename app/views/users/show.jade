@@ -1,23 +1,68 @@
 extends ../layout/layout
 
 block content
-  div.container
-
-    p 用户名：#{profile.uname}
-    p Email：#{profile.email}
-    h2 joined_projects
-    each joined_project in profile.joined_projects
-      p #{joined_project.project.name}
-      p #{joined_project.project.provider.uname}
-
+  div.user-show
+    div.row-fluid
+      div.span2
+        a(href="/user/#{user.username}")
+          img(src="#{user.avatar_url}", alt="用户图片")
+      div.span8.info
+        .row-fluid
+          .span2
+            label 用户名
+          .span10
+            p #{user.username}
+        .row-fluid
+          .span2
+            label 邮箱
+          .span10
+            p #{profile.email}
+        .row-fluid
+          .span2
+            label 技术背景
+          .span10
+            p ^&(@#*@)*#(@)(!@#))@($$*@&#*@_))$#*)$(*#@#&^@&^@&*#$&(&(&)))
+        .row-fluid
+          .span2
+            label 参加的项目
+          .span10
+            div.row-fluid
+              each joined_project in profile.joined_projects
+                div.span4.join-unit
+                  div.row-fluid.head
+                    div.span3.head-img
+                      img(href='/user/joined_project.project.provider._id',src='/img/monkey.png')
+                    div.span9.head-info
+                      a.title(href='/project/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}
+                      br
+                      span 由
+                      a(href="/user/"+joined_project.project.provider._id)=joined_project.project.provider.username
+                      span 创建于
+                      span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
+                  div.row-fluid.desc
+                    p #{joined_project.project.preview}
+        .row-fluid
+          div.span2
+            label 感兴趣的项目
+          div.span10
+        .row-fluid
+          div.span2
+            label Github帐号
+          div.span10
     if locals.user && locals.user.is_admin
       form(method="post", action="/create_article")
         input(type="hidden", name='_csrf', value=token)
-        div
-          label title:
-          input(type="text", name="title")
-        div
-          label content:
-          input(type="text", name="body")
-        div
-          input(type="submit", value="Submit")
+        div.new-news
+          .row-fluid
+            .span2
+              label 标题
+            .span10
+              input(type="text", name="title")#title
+          .row-fluid
+              .span2
+                label 内容
+              .span10
+                textarea(name="body",rows="5")
+          .row-fluid
+            .span2.offset2
+              input(type="submit", value="Submit").btn.btn-primary

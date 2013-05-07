@@ -1,21 +1,29 @@
 extends ../layout/layout
 
 block content
-  div.container
-    p project name:	#{project.name}
-    p project preview: !{project.preview_html}
-    p project content: !{project.requirement_html}
-    h2 Participants
-    each participant in project.participants
-      include participant/participants
-    p
-        a(href='/project/#{project.id}/follow') follow
-    br
-    h2 Comments
-    each comment in project.comments
-      include ../comment/comments
-    if locals.user
-        include comment/add_comment
-    else
-        p Only if you login, can you make a comment!
-
+  div.project-show.row-fluid
+    div.span9
+      div.row-fluid
+        div.span10
+          h2.project-title #{project.name}
+        div.span2
+          img(src="/img/monkey.png", alt="")
+      label 概要
+      p !{project.preview_html}
+      label 内容
+      p !{project.requirement_html}
+      h4 参与人员
+      each participant in project.participants
+        include participant/participants
+      p
+          a(href='/project/#{project.id}/follow') follow
+      br
+      h4 评论
+      each comment in project.comments
+        include ../comment/comments
+      br
+      if locals.user
+          include comment/add_comment
+      else
+          p Only if you login, can you make a comment!
+    include ../layout/right-side

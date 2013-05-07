@@ -3,11 +3,20 @@ extends ../layout/layout
 block main
   h1 Users
 block content
-  each user in users
-    img(src='#{user.avatar_url}',height=20,width=20)
-    a(href="/user/#{user.username}") #{user.uname}
-    br
-  if (pages > 1)
-    .pagination
-      ul
-        != createPagination(pages, page)
+  div.users
+    div.row-fluid.users-list
+      each user in users
+        div.span1.user-unit
+          div.row-fluid
+            a(href="/user/#{user.username}")
+              img(src="#{user.avatar_url}", alt="用户图片")
+          div.row-fluid
+            a(href="/user/#{user.username}")
+              p #{user.username}
+
+    div.row-fluid
+      div.offset4
+        if (pages > 1)
+          .pagination
+            ul
+              != createPagination(pages, page)

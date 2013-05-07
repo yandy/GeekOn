@@ -1,16 +1,18 @@
 extends ../layout/layout
 
 block content
-  div.container
-    p title: #{article.title}
-    p content: !{article.body_html}
-    p
-    br
-    h2 Comments
-    each comment in article.comments
-      include ../comment/comments
-    if locals.user
-        include comment/add_comment
-    else
-        p Only if you login, can you make a comment!
+  div.row-fluid.article-show
+    .span9
+      h3 #{article.title}
+      p !{article.body_html}
+      br
+      h4 回复
+      each comment in article.comments
+        include ../comment/comments
+      br
+      if locals.user
+          include comment/add_comment
+      else
+          p Only if you login, can you make a comment!
+    include ../layout/right-side
 

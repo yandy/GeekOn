@@ -6,28 +6,24 @@ block content
       h4 项目列表
     div.span2.offset5
        a.new-project-btn(href='/create_project') 创建项目
-
   div.row-fluid.project
-
     div.span9
       div.row-fluid.project-row
        each project,i in projects
             div.span4.unit
               div.row-fluid.head
                 div.span3.head-img
-                  a
+                  a(href='/project/'+project._id)
                    img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
                 div.span9.head-info
-                  span 项目名称:
                   a.title(href='/project/'+project._id, title=project.name) #{project.name}
                   br
-                  span 项目提供者:
+                  span 由
                   a(href="/user/"+project.provider._id)=project.provider.username
-                  br
-                  span 创建日期:
+                  span 创建于
                   span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
               div.row-fluid.desc
-                span 项目的内容：#{project.preview}
+                p #{project.preview}
               div.row-fluid.inf
                 .span3
                   a(href="#")
@@ -41,12 +37,4 @@ block content
                   a(href="#")
                     i.icon-star
                     span 收藏
-    div.span3.right-side
-      div.row-fluid.news
-        h4 最新动态
-      br
-      div.row-fluid.sponsor
-        h4 赞助信息
-      br
-      div.row-fluid.contact
-        h4 联系我们
+    include ../layout/right-side

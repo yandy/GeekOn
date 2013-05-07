@@ -1,17 +1,24 @@
 extends ../layout/layout
 
 block content
-  div.container
+  div.new-project
     form(method="post", action="/create_project")
       input(type="hidden", name='_csrf', value=token)
-      div
-          label project name:
+      div.row-fluid
+        div.span2
+          label 项目名称
+        div.span6
           input(type="text", name="name")
-      div
-          label project preview:
+      div.row-fluid
+        .span2
+          label 项目概要
+        .span6
           input(type="text", name="preview")
-      div
-          label project requirement:
-          input(type="text", name="requirement")
-      div
-          input(type="submit", value="submit")
+      div.row-fluid
+        .span2
+          label 项目要求
+        .span6
+          textarea(name="requirement")
+      div.row-fluid
+        .span2.offset1
+          input(type="submit", value="submit").btn.btn-primary
