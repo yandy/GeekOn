@@ -150,7 +150,10 @@ body{
 	border-top-width: 1px;
 	border-top-color: #9DD0EF;
 }
+.row-fluid.inf a{
+	text-decoration: none;
 
+}
 /* footer */
 .footer{
 	background-color: #E8FFD7;
