@@ -4,10 +4,11 @@ block content
   div.container
 
     form.login.form-horizontal(action="/login", method="post")
+      input(type="hidden", name='_csrf', value=token)
       .control-group
         label.control-label(for='email') Email
         .controls
-          input#username(type='text', name="username", placeholder='Email')
+          input#email(type='text', name="username", placeholder='Email')
 
       .control-group
         label.control-label(for='password') Password

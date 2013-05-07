@@ -20,6 +20,9 @@
     "view-helpers": "*",
     "bcrypt": "*",
     "marked": "*",
+    "underscore": "*",
+    "validator" : "*",
+    "nodemailer": "*",
     "underscore": "*"
   }
 }

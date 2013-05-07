@@ -23,6 +23,9 @@ block content
                   br
                   span 项目提供者:
                   a(href="/user/"+project.provider._id)=project.provider.username
+                  br
+                  span 创建日期:
+                  span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
               div.row-fluid.desc
                 span 项目的内容：#{project.preview}
               div.row-fluid.inf

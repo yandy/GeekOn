@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-
+var Email = require('../mailers/email');
+var _ = require('underscore');
 
 exports.user = function (req, res, next, id) {
   User.load(id, function (err, user) {
@@ -34,7 +35,12 @@ exports.new = function (req, res) {
 };
 
 exports.create = function (req, res, next) {
-  var user = new User(req.body);
+  var user = new User({
+    uname: req.body.username,
+    password: req.body.password,
+    uemail: req.body.email
+  });
+
   console.log(user);
   user.validateUsername(function (err, isValid, message) {
     if (err) return next(err);
@@ -50,6 +56,11 @@ exports.create = function (req, res, next) {
         return res.redirect('/signup');
       }
 
+      if (user.password.length < 6) {
+        req.flash('error', '请设置6位以上的口令');
+        return res.redirect('/signup');
+      }
+
       if (req.body["password_confirmation"] !== user.password) {
         req.flash('error', '两次输入的口令不一致！');
         return res.redirect('/signup');
@@ -58,11 +69,12 @@ exports.create = function (req, res, next) {
       user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);
+        Email.send_email;
         req.logIn(user, function(err) {
           if (err) return next(err);
           req.flash('success','注册成功！');
           req.session.user = user;
-          return res.redirect('/users/'+ user.username);
+          return res.redirect('/user/'+ user.username);
         });
       });
     });
@@ -99,5 +111,20 @@ exports.edit = function (req, res) {
 };
 
 exports.update = function (req, res) {
+  console.log(req.session.user);
+  var user = req.session.user
+  user = _.extend(user, req.body)
 
+ user.save(function (err, user) {
+    if (err) {
+      res.render('users/edit', {
+        title: 'Edit user',
+        user: user,
+        errors: err.errors
+      })
+    }
+    else {
+      res.redirect('/user/' + user.username)
+    }
+  })
 };

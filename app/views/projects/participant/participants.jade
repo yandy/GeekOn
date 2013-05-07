@@ -1,7 +1,7 @@
 
 if (participant && participant.user)
   .comment
-    a(href="/user/"+participant.user._id) #{participant.user.name}
+    a(href="/user/"+participant.user.username) #{participant.user.uname}
 
     br
     span.date #{participant.createdAt}

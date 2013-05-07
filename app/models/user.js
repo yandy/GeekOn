@@ -2,13 +2,17 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
+var Validator = require('../../lib/validate').Validator;
+var santize = require('validator').santize;
 
 var UserSchema = new Schema({
   name: {type: String, default: ''},
-  username: {type: String, required: true, unique: true, lowercase: true, trim: true},
+  username: {type: String, required: true, unique: true},
+  uname: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'},
-  email: {type: String, required: true, unique: true, lowercase: true, trim: true},
+  email: {type: String, required: true, unique: true},
+  uemail: {type: String, required: true, unique: true},
   provider: {type: String, required: true},
   github: {},
   joined_projects: [{
@@ -45,8 +49,13 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
  * Validate username
  * @param  {Function} cb [err, isValid, message]
  */
- UserSchema.methods.validateUsername = function (cb) {
-  this.model('User').findOne({username: this.username.trim().toLowerCase()}, function (err, user) {
+UserSchema.methods.validateUsername = function (cb) {
+  var validator = new Validator();
+  validator.check(this.uname).len(3, 40).is(/^[\w-]+$/);
+  if (validator.getErrors().length > 0) return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
+
+  this.username = this.uname.toLowerCase();
+  this.model('User').findOne({username: this.username}, function (err, user) {
     if (err) return cb(err);
     if (!user) {
       return cb(null, true);
@@ -57,7 +66,11 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 };
 
 UserSchema.methods.validateEmail = function (cb) {
-  this.model('User').findOne({email: this.email.trim().toLowerCase()}, function (err, user) {
+  var validator = new Validator();
+  validator.check(this.uemail).isEmail();
+  if (validator.getErrors().length > 0) return cb(null, false, '请输入合法的Email地址');
+  this.email = this.uemail.toLowerCase();
+  this.model('User').findOne({email: this.email}, function (err, user) {
     if (err) return cb(err);
     if (!user) {
       return cb(null, true);

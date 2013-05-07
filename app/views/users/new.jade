@@ -4,7 +4,7 @@ block content
   div.container
 
     form.signup.form-horizontal(action="/signup", method="post")
-
+      input(type="hidden", name='_csrf', value=token)
       .control-group
         label.control-label(for='Email') Email
         .controls
