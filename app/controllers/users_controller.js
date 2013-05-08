@@ -3,8 +3,10 @@ var User = mongoose.model('User');
 var Email = require('../mailers/email');
 var _ = require('underscore');
 
-exports.user = function (req, res, next, id) {
-  User.load(id, function (err, user) {
+exports.user = function (req, res, next, username) {
+  console.log('comes into user controller');
+  User.load(username, function (err, user) {
+    console.log(user);
     if (err) return next(err);
     if (!user) return res.render('404');
     req.profile = user;
@@ -104,16 +106,17 @@ exports.index = function(req, res){
 };
 
 exports.edit = function (req, res) {
- res.render('users/edit', {
+  console.log("comes into the edit controller")
+  res.render('users/edit', {
   title: 'Edit '+req.profile.name,
   profile: req.profile
 });
 };
 
 exports.update = function (req, res) {
-  console.log(req.session.user);
-  var user = req.session.user
-  user = _.extend(user, req.body)
+  console.log("comes to update controller");
+  var user = req.profile;
+  user = _.extend(user, req.body);
 
  user.save(function (err, user) {
     if (err) {
@@ -124,6 +127,7 @@ exports.update = function (req, res) {
       })
     }
     else {
+      req.flash("success","修改成功！")
       res.redirect('/user/' + user.username)
     }
   })

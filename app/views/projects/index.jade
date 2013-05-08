@@ -22,7 +22,7 @@ block content
                   a.title(href='/project/'+project._id, title=project.name) #{project.name}
                   br
                   span 项目提供者:
-                  a(href="/user/"+project.provider._id)=project.provider.username
+                  a(href="/user/"+project.provider.username)=project.provider.uname
                   br
                   span 创建日期:
                   span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")

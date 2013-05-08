@@ -80,8 +80,8 @@ UserSchema.methods.validateEmail = function (cb) {
   });
 };
 
-UserSchema.statics.load = function (id, cb) {
-  this.findOne({username : id})
+UserSchema.statics.load = function (username, cb) {
+  this.findOne({username : username})
   .populate('joined_projects.project')
   .populate('joined_projects.project.provider')
   .exec(cb);
