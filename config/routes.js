@@ -8,6 +8,9 @@ module.exports = function (app, passport, auth) {
   app.get('/geeks',user.index);
   app.get('/user/:user/edit', user.edit);
   app.put('/user/:user', user.update);
+  app.get('/user/:user/reset', user.reset);
+  app.get('/user/:user/reset/callback', user.reset_edit);
+  //app.put('/user/:user/reset/update', user.reset_update);
   app.param('user', user.user);
 
   var session = require('../app/controllers/sessions_controller');

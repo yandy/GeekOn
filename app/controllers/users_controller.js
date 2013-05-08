@@ -6,7 +6,6 @@ var _ = require('underscore');
 exports.user = function (req, res, next, username) {
   console.log('comes into user controller');
   User.load(username, function (err, user) {
-    console.log(user);
     if (err) return next(err);
     if (!user) return res.render('404');
     req.profile = user;
@@ -94,23 +93,23 @@ exports.index = function(req, res){
   User.list(options, function(err, users) {
     if (err) return res.render('500');
     User.count(
-               function (err, count) {
-                res.render('users/index', {
-                  title: 'List of Users',
-                  users: users,
-                  page: page,
-                  pages: count / perPage
-                });
-              });
+     function (err, count) {
+      res.render('users/index', {
+        title: 'List of Users',
+        users: users,
+        page: page,
+        pages: count / perPage
+      });
+    });
   });
 };
 
 exports.edit = function (req, res) {
   console.log("comes into the edit controller")
   res.render('users/edit', {
-  title: 'Edit '+req.profile.name,
-  profile: req.profile
-});
+    title: 'Edit '+req.profile.name,
+    profile: req.profile
+  });
 };
 
 exports.update = function (req, res) {
@@ -118,7 +117,7 @@ exports.update = function (req, res) {
   var user = req.profile;
   user = _.extend(user, req.body);
 
- user.save(function (err, user) {
+  user.save(function (err, user) {
     if (err) {
       res.render('users/edit', {
         title: 'Edit user',
@@ -127,8 +126,29 @@ exports.update = function (req, res) {
       })
     }
     else {
-      req.flash("success","修改成功！")
-      res.redirect('/user/' + user.username)
+      req.flash("success","修改成功！");
+      res.redirect('/user/' + user.username);
     }
   })
+};
+
+exports.reset = function (req, res) {
+  req.flash('success','email has been sent, please wait.....');
+  console.log('come into the reset controller');
+  User.load(req.profile.username, function (err, user) {
+    user.generate_password_reset_token();
+    user.save(function (err, user){
+      console.log(err);
+      Email.send_password_reset_token(user);
+      res.redirect('/user/' + user.username);
+    });
+  });
+};
+
+exports.reset_edit = function (req, res) {
+  console.log(req.query['token']);
+  User.findOne({password_reset_token: req.query['token']}, function (err, user) {
+    res.redirect('/');
+    //if (user.password_reset_sent_at)
+  });
 };

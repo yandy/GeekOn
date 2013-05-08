@@ -6,19 +6,28 @@ var Validator = require('../../lib/validate').Validator;
 var santize = require('validator').santize;
 
 var UserSchema = new Schema({
+
   name: {type: String, default: ''},
   username: {type: String, required: true, unique: true},
   uname: {type: String, required: true, unique: true},
+
   password: {type: String, required: true},
   avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'},
+
   email: {type: String, required: true, unique: true},
   uemail: {type: String, required: true, unique: true},
+
+  password_reset_token: {type: String, default: ''},
+  password_reset_sent_at: {type: Date, default : Date.now},
+
   provider: {type: String, required: true},
   github: {},
+
   joined_projects: [{
     project: {type : Schema.ObjectId, ref : 'Project'},
     created_at: { type : Date, default : Date.now }
   }],
+
   is_admin: {type: Boolean, default: false},
   created_at: {type: Date, default : Date.now}
 });
@@ -49,7 +58,7 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
  * Validate username
  * @param  {Function} cb [err, isValid, message]
  */
-UserSchema.methods.validateUsername = function (cb) {
+ UserSchema.methods.validateUsername = function (cb) {
   var validator = new Validator();
   validator.check(this.uname).len(3, 40).is(/^[\w-]+$/);
   if (validator.getErrors().length > 0) return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
@@ -78,6 +87,17 @@ UserSchema.methods.validateEmail = function (cb) {
       return cb(null, false, '该Email已被注册！');
     }
   });
+};
+
+UserSchema.methods.generate_password_reset_token = function (cb) {
+  var buf = new Buffer(16);
+  for (var i = 0; i < buf.length; i++) {
+    buf[i] = Math.floor(Math.random() * 256);
+  };
+  this.password_reset_token = buf.toString('base64');
+  this.password_reset_sent_at = Date.now();
+  this.markModified('password_reset_token');
+  this.markModified('password_reset_sent_at');
 };
 
 UserSchema.statics.load = function (username, cb) {
