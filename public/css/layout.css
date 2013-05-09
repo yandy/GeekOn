@@ -387,12 +387,20 @@ body{
 	width: 60%;
 }
 .registration-content input{
-	width: 400px;
+	width: 340px;
 }
 .registration-content button{
 	width: 200px;
 	margin-top: 20px;
 	margin-left: -14px;
+}
+.registration-content .span8 span{
+	background-color: #FAD1DE;
+	padding: 5px;
+	border-radius: 3px;
+	margin-left: 5px;
+	display: none;
+	color:#EB3370;
 }
 .or{
 	margin-left: 675px;
@@ -435,31 +443,27 @@ body{
 .third-singup img{
 	height: 35px;
 	margin: -5px;
-	margin-left: 2px;
+	margin-left: -220px;
+	margin-top: -3px;
+}
+.third-singup span{
+	font-size: 120%;
+}
+.third-singup-btn{
+	padding-left: -200px;
+}
+.third-singup .btn{
+	width: 300px;
+	height: 30px;
+	margin-top: 5px;
 }
 .third-singup .info{
 	font-weight: 700;
 	font-size:120%;
 }
-.github-btn{
-	margin-top: 4px;
-	width: 300px;
-	height: 30px;
-	border-radius: 4px;
-	padding-top: 5px;
-	border: solid 1px #D5D5D9;
-}
-.github-btn a{
-	text-decoration: none;
-	color: #3F3F3F;
-	font-size: 120%;
-}
-.github-btn:hover{
+.third-singup .btn:hover{
 	border: solid 1px #A0A0A0;
-}
-.github-btn a:hover{
-	color: #000000;
-
+	color: #151515;
 }
 /* footer */
 .footer{

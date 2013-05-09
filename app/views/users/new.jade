@@ -14,41 +14,35 @@ block content
                 label.control-label(for='Email') 邮箱
                 .controls
                   input#email(type='text', name="email", placeholder='Email', value=user.email)
-
+                  span#email-error
               .control-group
                 label.control-label(for='username') 用户名
                 .controls
                   input#username(type='text', name="username", placeholder='Username', value=user.username)
-
+                  span#username-error
               .control-group
                 label.control-label(for='password') 密码
                 .controls
                   input#password(type='password', name="password", placeholder='Password')
-
+                  span#password-error
               .control-group
                 label.control-label(for='password') 密码确认
                 .controls
-                  input#password(type='password', name="password_confirmation", placeholder='Password')
+                  input#password#password_confirmation(type='password', name="password_confirmation", placeholder='Password')
+                  span#password_confirmation-error
                 .offset3
                   button.btn.btn-primary(type='submit') 注册
         div.span4.third-singup
           div.row-fluid
             div.info
               p 您也可以通过如下方式注册:
-            div.github-btn.row-fluid
-              .span2
+            div.third-singup-btn
+              a(href="/auth/github").btn
                 img(src="/img/github.png", alt="")
-              .span9.offset1
-                a(href="/auth/github") Github
-            div.github-btn.row-fluid
-              .span2
-                img(src="/img/google.png", alt="")
-              .span9.offset1
-                a(href="#") Google
-            div.github-btn.row-fluid
-              .span2
+                span &nbsp;&nbsp;&nbsp;Github
+              a(href="#").btn
+                img(src="/img/google.png")
+                span &nbsp;&nbsp;&nbsp;Google
+              a(href="#").btn
                 img(src="/img/twitter.png", alt="")
-              .span9.offset1
-                a(href="#") Twitter
-
-
+                span &nbsp;&nbsp;&nbsp;Twitter
