@@ -13,8 +13,9 @@ body{
 	box-shadow: 2px 2px 6px 1px #004B8D;
 }
 .nav{
-	padding-top: 6px;
+	padding-top: 8px;
 	padding-left: 20px;
+	margin-top: -3px;
 }
 /* Logo图片 */
 .span2 img{
@@ -47,7 +48,6 @@ body{
 
 /* 导航栏右侧登录/注册/微博按钮 */
 .nav-btn{
-	background-color: #E0F0FE;
 	border-radius: 4px;
 	text-align: center;
 }
@@ -56,7 +56,7 @@ body{
 	text-decoration: none;
 }
 .nav-btn a:hover{
-	color: #0003FF;
+	color: #001030;
 	box-shadow: 1px 1px 1px 1px blue;
 }
 #name{
@@ -126,14 +126,14 @@ body{
 	box-shadow: 1px 1px 1px 1px blue;
 }
 .project .span9{
-	background-color: #E0F0FE;
+	background-color: #F3FFFF;
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 .right-side{
 }
-/* 创意项目的每个单元格 */
+/* 创意项目列表的每个单元格 */
 .unit{
 	width:30%;
 	border:solid 1px #CCD0FE;
@@ -178,7 +178,7 @@ body{
 }
 /* 极客列表 */
 .users{
-	background-color: #E9E8FE;
+	background-color: #F2FFFF;
 	padding: 10px;
 	width: 99%;
 	border-radius: 4px;
@@ -194,7 +194,7 @@ body{
 }
 /* 极客主页 */
 .user-show{
-	background-color: #E9E8FE;
+	background-color: #F3FFF9;
 }
 .user-show img{
 	width: 110%;
@@ -255,7 +255,7 @@ body{
 
 }
 .project-show .span9{
-	background-color: #FAFFFF;
+	background-color: #F6FFFF;
 	border-radius: 10px;
 }
 .project-title{
@@ -274,6 +274,30 @@ body{
 	width: 70px;
 	margin-top: 10px;
 }
+.follow-btn{
+	background-color: #F0E0E0;
+	width: 45px;
+	border-radius: 20%;
+	float: right;
+	margin-right: 20px;
+}
+.follow-btn a{
+	text-decoration: none;
+	color:#805040;
+}
+.follow-btn a:hover{
+	color:#8F2030;
+}
+.follow-btn:hover{
+	box-shadow: 1px 1px 1px 1px #B04040;
+	border-radius: 50%;
+}
+.project-show .info{
+	background-color: #EEFFFF;
+	width: 200px;
+	text-align: center;
+}
+/* 项目列表显示页面 --> 管理员的添加article部分 */
 .new-news{
 	border-top-style: solid;
 	border-top-width: 1px;
@@ -311,17 +335,131 @@ body{
 .new-project .span6 textarea{
 	width: 400px;
 }
-/* 活动详情列表显示*/
-.article-desc{
-	height: 20px;
+/* article活动详情列表显示*/
+.article-list{
+	background-color: #F7FFFF;
 }
-/* 活动详情页面显示 */
+.article-title{
+	width: 200px;
+}
+.article-desc{
+	width: 750px;
+	height: 20px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.article-date{
+	width:100px;
+}
+/* article活动详情页面显示 */
 .article-show{
 	background-color: #FAFFFF;
 	border-radius: 8px;
 }
 .article-show p{
 	text-indent: 2em;
+}
+/* 用户注册 */
+.registration{
+	margin: 40px;
+	border: solid 1px ;
+	border-color:#D5D5D5;
+	box-shadow: 1px 1px 3px 1px #D5D5D5;
+}
+.registration-cap{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-color:#D5D5D5;
+	width: 1000px;
+	margin-left: 40px;
+}
+.registration-cap p{
+	font-size: 170%;
+	font-weight: 600;
+	margin-top: 17px;
+}
+.registration-content .span8{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-color:#D5D5D5;
+	width: 60%;
+}
+.registration-content input{
+	width: 400px;
+}
+.registration-content button{
+	width: 200px;
+	margin-top: 20px;
+	margin-left: -14px;
+}
+.or{
+	margin-left: 675px;
+	margin-top: 10px;
+}
+/* 用户登录 */
+.signin-content{
+	border: solid 1px ;
+	border-color:#D5D5D5;
+	box-shadow: 1px 1px 3px 1px #D5D5D5;
+	width: 500px;
+	margin: 40px;
+	margin-left: 250px;
+	border-radius: 3px;
+	padding-bottom: 20px;
+}
+.signin .sign-cap{
+	background-color: #3187A8;
+	width: 500px;
+	height: 40px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.signin .sign-cap p{
+	font-size: 150%;
+	padding-top: 8px;
+	font-weight: 700;
+	color: #D5D5D5;
+	text-indent: 1em;
+}
+.signin-btn button{
+	width: 160px;
+	margin-left: 125px;
+}
+/* 第三方注册 */
+.third-singup{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.third-singup img{
+	height: 35px;
+	margin: -5px;
+	margin-left: 2px;
+}
+.third-singup .info{
+	font-weight: 700;
+	font-size:120%;
+}
+.github-btn{
+	margin-top: 4px;
+	width: 300px;
+	height: 30px;
+	border-radius: 4px;
+	padding-top: 5px;
+	border: solid 1px #D5D5D9;
+}
+.github-btn a{
+	text-decoration: none;
+	color: #3F3F3F;
+	font-size: 120%;
+}
+.github-btn:hover{
+	border: solid 1px #A0A0A0;
+}
+.github-btn a:hover{
+	color: #000000;
+
 }
 /* footer */
 .footer{

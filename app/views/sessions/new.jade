@@ -1,22 +1,20 @@
 extends ../layout/layout
 
 block content
-  div.container
-
-    form.login.form-horizontal(action="/login", method="post")
-      input(type="hidden", name='_csrf', value=token)
-      .control-group
-        label.control-label(for='email') Email
-        .controls
-          input#email(type='text', name="username", placeholder='Email')
-
-      .control-group
-        label.control-label(for='password') Password
-        .controls
-          input#password(type='password', name="password", placeholder='Password')
-
-      .form-actions
-        button.btn.btn-primary(type='submit') Login
-        &nbsp;
-        | or&nbsp;
-        a.show-signup(href="/signup") sign up
+  div.signin
+    div.signin-content
+      div.row-fluid.sign-cap
+        p 登录
+      div.row-fluid
+       form.login.form-horizontal(action="/login", method="post")
+         input(type="hidden", name='_csrf', value=token)
+         .control-group.mail
+           label.control-label(for='email') 邮箱
+           .controls
+             input#email(type='text', name="username", placeholder='Email')
+         .control-group.password
+           label.control-label(for='password') 密码
+           .controls
+             input#password(type='password', name="password", placeholder='Password')
+         .row-fluid.offset1.signin-btn
+           button.btn.btn-primary(type='submit') 登录

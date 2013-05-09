@@ -23,7 +23,7 @@ block header
         if locals.user && locals.user.username
           span
             img(src='#{locals.user.avatar_url}',height=30,width=30)
-          &nbsp;&nbsp;&nbsp;&nbsp
+          &nbsp;&nbsp;&nbsp;
           span.dropdown.nav-btn
             .dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}").btn.btn-info#name #{locals.user.username}&nbsp
               b.caret
@@ -38,20 +38,9 @@ block header
                   span 登出
         else
           span.nav-btn
-           a(href="/signup").btn.btn-info 注册
-          &nbsp;&nbsp;&nbsp;&nbsp
-          span.dropdown.nav-btn
-            a.dropdown-toggle(data-toggle="dropdown",href="#").btn.btn-info 登录
-              span.caret
-            ul.dropdown-menu
-              li
-                a(href="/login")
-                  i.icon-chevron-right
-                  span Local
-              li
-                a(href="/auth/github")
-                  i.icon-chevron-right
-                  span Github
-        &nbsp;&nbsp;&nbsp;&nbsp
-        span.nav-btn
-          a(href="#").btn.btn-info 微博关注
+            a(href="/signup").btn.btn-info 注册
+            &nbsp;&nbsp;&nbsp;
+            a(href="/login").btn.btn-info 登录
+            &nbsp;&nbsp;&nbsp;
+          span.nav-btn
+            a(href="#").btn.btn-info 微博关注

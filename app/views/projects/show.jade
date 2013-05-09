@@ -15,8 +15,10 @@ block content
       h4 参与人员
       each participant in project.participants
         include participant/participants
-      p
-          a(href='/project/#{project.id}/follow') follow
+      div.row-fluid.follow-btn
+          a(href='/project/#{project.id}/follow')
+            i.icon-heart
+            span 关注
       br
       h4 评论
       each comment in project.comments
@@ -25,5 +27,5 @@ block content
       if locals.user
           include comment/add_comment
       else
-          p Only if you login, can you make a comment!
+          p.info 登录后即可发表评论
     include ../layout/right-side
