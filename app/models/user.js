@@ -90,12 +90,23 @@ UserSchema.methods.validateEmail = function (cb) {
 };
 
 UserSchema.methods.generate_password_reset_token = function (cb) {
-  var buf = new Buffer(16);
-  for (var i = 0; i < buf.length; i++) {
-    buf[i] = Math.floor(Math.random() * 256);
-  };
-  this.password_reset_token = buf.toString('base64');
-  this.password_reset_sent_at = Date.now();
+  //var buf = new Buffer(16);
+  //for (var i = 0; i < buf.length; i++) {
+   // buf[i] = Math.floor(Math.random() * 256);
+  //};
+   var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+   var length = '';
+    if (! length) {
+        length = Math.floor(Math.random() * chars.length);
+    }
+    
+    var str = '';
+    for (var i = 0; i < length; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+    }
+  this.password_reset_token = str.toString('base64');
+  console.log(this.password_reset_token);
+  this.password_reset_sent_at = new Date();
   this.markModified('password_reset_token');
   this.markModified('password_reset_sent_at');
 };

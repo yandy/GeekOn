@@ -8,9 +8,18 @@ module.exports = function (app, passport, auth) {
   app.get('/geeks',user.index);
   app.get('/user/:user/edit', user.edit);
   app.put('/user/:user', user.update);
-  app.get('/user/:user/reset', user.reset);
-  app.get('/user/:user/reset/callback', user.reset_edit);
-  //app.put('/user/:user/reset/update', user.reset_update);
+
+  //for those whose forgot his password to reset password with an email notify
+  app.get('/user/:user/reset', user.reset_edit);
+  app.put('/user/:user/reset/update', user.reset_update);
+  app.get('/forgot', user.forgot);
+  app.post('/send_forgot_email', user.send_forgot_email);
+  app.get('/send_forgot_email/callback', user.reset_email_callback);
+
+  //for a login user to reset his password
+  app.get('/user/:user/direct_reset', user.direct_reset_edit);
+  app.put('/user/:user/direct_reset/update', user.direct_reset_update);
+
   app.param('user', user.user);
 
   var session = require('../app/controllers/sessions_controller');

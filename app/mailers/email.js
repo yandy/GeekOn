@@ -100,7 +100,7 @@ exports.send_password_reset_token = function (user, next) {
         {
             contentType: "text/html; charset=utf-8",
             contentEncoding: "7bit",
-            contents: '<h1>html alternative</h1>\n<p> please click the link to own the right of password_reset\nhttp://localhost:3000/user/'+user.username+'/reset/callback?token='+user.password_reset_token.toString()+'\n</p>'
+            contents: '<h1>html alternative</h1>\n<p> please click the link to own the right of password_reset\nhttp://localhost:3000/send_forgot_email/callback?token='+user.password_reset_token.toString()+'\n</p>'
         }
         ]
     };

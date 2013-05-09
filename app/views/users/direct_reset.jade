@@ -1,0 +1,34 @@
+extends ../layout/layout
+
+block content
+  div.container
+
+    p 用户名：#{profile.uname}
+    P 昵称: #{profile.name}
+    p Email：#{profile.email}
+    h2 joined_projects
+
+  .row
+    .span7
+      form.form-horizontal(method="post", action="/user/"+profile.username+'/direct_reset/update', enctype="multipart/form-data")
+        input(type="hidden", name='_method', value='PUT')
+        input(type="hidden", name='_csrf', value=token)
+        .control-group
+          label.control-label(for='text') old password
+          .controls
+            input#old_password.input-xlarge(type='text', name="old_password",placeholder='Enter the old password')
+
+        .control-group
+          label.control-label(for='text') new password
+          .controls
+            input#password.input-xlarge(type='text', name="password",placeholder='Enter the new password')
+
+        .control-group
+          label.control-label(for='text') confirm your password
+          .controls
+            input#confirmation_password(type='text', name="password_confirmation", placeholder='confirm your password')
+
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/user/'+profile.username, title="cancel") Cancel

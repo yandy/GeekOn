@@ -132,23 +132,104 @@ exports.update = function (req, res) {
   })
 };
 
-exports.reset = function (req, res) {
-  req.flash('success','email has been sent, please wait.....');
+exports.reset_edit = function (req, res) {
+  console.log(req.profile);
+  res.render('users/reset', {
+    title: 'reset',
+    profile: req.profile
+  });
+};
+exports.reset_update = function (req, res) {
   console.log('come into the reset controller');
+  if (req.body.password.length < 6) {
+    req.flash('error', '请设置6位以上的口令');
+    return res.redirect('/user/'+req.profile.username+'/reset');
+  }
+
+  if (req.body["password_confirmation"] !== req.body.password) {
+    req.flash('error', '两次输入的口令不一致！');
+    return res.redirect('/user/'+req.profile.username+'/reset');
+  }
+
   User.load(req.profile.username, function (err, user) {
+    user.password = req.body.password;
+    user.save(function (err, user){
+      res.redirect('/user/' + user.username);
+    }); 
+  });
+};
+
+
+exports.forgot = function (req, res) {
+  console.log('come into the forgot controller');
+  res.render('users/forgot', {
+    title: 'forgot'
+  });
+};
+
+exports.send_forgot_email = function (req, res) {
+  User.findOne({email: req.body.email}, function (err, user){
     user.generate_password_reset_token();
     user.save(function (err, user){
-      console.log(err);
       Email.send_password_reset_token(user);
-      res.redirect('/user/' + user.username);
+      req.flash('success', 'email has been sent, please wait.....');
+      res.redirect('/signup');
     });
   });
 };
 
-exports.reset_edit = function (req, res) {
-  console.log(req.query['token']);
+
+exports.reset_email_callback = function (req, res) {
   User.findOne({password_reset_token: req.query['token']}, function (err, user) {
-    res.redirect('/');
-    //if (user.password_reset_sent_at)
+   var expire = new Date();
+   expire.setUTCMinutes(expire.getUTCMinutes()-1);
+   console.log(user);
+   if(user.password_reset_sent_at < expire) {
+    req.flash('error',"The token's time is over the expire, new token has been sent" );
+    user.generate_password_reset_token(); 
+    user.save(function (err, user) {
+     Email.send_password_reset_token(user);
+     res.redirect('/signup');
+   })
+
+  }else {
+    req.session.user = user;
+    res.redirect('/user/'+ user.username+'/reset');
+  }
+});
+};
+
+exports.direct_reset_edit = function (req, res) {
+  res.render('users/direct_reset', {
+    title: 'direct_reset',
+    profile: req.profile
   });
+};
+
+exports.direct_reset_update = function (req, res) {
+  console.log('come into the direct_reset controller');
+
+  if (req.body.password.length < 6) {
+    req.flash('error', '请设置6位以上的口令');
+    return res.redirect('/user/'+req.profile.username+'/direct_reset');
+  }
+
+  if (req.body["password_confirmation"] !== req.body.password) {
+    req.flash('error', '两次输入的口令不一致！');
+    return res.redirect('/user/'+req.profile.username+'/direct_reset');
+  }
+
+  User.load(req.profile.username, function (err, user) {
+    user.comparePassword (req.body.password, function (err, isMatch){
+      if(isMatch){
+        req.flash('error', '输入的就口令不正确！');
+        return res.redirect('/user/'+req.profile.username+'/direct_reset');
+      }else {
+        user.password = req.body.password;
+        user.save(function (err, user){
+          res.redirect('/user/' + user.username);
+        }); 
+      }
+    }) 
+});
 };

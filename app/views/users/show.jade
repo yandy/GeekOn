@@ -11,7 +11,7 @@ block content
       p #{joined_project.project.name}
       p #{joined_project.project.provider.uname}
     if locals.user
-      a(href='/user/'+profile.username+'/reset') reset your password
+      a(href='/user/'+profile.username+'/direct_reset') reset your password
 
     if locals.user && locals.user.is_admin
       form(method="post", action="/create_article")
