@@ -6,23 +6,72 @@ block content
       div.span2
         a(href="/user/#{user.username}")
           img(src="#{user.avatar_url}", alt="用户图片")
-      div.span8.info
-        .row-fluid
-          .span2
-            label 用户名
-          .span10
-            p #{user.username}
-        .row-fluid
-          .span2
-            label 邮箱
-          .span10
-            p #{profile.email}
-        .row-fluid
-          .span2
-            label 技术背景
-          .span10
-            p ^&(@#*@)*#(@)(!@#))@($$*@&#*@_))$#*)$(*#@#&^@&^@&*#$&(&(&)))
-        .row-fluid
+      div.span8
+        .row-fluid.basic-info
+          .basic-info-cap
+            p 基本资料
+          .row-fluid
+            .span2
+              label 用户名
+            .span10
+              p #{user.username}
+          .row-fluid
+            .span2
+              label 邮箱
+            .span10
+              p #{profile.email}
+          .row-fluid
+            .span2
+              label 技术背景
+            .span10
+              p ^&(@#*@)*#(@)(!@#))@($$*@&#*@_))$#*)$(*#@#&^@&^@&*#$&(&(&)))
+        if profile.joined_projects.length == 0
+          .row-fluid.joined-projects
+            div.joined-projects-cap
+              p 参加的项目
+            div.prompt
+              p 还未参加任何项目
+        else
+          .row-fluid.joined-projects
+            div.joined-projects-cap
+              p 参加的项目
+            div.row-fluid
+                each joined_project in profile.joined_projects
+                  div.span4.join-unit
+                    div.row-fluid.head
+                      div.span3.head-img
+                        img(href='/user/joined_project.project.provider._id',src='/img/monkey.png')
+                      div.span9.head-info
+                        a.title(href='/project/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}
+                        br
+                        span 由
+                        a(href="/user/"+joined_project.project.provider._id)=joined_project.project.provider.username
+                        span 创建于
+                        span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
+                    div.row-fluid.desc
+                      p #{joined_project.project.preview}
+        div.admin
+          if locals.user && locals.user.is_admin
+            .admin-cap
+              p 添加一条活动
+            form(method="post", action="/create_article")
+              input(type="hidden", name='_csrf', value=token)
+              div.new-news
+                .row-fluid
+                  .span2
+                    label 标题
+                  .span10
+                    input(type="text", name="title")#title
+                .row-fluid
+                    .span2
+                      label 内容
+                    .span10
+                      textarea(name="body",rows="5")
+                .row-fluid
+                  .span2.offset2
+                    input(type="submit", value="Submit").btn.btn-primary
+
+ //       .row-fluid
           .span2
             label 参加的项目
           .span10

@@ -45,8 +45,7 @@ body{
 #nav ul{
 	margin:0px 5px 0px 5px;
 }
-
-/* 导航栏右侧登录/注册/微博按钮 */
+/* 导航栏右侧登录/注册/微博按钮/用户*/
 .nav-btn{
 	border-radius: 4px;
 	text-align: center;
@@ -56,7 +55,7 @@ body{
 	text-decoration: none;
 }
 .nav-btn a:hover{
-	color: #001030;
+	color: #000000;
 	box-shadow: 1px 1px 1px 1px blue;
 }
 #name{
@@ -64,7 +63,7 @@ body{
 	text-decoration: none;
 }
 #name:hover{
-	color: #0003FF;
+	color: #000000;
 	box-shadow: 1px 1px 1px 1px blue;
 }
 .logout-in span img{
@@ -114,14 +113,12 @@ body{
 	border-radius: 8px;
 	text-align: center;
 }
-
 /* 创意项目 */
 .new-project-btn{
-	background-color: #E0F0FE;
-	color:blue;
+	margin-top: 5px;
 }
 .new-project-btn:hover{
-	color: #0094FE;
+	color: #000000;
 	text-decoration: none;
 	box-shadow: 1px 1px 1px 1px blue;
 }
@@ -131,13 +128,12 @@ body{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-.right-side{
-}
 /* 创意项目列表的每个单元格 */
 .unit{
 	width:30%;
-	border:solid 1px #CCD0FE;
-	box-shadow: 1px 1px 4px 1px #E0F0FE;
+	border:solid 1px #D5D5D5;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	margin-top: 10px;
 }
 .span4.unit{
 	width:30%;
@@ -194,7 +190,10 @@ body{
 }
 /* 极客主页 */
 .user-show{
-	background-color: #F3FFF9;
+	background-color: #F4FFFF;
+}
+.user-show .span8{
+	margin-left: 60px;
 }
 .user-show img{
 	width: 110%;
@@ -202,18 +201,14 @@ body{
 	border-radius: 8px;
 	box-shadow: 2px 2px 2px 1px #676B58;
 }
-.user-show .info{
-	margin-top: 30px;
-	margin-left: 45px;
-}
-.join-unit{
-	border: solid 1px #CCD0FE;
-}
 .span4.join-unit{
 	width: 30%;
+	border: solid 1px #D5D5D5;
+	margin-top: 5px;
+	box-shadow: 1px 1px 5px 1px #D5D5D5;
 }
 .span4.join-unit:first-child{
-	margin-left: 18px;
+	margin-left: 20px;
 }
 .join-unit img{
 	margin: 0px;
@@ -235,25 +230,78 @@ body{
 	text-indent: 1em;
 }
 .join-unit .head-img{
-	border-right-style: solid;
+	border-right-style:s solid;
 	border-right-width: 1px;
 	border-right-color: #9DD0EF;
 	box-shadow: 1px 2px 4px 1px #676B58;
 }
-.user-show .span8.info .span2 label{
-	text-align: right;
-	width: 90px;
-	margin-left: 20px;
-	font-size: 105%;
+/* 极客主页 -> 基本资料 */
+.basic-info{
+	margin-top: 30px;
+	border: solid 1px #D5D5D5;
+	padding: 10px;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	border-radius: 4px;
+}
+.basic-info-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
 	font-weight: 700;
+	margin-bottom: 10px;
 }
-.user-show .span8.info .span10 p{
-	text-indent: 1.5em;
+.basic-info .span2 label{
+	text-indent: 2em;
 }
-/* 项目显示页面 */
-.project-show{
+/* 极客主页 -> 参加的项目 */
+.joined-projects{
+	border: solid 1px #D5D5D5;
+	margin-top: 20px;
+	padding: 10px;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	border-radius: 4px;
+}
+.joined-projects-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
+	font-weight: 700;
+	margin-bottom: 10px;
 
 }
+.prompt{
+	background-color: #ADCDD0;
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	border-radius: 4px;
+	margin-top: 10px;
+	padding-top: 4px;
+	margin-left: 100px;
+}
+/* 极客主页 -> 添加articles */
+.admin{
+	border: solid 1px #D5D5D5;
+	margin-top: 20px;
+	padding-top: 15px;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	border-radius: 4px;
+	width: 815px;
+}
+.admin .new-news{
+	border-style: none;
+	padding: 0px;
+
+}
+.admin-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
+	font-weight: 700;
+	margin-bottom: 10px;
+	padding-left: 8px;
+}
+/* 项目显示页面 */
 .project-show .span9{
 	background-color: #F6FFFF;
 	border-radius: 10px;
@@ -309,10 +357,10 @@ body{
 	padding-top: 20px;
 }
 .new-news .span10 input{
-	width: 400px;
+	width: 500px;
 }
 .new-news .span10 textarea{
-	width: 400px;
+	width: 500px;
 }
 .new-news{
 	width: 900px;
@@ -320,20 +368,47 @@ body{
 /* 新建项目页面 */
 .new-project{
 	background-color: #FAFFFF;
-	border-radius: 8px;
+	border-radius: 4px;
 	padding: 20px;
-	padding-left: 250px;
+	padding-left: 50px;
+	border: solid 1px #D5D5D5;
+	width: 900px;
+	margin-left: 100px;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
 
 }
 .new-project .span2 label{
-	font-weight: 700;
 	font-size: 110%;
+	font-weight: 500px;
 }
-.new-project .span6 input{
-	width: 400px;
+.new-project .span10 input{
+	width: 500px;
 }
-.new-project .span6 textarea{
-	width: 400px;
+.new-project .span10 textarea{
+	width: 500px;
+	height: 80px;
+}
+.new-project .submit-btn input{
+	width: 150px;
+}
+.new-project-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
+	font-weight: 700;
+	margin-left: -40px;
+	margin-bottom: 10px;
+	padding-left: 8px;
+	font-size: 120%;
+}
+#project_name_error,#project_preview_error{
+	background-color: #FAD1DE;
+	padding: 5px;
+	border-radius: 3px;
+	margin-left: 5px;
+	margin-top: 5px;
+	display: none;
+	color:#EB3370;
 }
 /* article活动详情列表显示*/
 .article-list{

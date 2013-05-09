@@ -2,23 +2,30 @@ extends ../layout/layout
 
 block content
   div.new-project
+    .new-project-cap
+      p 新建一个项目
     form(method="post", action="/create_project")
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid
         div.span2
-          label 项目名称
-        div.span6
-          input(type="text", name="name")
+          span 项目名称
+          span.icon-asterisk
+
+        div.span10
+          input(type="text", name="name")#project_name
+          span#project_name_error 请输入项目名称
       div.row-fluid
         .span2
-          label 项目概要
-        .span6
-          input(type="text", name="preview")
+          span 项目概要
+          span.icon-asterisk
+        .span10
+          textarea(name="preview")#project_preview
+          span#project_preview_error 请输入项目概要
       div.row-fluid
         .span2
           label 项目要求
-        .span6
+        .span10
           textarea(name="requirement")
       div.row-fluid
-        .span2.offset1
-          input(type="submit", value="submit").btn.btn-primary
+        .span2.offset2.submit-btn
+          input(type="submit", value="创建").btn.btn-primary

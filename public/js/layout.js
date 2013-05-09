@@ -5,7 +5,7 @@ $(document).ready(function(){
     if((!email.match(emailReg))&&(email.length != 0)){
       $("#email-error").html("邮箱地址不合法");
       $("#email-error").css("display","inline");
-    }else if(email.length == 0){
+    }else if(email.length === 0){
       $("#email-error").html("请输入邮箱地址");
       $("#email-error").css("display","inline");
     }
@@ -18,7 +18,7 @@ $(document).ready(function(){
       $("#username-error").html("用户名长度必须大于6");
       $("#username-error").css("display","inline");
     }
-      else if(username.length == 0){
+      else if(username.length === 0){
         $("#username-error").html("请输入用户名");
         $("#username-error").css("display","inline");
       }
@@ -31,7 +31,7 @@ $(document).ready(function(){
     if((password.length < 6)&&(password.length != 0)){
       $("#password-error").html("密码长度至少为6");
       $("#password-error").css("display","inline");
-    }else if(password.length == 0){
+    }else if(password.length === 0){
       $("#password-error").html("请输入密码");
       $("#password-error").css("display","inline");
     }
@@ -47,5 +47,25 @@ $(document).ready(function(){
     }
     else
       $("#password_confirmation-error").css("display","none");
+  });
+  $("#project_name").blur(function(){
+    var project_name = $("#project_name").val();
+    if(project_name.length == 0){
+      $("#project_name_error").css("display","inline");
+    }
+    else
+    {
+      $("#project_name_error").css("display","none");
+    }
+  });
+  $("#project_preview").blur(function(){
+    var project_preview = $("#project_preview").val();
+    if(project_preview.length === 0){
+      $("#project_preview_error").css("display","inline");
+    }
+    else
+    {
+      $("#project_preview_error").css("display","none");
+    }
   });
 });
