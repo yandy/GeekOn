@@ -313,7 +313,7 @@ body{
 	font-size: 120%;
 	font-weight: 700;
 }
-.project-show p{
+.project-show .row-fluid p{
 	text-indent:2em;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -322,11 +322,13 @@ body{
 	width: 70px;
 	margin-top: 10px;
 }
+.userlist-follow{
+
+}
 .follow-btn{
 	background-color: #F0E0E0;
 	width: 45px;
 	border-radius: 20%;
-	float: right;
 	margin-right: 20px;
 }
 .follow-btn a{
@@ -339,6 +341,34 @@ body{
 .follow-btn:hover{
 	box-shadow: 1px 1px 1px 1px #B04040;
 	border-radius: 50%;
+}
+.comments{
+	border: solid 1px #E5E5D5;
+	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	margin-top: 20px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+	padding-bottom: 15px;
+	padding-right: 20px;
+}
+.comments-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
+	font-weight: 700;
+	margin-top: 10px;
+	font-size: 120%;
+	margin-left: -10px;
+	width: 750px;
+}
+.comments .img{
+	width: 40px;
+}
+.comments .uname{
+	width: 50px;
+}
+.comments .date{
+	width: 200px;
 }
 .project-show .info{
 	background-color: #EEFFFF;

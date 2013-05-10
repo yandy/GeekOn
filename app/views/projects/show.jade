@@ -12,20 +12,27 @@ block content
       p !{project.preview_html}
       label 内容
       p !{project.requirement_html}
-      h4 参与人员
-      each participant in project.participants
-        include participant/participants
-      div.row-fluid.follow-btn
-          a(href='/project/#{project.id}/follow')
-            i.icon-heart
-            span 关注
-      br
-      h4 评论
-      each comment in project.comments
-        include ../comment/comments
-      br
+      .row-fluid
+        .span3
+          h4 参与人员
+        .span2.offset7
+            div.row-fluid.follow-btn
+              a(href='/project/#{project.id}/follow')
+                i.icon-heart
+                span 参与
+      table.table.table-condensed.table-hover
+        each participant in project.participants
+          include participant/participants
+      .comments
+        p.comments-cap 共 N 条回复
+        table.table
+          each comment in project.comments
+            include ../comment/comments
+        if project.comments.length == 0
+          .prompt
+            p 尚无回复
       if locals.user
           include comment/add_comment
       else
-          p.info 登录后即可发表评论
+          p.info 登录后即可发表回复
     include ../layout/right-side
