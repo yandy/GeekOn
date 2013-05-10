@@ -1,20 +1,38 @@
 extends ../layout/layout
 
 block content
-  div.signin
-    div.signin-content
-      div.row-fluid.sign-cap
-        p 登录
+  div.registration.login-content
+    div.registration-cap
+      p 登录
+    p.or or
+    div.registration-content
       div.row-fluid
-       form.login.form-horizontal(action="/login", method="post")
-         input(type="hidden", name='_csrf', value=token)
-         .control-group.mail
-           label.control-label(for='email') 邮箱
-           .controls
-             input#email(type='text', name="username", placeholder='Email')
-         .control-group.password
-           label.control-label(for='password') 密码
-           .controls
-             input#password(type='password', name="password", placeholder='Password')
-         .row-fluid.offset1.signin-btn
-           button.btn.btn-primary(type='submit') 登录
+        div.span8.login-content-left
+            form.login.form-horizontal(action="/login", method="post")
+              input(type="hidden", name='_csrf', value=token)
+              br
+              .control-group
+                label.control-label(for='Email') 邮箱
+                .controls
+                  input(type='text', name="username", placeholder='Email'))
+              .control-group
+                label.control-label(for='password') 密码
+                .controls
+                  input(type='password', name="password", placeholder='Password')
+                  span
+                .offset3
+                  button.btn.btn-primary(ttype='submit') 登录
+        div.span4.third-singup#login
+          div.row-fluid
+            div.info
+              p 您也可以通过如下方式:
+            div.third-singup-btn
+              a(href="/auth/github").btn
+                img(src="/img/github.png", alt="")
+                span &nbsp;&nbsp;&nbsp;Github
+              a(href="#").btn
+                img(src="/img/google.png")
+                span &nbsp;&nbsp;&nbsp;Google
+              a(href="#").btn
+                img(src="/img/twitter.png", alt="")
+                span &nbsp;&nbsp;&nbsp;Twitter

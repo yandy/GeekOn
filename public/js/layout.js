@@ -2,20 +2,22 @@ $(document).ready(function(){
   $("#email").blur(function(){
     var email = $("#email").val();
     var emailReg = /\w+@\w+.\w+/;
+    $.post("#",{"url": email},function(data){
+      alert(date);
+    });
     if((!email.match(emailReg))&&(email.length != 0)){
       $("#email-error").html("邮箱地址不合法");
       $("#email-error").css("display","inline");
     }else if(email.length === 0){
       $("#email-error").html("请输入邮箱地址");
       $("#email-error").css("display","inline");
-    }
-    else
+    }else
       $("#email-error").css("display","none");
   });
   $("#username").blur(function(){
     var username = $("#username").val();
     if((username.length < 6)&&(username.length != 0)){
-      $("#username-error").html("用户名长度必须大于6");
+      $("#username-error").html("用户名长度至少为6");
       $("#username-error").css("display","inline");
     }
       else if(username.length === 0){

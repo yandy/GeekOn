@@ -24,7 +24,7 @@ block content
         each participant in project.participants
           include participant/participants
       .comments
-        p.comments-cap 共 N 条回复
+        p.comments-cap 共 #{project.comments.length} 条回复
         table.table
           each comment in project.comments
             include ../comment/comments

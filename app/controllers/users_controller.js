@@ -83,7 +83,7 @@ exports.create = function (req, res, next) {
 
 exports.index = function(req, res){
   var page = req.param('page') > 0 ? req.param('page') : 0;
-  var perPage = 2;
+  var perPage = 144;
   var options = {
     perPage: perPage,
     page: page

@@ -1,6 +1,8 @@
 body{
 	padding:0px 30px 10px 30px;
 	background-color: white;
+	margin-left: 95px;
+	margin-right: 95px;
 }
 .border{
 	border:solid 1px black;
@@ -39,7 +41,7 @@ body{
 	color:#002A50;
 }
 #nav li{
-	width:90px;
+	width:80px;
 	text-align: center;
 }
 #nav ul{
@@ -113,7 +115,11 @@ body{
 	border-radius: 8px;
 	text-align: center;
 }
-/* 创意项目 */
+/* 创意项目列表 */
+.project-row{
+	margin-left: 34px;
+	margin-bottom: 10px;
+}
 .new-project-btn{
 	margin-top: 5px;
 }
@@ -134,12 +140,13 @@ body{
 	border:solid 1px #D5D5D5;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	margin-top: 10px;
+	padding: 5px;
 }
 .span4.unit{
-	width:30%;
+	width:26%;
 }
 .span4.unit:first-child{
-	margin-left: 25px;
+	margin-left: 21px;
 }
 .unit.head-img{
 	border-right-style: solid;
@@ -150,25 +157,27 @@ body{
 }
 .unit .head-info{
 	margin-top: 0px;
-	height: 50px;
+	height: 48px;
+	overflow: hidden;
+	text-overflow:ellipsis;
 }
 .unit .desc{
 	border-top-style:solid;
 	border-top-width: 1px;
 	border-top-color: #9DD0EF;
-	height: 100px;
+	height: 170px;
 }
 .unit .desc p{
 	height: 104px;
 	overflow: hidden;
 	text-overflow:ellipsis;
 }
-.unit.inf{
+.unit .inf{
 	border-top-style:solid;
 	border-top-width: 1px;
-	border-top-color: #DDD8D8;
+	border-top-color: #9DD0EF;
 }
-.unit.row-fluid.inf a{
+.unit .row-fluid.inf a{
 	text-decoration: none;
 
 }
@@ -195,45 +204,11 @@ body{
 .user-show .span8{
 	margin-left: 60px;
 }
-.user-show img{
+.user-show .user-img{
 	width: 110%;
 	margin: 20px;
 	border-radius: 8px;
 	box-shadow: 2px 2px 2px 1px #676B58;
-}
-.span4.join-unit{
-	width: 30%;
-	border: solid 1px #D5D5D5;
-	margin-top: 5px;
-	box-shadow: 1px 1px 5px 1px #D5D5D5;
-}
-.span4.join-unit:first-child{
-	margin-left: 20px;
-}
-.join-unit img{
-	margin: 0px;
-}
-.join-unit .head-info{
-	height: 60px;
-	overflow: hidden;
-	text-overflow:ellipsis;
-}
-.join-unit .desc{
-	border-top-style:solid;
-	border-top-width: 1px;
-	border-top-color: #9DD0EF ;
-	height: 60px;
-	overflow: hidden;
-	text-overflow:ellipsis;
-}
-.join-unit .desc{
-	text-indent: 1em;
-}
-.join-unit .head-img{
-	border-right-style:s solid;
-	border-right-width: 1px;
-	border-right-color: #9DD0EF;
-	box-shadow: 1px 2px 4px 1px #676B58;
 }
 /* 极客主页 -> 基本资料 */
 .basic-info{
@@ -257,7 +232,7 @@ body{
 .joined-projects{
 	border: solid 1px #D5D5D5;
 	margin-top: 20px;
-	padding: 10px;
+	padding: 5px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	border-radius: 4px;
 }
@@ -268,6 +243,19 @@ body{
 	font-weight: 700;
 	margin-bottom: 10px;
 
+}
+.img-project{
+	width: 60px;
+}
+.joined-projects .info{
+	margin-left: 10px;
+	padding-left: 20px;
+
+}
+.joined-projects .body{
+	height: 40px;
+	overflow: hidden;
+	text-overflow:ellipsis;
 }
 .prompt{
 	background-color: #ADCDD0;
@@ -444,6 +432,15 @@ body{
 .article-list{
 	background-color: #F7FFFF;
 }
+.article-list .article-name{
+	width: 100px;
+}
+.article-list .author{
+	width: 30px;
+}
+.article-list .date{
+	width: 80px;
+}
 .article-title{
 	width: 200px;
 }
@@ -467,6 +464,7 @@ body{
 /* 用户注册 */
 .registration{
 	margin: 40px;
+	margin-left: 10px;
 	border: solid 1px ;
 	border-color:#D5D5D5;
 	box-shadow: 1px 1px 3px 1px #D5D5D5;
@@ -492,12 +490,11 @@ body{
 	width: 60%;
 }
 .registration-content input{
-	width: 340px;
+	width: 310px;
 }
 .registration-content button{
 	width: 200px;
 	margin-top: 20px;
-	margin-left: -14px;
 }
 .registration-content .span8 span{
 	background-color: #FAD1DE;
@@ -508,7 +505,7 @@ body{
 	color:#EB3370;
 }
 .or{
-	margin-left: 675px;
+	margin-left: 631px;
 	margin-top: 10px;
 }
 /* 用户登录 */
@@ -573,6 +570,7 @@ body{
 /* footer */
 .footer{
 	background-color: #E8FFD7;
+	padding-left:100px;
 }
 .footer a{
 	color:#135086;

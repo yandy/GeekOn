@@ -6,10 +6,14 @@ block content
       h3 #{article.title}
       p !{article.body_html}
       br
-      h4 回复
-      each comment in article.comments
-        include ../comment/comments
-      br
+      .comments
+        p.comments-cap 共 #{article.comments.length} 条回复
+        table.table
+          each comment in article.comments
+            include ../comment/comments
+        if article.comments.length == 0
+          .prompt
+            p 尚无回复
       if locals.user
           include comment/add_comment
       else
