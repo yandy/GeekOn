@@ -20,6 +20,8 @@ var UserSchema = new Schema({
   password_reset_token: {type: String, default: ''},
   password_reset_sent_at: {type: Date, default : Date.now},
 
+  access_token: {type: String},
+
   provider: {type: String, required: true},
   github: {},
 
@@ -89,27 +91,23 @@ UserSchema.methods.validateEmail = function (cb) {
   });
 };
 
+UserSchema.methods.generate_token = function () {
+ var chars = "_!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+ var   token = new Date().getTime() + '_';
+ for ( var x = 0; x < 16; x++ ) {
+  var i = Math.floor( Math.random() * 62 );
+  token += chars.charAt( i );
+}
+return token;
+};
+
 UserSchema.methods.generate_password_reset_token = function (cb) {
-  //var buf = new Buffer(16);
-  //for (var i = 0; i < buf.length; i++) {
-   // buf[i] = Math.floor(Math.random() * 256);
-  //};
-   var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
-   var length = '';
-    if (! length) {
-        length = Math.floor(Math.random() * chars.length);
-    }
-    
-    var str = '';
-    for (var i = 0; i < length; i++) {
-        str += chars[Math.floor(Math.random() * chars.length)];
-    }
-  this.password_reset_token = str.toString('base64');
-  console.log(this.password_reset_token);
+  this.password_reset_token = this.model('User').generate_token().toString('base64');
   this.password_reset_sent_at = new Date();
   this.markModified('password_reset_token');
   this.markModified('password_reset_sent_at');
 };
+
 
 UserSchema.statics.load = function (username, cb) {
   this.findOne({username : username})

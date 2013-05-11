@@ -4,7 +4,7 @@ block content
   div.container
     p title: #{article.title}
     p content: !{article.body_html}
-    p
+    a(href='/article/#{article._id}/edit') Edit the article
     br
     h2 Comments
     each comment in article.comments

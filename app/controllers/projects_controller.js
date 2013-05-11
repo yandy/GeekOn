@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
 var User = mongoose.model('User');
+var _ = require('underscore');
 
 exports.project = function (req, res, next, id) {
   Project.load(id, function (err, project) {
@@ -84,4 +85,31 @@ exports.follow = function (req, res) {
     user.save();
     res.redirect('/project/'+ project.id);
   });
+};
+
+exports.edit = function (req, res) {
+  res.render('projects/edit', {
+    title: 'Edit '+req.project.name,
+    project: req.project
+  });
+};
+
+exports.update = function (req, res) {
+  var project = req.project;
+  project = _.extend(project, req.body);
+
+  project.save(function (err, project) {
+    if (err) {
+      res.render('projects/edit', {
+        title: 'Edit project',
+        project: projects,
+        errors: err.errors
+      })
+    }
+    else {
+      req.flash("success","修改成功！");
+      req.project = project;
+      res.redirect('/project/' + project._id);
+    }
+  })
 };

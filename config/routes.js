@@ -34,6 +34,8 @@ module.exports = function (app, passport, auth) {
   app.get('/destroy_project', project.destroy);
   app.get('/project/:projectId', project.show);
   app.get('/projects', project.index);
+  app.get('/project/:projectId/edit', project.edit);
+  app.put('/project/:projectId', project.update);
   app.post('/project/:projectId/create_comment', auth.ensureAuthenticated, comment.create);
   app.get('/project/:projectId/follow', auth.ensureAuthenticated, project.follow);
   app.param('projectId', project.project);
@@ -44,6 +46,8 @@ module.exports = function (app, passport, auth) {
   app.get('/destroy_article', article.destroy);
   app.get('/article/:articleId', article.show);
   app.get('/articles', article.index);
+  app.get('/article/:articleId/edit', article.edit);
+  app.put('/article/:articleId', article.update);
   app.post('/article/:articleId/create_comment', auth.ensureAuthenticated,comment.create);
   app.param('articleId', article.article);
 

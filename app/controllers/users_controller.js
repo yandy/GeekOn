@@ -127,6 +127,7 @@ exports.update = function (req, res) {
     }
     else {
       req.flash("success","修改成功！");
+      req.session.user = user;
       res.redirect('/user/' + user.username);
     }
   })

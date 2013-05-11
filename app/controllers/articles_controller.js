@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Article = mongoose.model('Article');
-
+var _ = require('underscore');
 
 exports.article = function(req, res, next, id){
   var User = mongoose.model('User');
@@ -83,4 +83,32 @@ exports.index = function(req, res){
       });
     });
   });
+};
+
+exports.edit = function (req, res) {
+  res.render('articles/edit', {
+    title: 'Edit '+req.article.title,
+    article: req.article
+  });
+};
+
+exports.update = function (req, res) {
+  var article = req.article;
+  article = _.extend(article, req.body);
+
+  article.save(function (err, article) {
+    if (err) {
+      res.render('articles/edit', {
+        title: 'Edit article',
+        article: article,
+        errors: err.errors
+      })
+    }
+    else {
+      req.flash("success","修改成功！");
+      req.article = article;
+      console.log(req.article);
+      res.redirect('/article/' + article._id);
+    }
+  })
 };
