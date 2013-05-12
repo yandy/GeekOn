@@ -10,18 +10,18 @@ block content
 
   .row
     .span7
-      form.form-horizontal(method="post", action="/user/"+profile.username, enctype="multipart/form-data")
+      form.form-horizontal(method="post", action="/user/"+profile.username+'/reset/update', enctype="multipart/form-data")
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
         .control-group
-          label.control-label(for='username') name
+          label.control-label(for='text') new password
           .controls
-            input#name.input-xlarge(type='text', name="name", value=profile.name, placeholder='Enter the title')
+            input#password.input-xlarge(type='text', name="password",placeholder='Enter the password')
 
         .control-group
-          label.control-label(for='Email') Email
+          label.control-label(for='text') confirm your password
           .controls
-            input#email(type='text', name="email", value=profile.email, placeholder='Enter the tags')
+            input#confirmation_password(type='text', name="password_confirmation", placeholder='confirm your password')
 
         .form-actions
           button.btn.btn-primary(type='submit') Save changes

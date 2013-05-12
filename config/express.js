@@ -16,6 +16,16 @@ module.exports = function (app, config, passport) {
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({secret:'geekon'}));
+  app.use(function (req, res, next) {
+    if ( req.method == 'POST' && req.url == '/login' ) {
+      if ( req.body.rememberme ) {
+        req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+      } else {
+        req.session.cookie.expires = false;
+      }
+    }
+    next();
+  });
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.csrf());

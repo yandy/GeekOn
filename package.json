@@ -22,7 +22,6 @@
     "marked": "*",
     "underscore": "*",
     "validator" : "*",
-    "nodemailer": "*",
-    "underscore": "*"
+    "nodemailer": "*"
   }
 }

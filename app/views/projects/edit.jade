@@ -1,0 +1,26 @@
+extends ../layout/layout
+
+block content
+  div.container
+  p preview: !{project.preview_html}
+
+  p requirement: !{project.requirement_html}
+  .row
+    .span7
+      form.form-horizontal(method="post", action="/project/"+project._id, enctype="multipart/form-data")
+        input(type="hidden", name='_method', value='PUT')
+        input(type="hidden", name='_csrf', value=token)
+        .control-group
+          label.control-label(for='name') preview
+          .controls
+            input#review.input-xlarge(type='text', name="preview", value=project.preview, placeholder='Enter the preview')
+
+        .control-group
+          label.control-label(for='requirement') requirement
+          .controls
+            input#requirement(type='text', name="requirement", value=project.requirement, placeholder='Enter the requirement')
+
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/project/'+project._id, title="cancel") Cancel

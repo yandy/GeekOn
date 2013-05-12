@@ -4,11 +4,30 @@ var User = require('mongoose').model('User');
 
 module.exports = function (passport, config) {
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    //done(null, user.id);
+    var createAccessToken = function () {
+      var token = user.generate_token();
+      User.findOne( { access_token: token }, function (err, existingUser) {
+        if (err) { return done( err ); }
+        if (existingUser) {
+        createAccessToken(); // Run the function again - the token has to be unique!
+      } else {
+        user.set('access_token', token);
+        user.save( function (err) {
+          if (err) return done(err);
+          return done(null, user.get('access_token'));
+        })
+      }
+    });
+    };
+
+    if ( user._id ) {
+      createAccessToken();
+    }
   });
 
-  passport.deserializeUser(function (id, done) {
-    User.findOne({_id: id}, function (err, user) {
+  passport.deserializeUser(function (token, done) {
+    User.findOne({ access_token: token }, function (err, user) {
       done(err, user);
     });
   });
