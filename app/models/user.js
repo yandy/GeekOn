@@ -20,8 +20,6 @@ var UserSchema = new Schema({
   password_reset_token: {type: String, default: ''},
   password_reset_sent_at: {type: Date, default : Date.now},
 
-  access_token: {type: String},
-
   provider: {type: String, required: true},
   github: {},
 
