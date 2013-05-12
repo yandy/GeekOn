@@ -18,9 +18,10 @@ block content
                 div.span9.head-info
                   a.title(href='/project/'+project._id, title=project.name) #{project.name}
                   br
-                  span 由
-                  a(href="/user/"+project.provider._id)=project.provider.username
-                  span 创建于
+                  span 项目提供者:
+                  a(href="/user/"+project.provider.username)=project.provider.uname
+                  br
+                  span 创建日期:
                   span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
               div.row-fluid.desc
                 p #{project.preview}

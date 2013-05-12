@@ -42,7 +42,7 @@ var ProjectSchema = new Schema({
 });
 
 ProjectSchema.pre('save', function(next) {
-  if (!this.isNew) return next();
+  if (this.isNew) return next();
   this.preview_html = marked(this.preview);
   this.requirement_html =marked(this.requirement);
   next();

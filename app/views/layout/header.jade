@@ -25,8 +25,8 @@ block header
             img(src='#{locals.user.avatar_url}',height=30,width=30)
           &nbsp;&nbsp;&nbsp;&nbsp
           span.dropdown.nav-btn
-            .dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user._id}").btn.btn-info#name #{locals.user.username}&nbsp
-              b.caret
+            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}") #{locals.user.uname}&nbsp;&nbsp
+              span.caret.nav-btn
             ul.dropdown-menu
               li
                 a(href="/user/#{locals.user.username}")

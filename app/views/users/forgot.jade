@@ -1,0 +1,16 @@
+extends ../layout/layout
+
+block content
+   .row
+    .span7
+      form.form-horizontal(method="post", action="/send_forgot_email", enctype="multipart/form-data")
+        input(type="hidden", name='_csrf', value=token)
+        .control-group
+          label.control-label(for='Email') Email
+          .controls
+            input#email(type='text', name="email", placeholder='Enter the tags')
+
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/', title="cancel") Cancel
