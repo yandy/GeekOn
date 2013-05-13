@@ -7,21 +7,31 @@ var santize = require('validator').santize;
 
 var UserSchema = new Schema({
 
-  name: {type: String, default: ''},
-  username: {type: String, required: true, unique: true},
+  name: {type: String},
+  username: {type: String, required: true},
   uname: {type: String, required: true, unique: true},
 
-  password: {type: String, required: true},
+  password: {type: String},
   avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'},
 
-  email: {type: String, required: true, unique: true},
+  email: {type: String, required: true},
   uemail: {type: String, required: true, unique: true},
 
-  password_reset_token: {type: String, default: ''},
+  password_reset_token: {type: String},
   password_reset_sent_at: {type: Date, default : Date.now},
+
+  company: {type: String},
+  location: {type: String},
+  website: {type: String},
+  introduction: {type: String},
 
   provider: {type: String, required: true},
   github: {},
+
+  starred_projects: [{
+    project: {type : Schema.ObjectId, ref : 'Project'},
+    created_at: { type : Date, default : Date.now }
+  }],
 
   joined_projects: [{
     project: {type : Schema.ObjectId, ref : 'Project'},
@@ -60,11 +70,11 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
  */
  UserSchema.methods.validateUsername = function (cb) {
   var validator = new Validator();
-  validator.check(this.uname).len(3, 40).is(/^[\w-]+$/);
+  validator.check(this.username).len(3, 40).is(/^[\w-]+$/);
   if (validator.getErrors().length > 0) return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
 
-  this.username = this.uname.toLowerCase();
-  this.model('User').findOne({username: this.username}, function (err, user) {
+  this.uname = this.username.toLowerCase();
+  this.model('User').findOne({uname: this.uname}, function (err, user) {
     if (err) return cb(err);
     if (!user) {
       return cb(null, true);
@@ -76,10 +86,10 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 
 UserSchema.methods.validateEmail = function (cb) {
   var validator = new Validator();
-  validator.check(this.uemail).isEmail();
+  validator.check(this.email).isEmail();
   if (validator.getErrors().length > 0) return cb(null, false, '请输入合法的Email地址');
-  this.email = this.uemail.toLowerCase();
-  this.model('User').findOne({email: this.email}, function (err, user) {
+  this.uemail = this.email.toLowerCase();
+  this.model('User').findOne({uemail: this.uemail}, function (err, user) {
     if (err) return cb(err);
     if (!user) {
       return cb(null, true);
@@ -106,9 +116,8 @@ UserSchema.methods.generate_password_reset_token = function (cb) {
   this.markModified('password_reset_sent_at');
 };
 
-
 UserSchema.statics.load = function (username, cb) {
-  this.findOne({username : username})
+  this.findOne({username : username.toLowerCase()})
   .populate('joined_projects.project')
   .populate('joined_projects.project.provider')
   .exec(cb);

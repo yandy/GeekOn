@@ -3,8 +3,8 @@ module.exports = function (app, passport, auth) {
   app.get('/signup', user.new);
   app.post('/signup', user.create);
   app.get('/user/:user', user.show);
-  app.get('/auth/github', passport.authenticate('github'), user.signin);
-  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), user.authCallback);
+  app.get('/auth/github', passport.authenticate('github'), function (req, res) {});
+  app.get('/auth/github/callback', user.authCallback);
   app.get('/geeks',user.index);
   app.get('/user/:user/edit', user.edit);
   app.put('/user/:user', user.update);

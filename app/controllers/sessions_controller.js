@@ -18,7 +18,6 @@ exports.create = function (req, res, next) {
     req.logIn(user, function (err) {
       if (err) return next(err);
       req.session.user = user;
-      console.log(req.body.rememberme);
       req.flash('success','欢迎');
       return res.redirect('/user/' + user.username);
     });

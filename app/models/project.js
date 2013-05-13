@@ -29,7 +29,7 @@ var ProjectSchema = new Schema({
   requirement_html: String,
 
   participants: [{
-    user: {type : Schema.ObjectId, ref : 'User'},
+    user: {type : Schema.ObjectId, ref : 'User', unique: true},
     created_at: { type : Date, default : Date.now }
   }],
   comments: [{

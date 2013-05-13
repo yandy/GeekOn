@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Email = require('../mailers/email');
 var _ = require('underscore');
+var passport = require('passport');
 
 exports.user = function (req, res, next, username) {
   console.log('comes into user controller');
@@ -13,13 +14,52 @@ exports.user = function (req, res, next, username) {
   });
 };
 
-exports.signin = function (req, res) {};
-
 exports.authCallback = function (req, res, next) {
-  req.flash('success','Signup');
-  req.session.user = req.user;
-  req.user = null;
-  res.redirect('/');
+  passport.authenticate('github', function (err, user, profile) {
+    console.log('callback');
+    if (err) return next(err);
+    if (user) {
+      req.logIn(user, function (err) {
+        if (err) return next(err);
+        req.session.user = user;
+        req.flash('success', '欢迎');
+        return res.redirect('/user/' + user.username);
+      });
+    } else {
+      user = new User({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        username: profile.username,
+        avatar_url: profile._json.avatar_url,
+        provider: 'github',
+        github: profile._json
+      });
+      user.validateUsername(function (err, isValid, message) {
+        if (err) return next(err);
+        if (!isValid) {
+          req.flash('error', message);
+          return res.redirect('/signup');
+        }
+        user.validateEmail(function (err, isValid, message) {
+          if (err) return next(err);
+          if (!isValid) {
+            req.flash('error', message);
+            return res.redirect('/signup');
+          }
+          user.save(function (err) {
+            if (err) return next(err);
+            Email.send_email(user);
+            req.logIn(user, function (err) {
+              if (err) return next(err);
+              req.session.user = user;
+              req.flash('success', '欢迎');
+              return res.redirect('/user/' + user.username);
+            });
+          });
+        });
+      });
+    }
+  })(req, res, next);
 };
 
 exports.show = function (req, res) {
@@ -37,12 +77,11 @@ exports.new = function (req, res) {
 
 exports.create = function (req, res, next) {
   var user = new User({
-    uname: req.body.username,
+    username: req.body.username,
     password: req.body.password,
-    uemail: req.body.email
+    email: req.body.email
   });
 
-  console.log(user);
   user.validateUsername(function (err, isValid, message) {
     if (err) return next(err);
     if (!isValid) {
@@ -66,11 +105,10 @@ exports.create = function (req, res, next) {
         req.flash('error', '两次输入的口令不一致！');
         return res.redirect('/signup');
       }
-
       user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);
-        Email.send_email;
+        Email.send_email(user);
         req.logIn(user, function(err) {
           if (err) return next(err);
           req.flash('success','注册成功！');
@@ -93,14 +131,14 @@ exports.index = function(req, res){
   User.list(options, function(err, users) {
     if (err) return res.render('500');
     User.count(
-     function (err, count) {
-      res.render('users/index', {
-        title: 'List of Users',
-        users: users,
-        page: page,
-        pages: count / perPage
-      });
-    });
+               function (err, count) {
+                res.render('users/index', {
+                  title: 'List of Users',
+                  users: users,
+                  page: page,
+                  pages: count / perPage
+                });
+              });
   });
 };
 
@@ -156,7 +194,7 @@ exports.reset_update = function (req, res) {
     user.password = req.body.password;
     user.save(function (err, user){
       res.redirect('/user/' + user.username);
-    }); 
+    });
   });
 };
 
@@ -187,7 +225,7 @@ exports.reset_email_callback = function (req, res) {
    console.log(user);
    if(user.password_reset_sent_at < expire) {
     req.flash('error',"The token's time is over the expire, new token has been sent" );
-    user.generate_password_reset_token(); 
+    user.generate_password_reset_token();
     user.save(function (err, user) {
      Email.send_password_reset_token(user);
      res.redirect('/signup');
@@ -229,8 +267,8 @@ exports.direct_reset_update = function (req, res) {
         user.password = req.body.password;
         user.save(function (err, user){
           res.redirect('/user/' + user.username);
-        }); 
+        });
       }
-    }) 
-});
+    })
+  });
 };

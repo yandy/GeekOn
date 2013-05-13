@@ -3,7 +3,7 @@ var nodemailer = require('nodemailer');
 
 
 exports.send_email = function (user, next) {
-    
+
     // Create a SMTP transport object
     transport = nodemailer.createTransport("SMTP", {
             service: 'Gmail', // use well known service
@@ -17,7 +17,6 @@ exports.send_email = function (user, next) {
 
     console.log('SMTP Configured');
 
-    console.log(user);
     // Message object
     var message = {
 
@@ -62,7 +61,7 @@ exports.send_email = function (user, next) {
 }
 
 exports.send_password_reset_token = function (user, next) {
-    
+
     // Create a SMTP transport object
     transport = nodemailer.createTransport("SMTP", {
             service: 'Gmail', // use well known service

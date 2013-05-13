@@ -6,7 +6,7 @@ block content
     p 用户名：#{profile.uname}
     P 昵称: #{profile.name}
     p Email：#{profile.email}
-    h2 joined_projects
+    h2 参加的项目
 
   .row
     .span7
@@ -14,12 +14,12 @@ block content
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
         .control-group
-          label.control-label(for='username') name
+          label.control-label(for='name') name
           .controls
             input#name.input-xlarge(type='text', name="name", value=profile.name, placeholder='Enter the title')
 
         .control-group
-          label.control-label(for='Email') Email
+          label.control-label(for='email') Email
           .controls
             input#email(type='text', name="email", value=profile.email, placeholder='Enter the tags')
 
