@@ -30,12 +30,13 @@ exports.create = function (req, res) {
                   if (!user) return next(new Error('Failed to load user ' + id));
                   user.joined_projects.push({project: project._id});
                   user.save();
-                  res.redirect('/project/'+ project.id);
+                  res.redirect('/projects/'+ project.id);
                 });
   });
 };
 
 exports.show = function (req, res) {
+  console.log(typeof req.project.created_at);
   res.render('projects/show', {
     project: req.project,
     title: req.project.name
@@ -83,7 +84,7 @@ exports.follow = function (req, res) {
     if (!user) return next(new Error('Failed to load user ' + id));
     user.joined_projects.push({project: req.project._id});
     user.save();
-    res.redirect('/project/'+ project.id);
+    res.redirect('/projects/'+ project.id);
   });
 };
 
@@ -109,7 +110,7 @@ exports.update = function (req, res) {
     else {
       req.flash("success","修改成功！");
       req.project = project;
-      res.redirect('/project/' + project._id);
+      res.redirect('/projects/' + project._id);
     }
   })
 };

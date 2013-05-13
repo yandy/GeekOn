@@ -3,6 +3,7 @@ var User = mongoose.model('User');
 var Email = require('../mailers/email');
 var _ = require('underscore');
 var passport = require('passport');
+var sanitize = require('validator').sanitize;
 
 exports.user = function (req, res, next, username) {
   console.log('comes into user controller');
@@ -23,7 +24,7 @@ exports.authCallback = function (req, res, next) {
         if (err) return next(err);
         req.session.user = user;
         req.flash('success', '欢迎');
-        return res.redirect('/user/' + user.username);
+        return res.redirect('/users/' + user.username);
       });
     } else {
       user = new User({
@@ -48,12 +49,12 @@ exports.authCallback = function (req, res, next) {
           }
           user.save(function (err) {
             if (err) return next(err);
-            Email.send_email(user);
+            // Email.send_email(user);
             req.logIn(user, function (err) {
               if (err) return next(err);
               req.session.user = user;
               req.flash('success', '欢迎');
-              return res.redirect('/user/' + user.username);
+              return res.redirect('/users/' + user.username);
             });
           });
         });
@@ -108,12 +109,12 @@ exports.create = function (req, res, next) {
       user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);
-        Email.send_email(user);
+        // Email.send_email(user);
         req.logIn(user, function(err) {
           if (err) return next(err);
           req.flash('success','注册成功！');
           req.session.user = user;
-          return res.redirect('/user/'+ user.username);
+          return res.redirect('/users/'+ user.username);
         });
       });
     });
@@ -153,7 +154,11 @@ exports.edit = function (req, res) {
 exports.update = function (req, res) {
   console.log("comes to update controller");
   var user = req.profile;
-  user = _.extend(user, req.body);
+  // user.name = sanitize(req.body.name).xss();)
+  user.website = sanitize(req.body.website).xss();
+  user.location = sanitize(req.body.location).xss();
+  user.company = sanitize(req.body.company).xss();
+  user.introduction = sanitize(req.body.introduction).xss();
 
   user.save(function (err, user) {
     if (err) {
@@ -161,14 +166,14 @@ exports.update = function (req, res) {
         title: 'Edit user',
         user: user,
         errors: err.errors
-      })
+      });
     }
     else {
       req.flash("success","修改成功！");
       req.session.user = user;
-      res.redirect('/user/' + user.username);
+      res.redirect('/users/' + user.username);
     }
-  })
+  });
 };
 
 exports.reset_edit = function (req, res) {
@@ -182,18 +187,18 @@ exports.reset_update = function (req, res) {
   console.log('come into the reset controller');
   if (req.body.password.length < 6) {
     req.flash('error', '请设置6位以上的口令');
-    return res.redirect('/user/'+req.profile.username+'/reset');
+    return res.redirect('/users/'+req.profile.username+'/reset');
   }
 
   if (req.body["password_confirmation"] !== req.body.password) {
     req.flash('error', '两次输入的口令不一致！');
-    return res.redirect('/user/'+req.profile.username+'/reset');
+    return res.redirect('/users/'+req.profile.username+'/reset');
   }
 
   User.load(req.profile.username, function (err, user) {
     user.password = req.body.password;
     user.save(function (err, user){
-      res.redirect('/user/' + user.username);
+      res.redirect('/users/' + user.username);
     });
   });
 };
@@ -233,7 +238,7 @@ exports.reset_email_callback = function (req, res) {
 
   }else {
     req.session.user = user;
-    res.redirect('/user/'+ user.username+'/reset');
+    res.redirect('/users/'+ user.username+'/reset');
   }
 });
 };
@@ -250,23 +255,23 @@ exports.direct_reset_update = function (req, res) {
 
   if (req.body.password.length < 6) {
     req.flash('error', '请设置6位以上的口令');
-    return res.redirect('/user/'+req.profile.username+'/direct_reset');
+    return res.redirect('/users/'+req.profile.username+'/direct_reset');
   }
 
   if (req.body["password_confirmation"] !== req.body.password) {
     req.flash('error', '两次输入的口令不一致！');
-    return res.redirect('/user/'+req.profile.username+'/direct_reset');
+    return res.redirect('/users/'+req.profile.username+'/direct_reset');
   }
 
   User.load(req.profile.username, function (err, user) {
-    user.comparePassword (req.body.password, function (err, isMatch){
-      if(isMatch){
+    user.comparePassword (req.body.old_password, function (err, isMatch){
+      if(!isMatch){
         req.flash('error', '输入的就口令不正确！');
-        return res.redirect('/user/'+req.profile.username+'/direct_reset');
-      }else {
+        return res.redirect('/users/'+req.profile.username+'/direct_reset');
+      } else {
         user.password = req.body.password;
         user.save(function (err, user){
-          res.redirect('/user/' + user.username);
+          res.redirect('/users/' + user.username);
         });
       }
     })

@@ -1,24 +1,28 @@
 extends ../layout/layout
 
 block content
-<<<<<<< HEAD
   div.project-show.row-fluid
     div.span9
-      div.row-fluid
-        div.span10
-          h2.project-title #{project.name}
-        div.span2
-          img(src="/img/monkey.png", alt="")
-      label 概要
-      p !{project.preview_html}
-      label 内容
-      p !{project.requirement_html}
+      .project-content
+        div.row-fluid
+          div.span10
+            h2.project-title #{project.name}
+            br
+            p !{project.preview_html}
+          div.span2
+            img(src="/img/monkey.png", alt="")
+        p.project-body !{project.requirement_html}
       .row-fluid
         .span3
           h4 参与人员
-        .span2.offset7
+        .span1.offset6
+          div.row-fluid.follow-btn
+              a(href='/projects/#{project.id}/edit')
+                i.icon-edit
+                span 编辑
+        .span2
             div.row-fluid.follow-btn
-              a(href='/project/#{project.id}/follow')
+              a(href='/projects/#{project.id}/follow')
                 i.icon-heart
                 span 参与
       table.table.table-condensed.table-hover

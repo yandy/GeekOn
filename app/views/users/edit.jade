@@ -1,29 +1,38 @@
 extends ../layout/layout
 
 block content
-  div.container
-
-    p 用户名：#{profile.uname}
-    P 昵称: #{profile.name}
-    p Email：#{profile.email}
-    h2 参加的项目
-
-  .row
-    .span7
-      form.form-horizontal(method="post", action="/user/"+profile.username, enctype="multipart/form-data")
-        input(type="hidden", name='_method', value='PUT')
-        input(type="hidden", name='_csrf', value=token)
-        .control-group
-          label.control-label(for='name') name
-          .controls
-            input#name.input-xlarge(type='text', name="name", value=profile.name, placeholder='Enter the title')
-
-        .control-group
-          label.control-label(for='email') Email
-          .controls
-            input#email(type='text', name="email", value=profile.email, placeholder='Enter the tags')
-
-        .form-actions
-          button.btn.btn-primary(type='submit') Save changes
-          &nbsp;
-          a.btn(href='/user/'+profile.username, title="cancel") Cancel
+  div.row-fluid
+    .span8.user-edit.offset2
+      .row-fluid.user-edit-cap
+        h4 信息设置
+      .row-fluid.display
+        p 用户名：#{profile.uname}
+        P 邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: #{profile.email}
+      .row-fluid.edit
+        form.form-horizontal(method="post", action="/users/"+profile.username, enctype="multipart/form-data")
+            input(type="hidden", name='_method', value='PUT')
+            input(type="hidden", name='_csrf', value=token)
+            .control-group
+              label.control-label(for='nickname') 昵称
+              .controls
+                input#nickname.input-xlarge(type="text",name='name',value=profile.name)
+            .control-group
+              label.control-label(for='website') 个人主页
+              .controls
+                input#website.input-xlarge(type="text",name='website',value=profile.website)
+            .control-group
+              label.control-label(for='location') 地点
+              .controls
+                input#location.input-xlarge(type='text', name="location", value=profile.location)
+            .control-group
+              label.control-label(for='company') 公司
+              .controls
+                input#company(type='text', name="company", value=profile.company)
+            .control-group
+              label.control-label(for='introduction') 自我介绍
+              .controls
+                textarea#introduction(name="introduction", value=profile.introduction, placeholder="技术背景，爱好等")
+            .btn-bar
+              button.btn.btn-primary(type='submit') 提交
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a.btn(href='/users/'+profile.username, title="cancel") 取消

@@ -1,9 +1,10 @@
 body{
 	padding:0px 30px 10px 30px;
-	background-color: white;
+	background-color: #FBFBFB;
 	margin-left: 95px;
 	margin-right: 95px;
-	min-width: 1000px;
+	min-width: 1100px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif,"宋体";
 }
 .border{
 	border:solid 1px black;
@@ -14,11 +15,16 @@ body{
 	border-width: 1px;
 	border-radius: 3px;
 	box-shadow: 2px 2px 6px 1px #004B8D;
+	background-color: white;
+}
+.border-nav .span6{
+	margin-left: -2.5%;
 }
 .nav{
 	padding-top: 8px;
-	padding-left: 20px;
+	padding-left: 8px;
 	margin-top: -3px;
+
 }
 /* Logo图片 */
 .span2 img{
@@ -37,6 +43,7 @@ body{
 #nav{
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
+	font-style: oblique;
 }
 #nav a{
 	color:#002A50;
@@ -50,6 +57,9 @@ body{
 	margin:0px 0px 0px 0px;
 }
 /* 导航栏右侧登录/注册/微博按钮/用户*/
+.logout-in{
+	padding-left: 20px;
+}
 .nav-btn{
 	border-radius: 4px;
 	text-align: center;
@@ -181,7 +191,6 @@ body{
 }
 .unit .row-fluid.inf a{
 	text-decoration: none;
-
 }
 /* 极客列表 */
 .users{
@@ -197,7 +206,6 @@ body{
 .user-unit a{
 	text-align: center;
 	text-decoration: none;
-
 }
 /* 极客主页 */
 .user-show{
@@ -244,15 +252,13 @@ body{
 	border-bottom-color: #E2E2E2;
 	font-weight: 700;
 	margin-bottom: 10px;
-
 }
-.img-project{
+.img-project img{
 	width: 60px;
 }
 .joined-projects .info{
 	margin-left: 10px;
 	padding-left: 20px;
-
 }
 .joined-projects .body{
 	height: 40px;
@@ -280,8 +286,6 @@ body{
 }
 .admin .new-news{
 	border-style: none;
-	padding: 0px;
-
 }
 .admin-cap{
 	border-bottom-style: dashed;
@@ -295,6 +299,7 @@ body{
 .project-show .span9{
 	background-color: #F6FFFF;
 	border-radius: 10px;
+	padding: 5px;
 }
 .project-title{
 	float: left;
@@ -312,8 +317,16 @@ body{
 	width: 70px;
 	margin-top: 10px;
 }
-.userlist-follow{
-
+.project-body{
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #D5D5D5;
+}
+.project-content{
+	border: solid 1px #D5D5D5;
+	margin-bottom: 30px;
+	padding: 6px;
+	box-shadow: 1px 1px 1px 1px #D5D5D5;
 }
 .follow-btn{
 	background-color: #F0E0E0;
@@ -334,7 +347,8 @@ body{
 }
 .comments{
 	border: solid 1px #E5E5D5;
-	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	box-shadow: 1px 1px 2px 1px #D5D5D5;
+	border-radius: 4px;
 	margin-top: 20px;
 	padding-left: 20px;
 	margin-bottom: 20px;
@@ -399,7 +413,7 @@ body{
 }
 .new-project .span2 label{
 	font-size: 110%;
-	font-weight: 500px;
+	font-weight: 500;
 }
 .new-project .span10 input{
 	width: 500px;
@@ -421,14 +435,12 @@ body{
 	padding-left: 8px;
 	font-size: 120%;
 }
-#project_name_error,#project_preview_error{
-	background-color: #FAD1DE;
-	padding: 5px;
-	border-radius: 3px;
-	margin-left: 5px;
-	margin-top: 5px;
-	display: none;
-	color:#EB3370;
+/* 项目编辑 */
+.edit-project textarea{
+	margin-top: 10px;
+}
+.edit-project .submit{
+	margin-top: 10px;
 }
 /* article活动详情列表显示*/
 .article-list{
@@ -507,8 +519,51 @@ body{
 	color:#EB3370;
 }
 .or{
-	margin-left: 631px;
+	margin-left: 630px;
 	margin-top: 10px;
+}
+/* 用户设置 */
+.user-edit{
+	margin: 10px;
+	border: solid 1px #D5D5D5;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px 1px #D5D5D5;
+	background-color: #FAFFFF;
+}
+.user-edit-cap{
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #E2E2E2;
+	margin-bottom: 10px;
+}
+.user-edit .display{
+	padding-left: 62px;
+	margin-bottom: 10px;
+	margin-left: 70px;
+	width: 420px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #E5E5E5;
+
+}
+.user-edit input{
+	width: 340px;
+}
+.user-edit .btn-bar{
+	margin-left: 190px;
+	margin-top: 10px;
+}
+.user-edit .btn-bar .btn{
+	width: 120px;
+}
+.user-edit span{
+	background-color: #FAD1DE;
+	padding: 5px;
+	border-radius: 3px;
+	margin-left: 5px;
+	display: none;
+	color:#EB3370;
 }
 /* 用户登录 */
 .signin-content{
@@ -572,7 +627,7 @@ body{
 /* footer */
 .footer{
 	background-color: #E8FFD7;
-	padding-left:100px;
+	padding-left:300px;
 }
 .footer a{
 	color:#135086;

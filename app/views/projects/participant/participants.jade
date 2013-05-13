@@ -1,6 +1,6 @@
 if(participant && participant.user)
   tr
     td
-      a(href="/user/"+participant.user.username) #{participant.user.uname}
+      a(href="/users/"+participant.user.username) #{participant.user.uname}
     td
-      p 创建于 #{participant.user.created_at}
+      p 创建于 #{moment(participant.user.created_at).format('LLL')}

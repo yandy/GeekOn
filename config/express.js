@@ -3,6 +3,8 @@ var path = require('path');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
 var RedisStore = require('connect-redis')(express);
+var moment = require('moment');
+moment.lang('zh-cn');
 
 module.exports = function (app, config, passport) {
   // all environments
@@ -30,6 +32,7 @@ module.exports = function (app, config, passport) {
    res.locals.success = req.flash('success').toString();
    res.locals.user = req.session ? req.session.user : '';
    res.locals.token = req.session._csrf;
+   res.locals.moment = moment;
    next();
  });
   app.use(app.router);

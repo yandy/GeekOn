@@ -5,7 +5,7 @@ block content
     div.span2
       h4 项目列表
     div.span2.offset5
-       a.new-project-btn.btn(href='/create_project') 创建项目
+       a.new-project-btn.btn(href='/projects/create') 创建项目
   div.row-fluid.project
     div.span9
       div.row-fluid.project-row
@@ -13,13 +13,13 @@ block content
             div.span4.unit
               div.row-fluid.head
                 div.span3.head-img
-                  a(href='/project/'+project._id)
-                   img(href='/user/project.provider._id',src='#{project.provider.avatar_url}')
+                  a(href='/projects/'+project._id)
+                   img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
                 div.span9.head-info
-                  a.title(href='/project/'+project._id, title=project.name) #{project.name}
+                  a.title(href='/projects/'+project._id, title=project.name) #{project.name}
                   br
                   span 项目提供者:
-                  a(href="/user/"+project.provider.username)=project.provider.uname
+                  a(href="/users/"+project.provider.username)=project.provider.uname
                   br
                   span 创建日期:
                   span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")

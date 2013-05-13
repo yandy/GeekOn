@@ -3,13 +3,6 @@ if (comment && comment.user)
     td.img
       img(src="/img/monkey.png", alt="")
     td.uname
-      a(href="/user/"+comment.user.username) #{comment.user.uname}
-    td.date 在#{comment.created_at}&nbsp;&nbsp;&nbsp;说
+      a(href="/users/"+comment.user.username) #{comment.user.uname}
+    td.date 在#{moment(comment.created_at).format('LLL')}&nbsp;&nbsp;&nbsp;说
     td.content !{comment.body_html}
-
-//if (comment && comment.user)
-  .comment
-    a(href="/users/"+comment.user.username) #{comment.user.uname}
-    p !{comment.body_html}
-    br
-    span.date #{comment.created_at}

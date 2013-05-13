@@ -4,7 +4,7 @@ block content
   div.new-project
     .new-project-cap
       p 新建一个项目
-    form(method="post", action="/create_project")
+    form(method="post", action="/projects/create")
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid
         div.span2
@@ -12,15 +12,13 @@ block content
           span.icon-asterisk
 
         div.span10
-          input(type="text", name="name")#project_name
-          span#project_name_error 请输入项目名称
+          input(type="text", name="name").project_name
       div.row-fluid
         .span2
           span 项目概要
           span.icon-asterisk
         .span10
-          textarea(name="preview")#project_preview
-          span#project_preview_error 请输入项目概要
+          input(type="text",name="preview").project_preview
       div.row-fluid
         .span2
           label 项目要求

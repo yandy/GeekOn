@@ -23,6 +23,7 @@
     "marked": "*",
     "underscore": "*",
     "validator" : "*",
-    "nodemailer": "*"
+    "nodemailer": "*",
+    "moment": "*"
   }
 }

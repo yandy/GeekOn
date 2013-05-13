@@ -4,8 +4,8 @@ block content
   div.user-show
     div.row-fluid
       div.span2
-        a(href="/user/#{user.username}")
-          img(src="#{user.avatar_url}", alt="用户图片").user-img
+        a(href="/users/#{profile.username}")
+          img(src="#{profile.avatar_url}", alt="用户图片").user-img
       div.span8
         .row-fluid.basic-info
           .basic-info-cap
@@ -14,7 +14,7 @@ block content
             .span2
               label 用户名
             .span10
-              p #{user.username}
+              p #{profile.username}
           .row-fluid
             .span2
               label 邮箱
@@ -39,11 +39,11 @@ block content
               each joined_project in profile.joined_projects
                 tr
                   td.img-project
-                    img(href='/user/joined_project.project.provider._id',src='/img/monkey.png')
+                    img(href='/users/joined_project.project.provider._id',src='/img/monkey.png')
                   td.info
                     a.title(href='/project/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
                     span 由
-                    a(href="/user/"+joined_project. project.provider._id)=joined_project.project.provider.username
+                    a(href="/users/"+joined_project. project.provider._id)=joined_project.project.provider.username
                     span 创建于
                     span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
                     p.body #{joined_project.project.preview}

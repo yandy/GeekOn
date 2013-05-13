@@ -9,9 +9,9 @@ block header
           li
             a(href="/") 首页
           li
-            a(href="#") 最新动态
+            a(href="/articles") 最新动态
           li
-            a(href="/articles") 活动详情
+            a(href="#") 活动详情
           li
             a(href="/projects") 创意项目
           li
@@ -25,17 +25,21 @@ block header
             img(src='#{locals.user.avatar_url}',height=30,width=30)
           &nbsp;&nbsp;&nbsp;
           span.dropdown.nav-btn
-            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}") #{locals.user.uname}&nbsp;&nbsp
+            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}").btn #{locals.user.uname}&nbsp;&nbsp
               span.caret.nav-btn
             ul.dropdown-menu
               li
-                a(href="/user/#{locals.user.username}")
+                a(href="/users/#{locals.user.username}")
                   i.icon-user
-                  span 个人主页
+                  span &nbsp;&nbsp;个人主页
+              li
+                a(href="/users/#{locals.user.username}/edit")
+                  i.icon-edit
+                  span &nbsp;&nbsp;个人设置
               li
                 a(href="/logout")
                   i.icon-chevron-left
-                  span 登出
+                  span &nbsp;&nbsp;登出
         else
           span.nav-btn
             a(href="/signup").btn 注册

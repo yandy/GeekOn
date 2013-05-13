@@ -8,10 +8,10 @@ block content
       each user in users
         div.span1.user-unit
           div.row-fluid
-            a(href="/user/#{user.username}")
+            a(href="/users/#{user.username}")
               img(src="#{user.avatar_url}", alt="用户图片")
           div.row-fluid
-            a(href="/user/#{user.username}")
+            a(href="/users/#{user.username}")
               p #{user.username}
 
     div.row-fluid

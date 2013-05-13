@@ -10,7 +10,7 @@ block content
 
   .row
     .span7
-      form.form-horizontal(method="post", action="/user/"+profile.username+'/reset/update', enctype="multipart/form-data")
+      form.form-horizontal(method="post", action="/users/"+profile.username+'/reset/update', enctype="multipart/form-data")
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
         .control-group
@@ -26,4 +26,4 @@ block content
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
           &nbsp;
-          a.btn(href='/user/'+profile.username, title="cancel") Cancel
+          a.btn(href='/users/'+profile.username, title="cancel") Cancel
