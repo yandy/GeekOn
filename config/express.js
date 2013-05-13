@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
+var RedisStore = require('connect-redis')(express);
 
 module.exports = function (app, config, passport) {
   // all environments
@@ -14,7 +15,10 @@ module.exports = function (app, config, passport) {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.session({secret:'geekon', cookie: {maxAge: 14400000}}));
+  app.use(express.session(
+          {secret:'geekon',
+          store: new RedisStore(),
+          cookie: {maxAge: 14400000}}));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.csrf());

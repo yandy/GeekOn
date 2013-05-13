@@ -10,6 +10,7 @@
     "jade": "*",
     "connect": "*",
     "mongoose": "*",
+    "connect-redis": "*",
     "connect-flash":"*",
     "passport": "*",
     "passport-local": "*",
