@@ -3,6 +3,7 @@ body{
 	background-color: white;
 	margin-left: 95px;
 	margin-right: 95px;
+	min-width: 1000px;
 }
 .border{
 	border:solid 1px black;
@@ -39,13 +40,14 @@ body{
 }
 #nav a{
 	color:#002A50;
+	font-size: 100%;
 }
 #nav li{
-	width:80px;
+	width:16%;
 	text-align: center;
 }
 #nav ul{
-	margin:0px 5px 0px 5px;
+	margin:0px 0px 0px 0px;
 }
 /* 导航栏右侧登录/注册/微博按钮/用户*/
 .nav-btn{
@@ -58,7 +60,7 @@ body{
 }
 .nav-btn a:hover{
 	color: #000000;
-	box-shadow: 1px 1px 1px 1px blue;
+	border:solid 1px #C5C5B5;
 }
 #name{
 	color:#06266F;
