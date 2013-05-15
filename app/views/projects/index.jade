@@ -19,19 +19,17 @@ block content
                     a(href='/projects/'+project._id, title=project.name)= project.name
                   div.row-fluid
                   span 由
-                    a(href="/users/"+project.provider.username)= project.provider.username
+                    a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
                   div.row-fluid
                     span 创建于
-                    span= moment(project.created_at).format('LLL')
+                    span= moment(project.created_at).format('LL')
               div.row-fluid.desc
                 !{project.description.substring(0, 140)}
               div.row-fluid.inf
                 .span4
-                  a(href="#")
-                    i.icon-eye-open
-                    span 关注
+                  i.icon-eye-open
+                  span 关注(#{project.followers.length})
                 .span4
-                  a(href="#")
-                    i.icon-comment
-                    span 留言(#{project.comments.length})
+                  i.icon-comment
+                  span 评论(#{project.comments.length})
     include ../layout/right-side

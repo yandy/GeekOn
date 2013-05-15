@@ -45,12 +45,12 @@ block content
         each participant in project.participants
           include participant/participants
       .row-fluid
-        h4 关注人员(#{project.participants.length})
+        h4 关注人员(#{project.followers.length})
         table.table.table-condensed.table-hover
-          each participant in project.participants
-            include participant/participants
+          each follower in project.followers
+            include follower/followers
       .comments
-        p.comments-cap 共 #{project.comments.length} 条回复
+        p.comments-cap 共 #{project.comments.length} 条评论
         table.table
           each comment in project.comments
             include ../comment/comments
