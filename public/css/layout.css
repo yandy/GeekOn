@@ -29,7 +29,7 @@ body{
 /* Logo图片 */
 .border-nav .span2 img{
 	width:150px;
-	height: 80px;
+	height: 70px;
 }
 .border-nav .span2 {
 	margin-top: 5px;
@@ -248,6 +248,8 @@ body{
 /* 极客主页 */
 .user-show{
 	background-color: white;
+	padding: 0px 0px 25px 0px;
+	border-radius: 5px;
 }
 .user-show .span8{
 	margin-left: 60px;
@@ -535,8 +537,6 @@ body{
 }
 /* 用户注册 */
 .registration{
-	margin: 40px;
-	margin-left: 30px;
 	border: solid 1px ;
 	border-color:#D5D5D5;
 	box-shadow: 1px 1px 3px 1px #D5D5D5;
@@ -579,7 +579,7 @@ body{
 	color:#EB3370;
 }
 .or{
-	margin-left: 630px;
+	margin-left: 650px;
 	margin-top: 10px;
 }
 /* 用户设置 */
@@ -689,8 +689,10 @@ body{
 }
 /* footer */
 .footer{
-	background-color: white;
-	padding-left:300px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #8088ff;
+	padding-top: 10px;
 }
 .footer a{
 	color:#135086;
