@@ -9,23 +9,19 @@ block content
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid
         div.span2
-          span 项目名称
-          span.icon-asterisk
+          span 名称
         div.span10
           input(type="text", name="name",value= project.name)
-          span.project_name_error 请输入项目名称
       div.row-fluid
         .span2
-          span 项目概要
-          span.icon-asterisk
+          span 概要
         .span10
-          input(type="text",name="preview").project_preview= project.preview
-          span.project_preview_error 请输入项目概要
+          textarea(name="preview")#project_preview= project.preview
       div.row-fluid
         .span2
-          label 项目要求
+          label 要求
         .span10
-          textarea(name="requirement")= project.requirement
+          textarea(name="requirement")#project_body= project.requirement
       div.row-fluid.submit
         .span2.offset2.submit-btn
           input(type="submit", value="提交").btn.btn-primary

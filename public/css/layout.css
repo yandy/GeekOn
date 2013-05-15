@@ -256,6 +256,9 @@ body{
 .img-project img{
 	width: 60px;
 }
+.img-project{
+	width: 100px;
+}
 .joined-projects .info{
 	margin-left: 10px;
 	padding-left: 20px;
@@ -407,7 +410,7 @@ body{
 	padding-left: 50px;
 	border: solid 1px #D5D5D5;
 	width: 900px;
-	margin-left: 100px;
+	margin-left: 65px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 
 }
@@ -416,10 +419,10 @@ body{
 	font-weight: 500;
 }
 .new-project .span10 input{
-	width: 500px;
+	width: 600px;
 }
 .new-project .span10 textarea{
-	width: 500px;
+	width: 600px;
 	height: 80px;
 }
 .new-project .submit-btn input{
@@ -434,6 +437,12 @@ body{
 	margin-bottom: 10px;
 	padding-left: 8px;
 	font-size: 120%;
+}
+#project_preview{
+	height: 40px;
+}
+#project_body{
+	height: 237px;
 }
 /* 项目编辑 */
 .edit-project textarea{
