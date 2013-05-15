@@ -3,4 +3,4 @@ if(participant && participant.user)
     td
       a(href="/users/"+participant.user.username) #{participant.user.uname}
     td
-      p 创建于 #{moment(participant.user.created_at).format('LLL')}
+      p 创建于 #{moment(participant.created_at).format('LLL')}

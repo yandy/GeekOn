@@ -14,17 +14,36 @@ block content
             .span2
               label 用户名
             .span10
-              p #{profile.username}
+              p= profile.username
           .row-fluid
             .span2
               label 邮箱
             .span10
-              p #{profile.email}
-          .row-fluid
-            .span2
-              label 技术背景
-            .span10
-              p ^&(@#*@)*#(@)(!@#))@($$*@&#*@_))$#*)$(*#@#&^@&^@&*#$&(&(&)))
+              p= profile.email
+          if profile.company
+            .row-fluid
+              .span2
+                label 公司
+              .span10
+                p= profile.company
+          if profile.location
+            .row-fluid
+              .span2
+                label 地点
+              .span10
+                p= profile.location
+          if profile.website
+            .row-fluid
+              .span2
+                label 个人主页
+              .span10
+                p= profile.website
+          if profile.introduction
+            .row-fluid
+              .span2
+                label 自我介绍
+              .span10
+                p= profile.introduction
         if profile.joined_projects.length == 0
           .row-fluid.joined-projects
             div.joined-projects-cap
@@ -41,9 +60,9 @@ block content
                   td.img-project
                     img(href='/users/joined_project.project.provider._id',src='/img/monkey.png')
                   td.info
-                    a.title(href='/project/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                    a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
                     span 由
-                    a(href="/users/"+joined_project. project.provider._id)=joined_project.project.provider.username
+                    a(href="/users/"+joined_project.project.provider._id)=joined_project.project.provider.username
                     span 创建于
                     span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
                     p.body #{joined_project.project.preview}
@@ -51,7 +70,7 @@ block content
         if locals.user && locals.user.is_admin
           div.admin
             .admin-cap
-              p 添加一条活动
+              p 添加一篇文章
             form(method="post", action="/create_article")
               input(type="hidden", name='_csrf', value=token)
               div.new-news

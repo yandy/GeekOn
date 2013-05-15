@@ -19,13 +19,13 @@ block content
           span 项目概要
           span.icon-asterisk
         .span10
-          input(type="text",name="preview").project_preview= project.preview
-          span.project_preview_error 请输入项目概要
+          input(type="text",name="summary").project_summary= project.summary
+          span.project_summary_error 请输入项目概要
       div.row-fluid
         .span2
-          label 项目要求
+          label 项目描述
         .span10
-          textarea(name="requirement")= project.requirement
+          textarea(name="description")= project.description
       div.row-fluid.submit
         .span2.offset2.submit-btn
           input(type="submit", value="提交").btn.btn-primary

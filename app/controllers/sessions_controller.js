@@ -19,7 +19,7 @@ exports.create = function (req, res, next) {
       if (err) return next(err);
       req.session.user = user;
       req.flash('success','欢迎');
-      return res.redirect('/user/' + user.username);
+      return res.redirect('/users/' + user.username);
     });
   })(req, res, next);
 };

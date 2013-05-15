@@ -31,13 +31,14 @@ module.exports = function (app, passport, auth) {
   var comment = require('../app/controllers/comments_controller');
   app.get('/projects/create', auth.ensureAuthenticated, project.new);
   app.post('/projects/create', auth.ensureAuthenticated, project.create);
-  app.get('/projects/:projectId/destroy_project', project.destroy);
+  app.del('/projects/:projectId', project.destroy);
   app.get('/projects/:projectId', project.show);
   app.get('/projects', project.index);
   app.get('/projects/:projectId/edit', project.edit);
   app.put('/projects/:projectId', project.update);
   app.post('/projects/:projectId/create_comment', auth.ensureAuthenticated, comment.create);
-  app.get('/projects/:projectId/follow', auth.ensureAuthenticated, project.follow);
+  app.get('/projects/:projectId/join', auth.ensureAuthenticated, project.join);
+  app.get('/projects/:projectId/star', auth.ensureAuthenticated, project.star);
   app.param('projectId', project.project);
 
   var article = require('../app/controllers/articles_controller');

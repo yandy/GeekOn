@@ -8,23 +8,35 @@ block content
           div.span10
             h2.project-title #{project.name}
             br
-            p !{project.preview_html}
+            p !{project.summary_html}
           div.span2
             img(src="/img/monkey.png", alt="")
-        p.project-body !{project.requirement_html}
+        p.project-body !{project.description_html}
       .row-fluid
         .span3
-          h4 参与人员
-        .span1.offset6
-          div.row-fluid.follow-btn
+          h4 参与人员(#{project.participants.length})
+        .span1.offset5
+          if locals.user && project.provider._id == locals.user._id
+            div.row-fluid.follow-btn
               a(href='/projects/#{project.id}/edit')
                 i.icon-edit
                 span 编辑
-        .span2
-            div.row-fluid.follow-btn
-              a(href='/projects/#{project.id}/follow')
-                i.icon-heart
-                span 参与
+        .span1
+          div.row-fluid.follow-btn
+            a(href='/projects/#{project.id}/join')
+              i.icon-heart
+              if isJoined
+                span 退出
+              else
+                span 加入
+        .span1
+          div.row-fluid.follow-btn
+            a(href="/projects/#{project.id}/star")
+              i.icon-heart
+              if isStarred
+                span 取消关注
+              else
+                span 关注
       table.table.table-condensed.table-hover
         each participant in project.participants
           include participant/participants
@@ -35,9 +47,9 @@ block content
             include ../comment/comments
         if project.comments.length == 0
           .prompt
-            p 尚无回复
+            p 尚无评论
       if locals.user
           include comment/add_comment
       else
-          p.info 登录后即可发表回复
+          p.info 登录后即可发表评论
     include ../layout/right-side

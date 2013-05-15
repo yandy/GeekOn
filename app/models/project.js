@@ -22,16 +22,22 @@ var ProjectSchema = new Schema({
   name: String,
   provider: {type : Schema.ObjectId, ref : 'User'},
 
-  preview: String,
-  preview_html: String,
+  summary: String,
+  summary_html: String,
 
-  requirement: String,
-  requirement_html: String,
+  description: String,
+  description_html: String,
 
   participants: [{
     user: {type : Schema.ObjectId, ref : 'User', unique: true},
     created_at: { type : Date, default : Date.now }
   }],
+
+  followers: [{
+    user: {type : Schema.ObjectId, ref : 'User', unique: true},
+    created_at: { type : Date, default : Date.now }
+  }],
+
   comments: [{
     body: { type : String, default : '' },
     body_html: { type: String, default: ''},
@@ -42,9 +48,8 @@ var ProjectSchema = new Schema({
 });
 
 ProjectSchema.pre('save', function(next) {
-  if (this.isNew) return next();
-  this.preview_html = marked(this.preview);
-  this.requirement_html =marked(this.requirement);
+  this.summary_html = marked(this.summary);
+  this.description_html = marked(this.description);
   next();
 });
 
@@ -63,8 +68,9 @@ ProjectSchema.methods = {
 ProjectSchema.statics = {
   load: function (id, cb) {
     this.findOne({ _id : id })
-    .populate('provider', 'username')
+    .populate('provider', 'username avatar_url')
     .populate('participants.user')
+    .populate('followers.user')
     .populate('comments.user')
     .exec(cb);
   },

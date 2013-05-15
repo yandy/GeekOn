@@ -4,6 +4,7 @@ var Email = require('../mailers/email');
 var _ = require('underscore');
 var passport = require('passport');
 var sanitize = require('validator').sanitize;
+var gravatar = require('gravatar');
 
 exports.user = function (req, res, next, username) {
   console.log('comes into user controller');
@@ -106,6 +107,7 @@ exports.create = function (req, res, next) {
         req.flash('error', '两次输入的口令不一致！');
         return res.redirect('/signup');
       }
+      user.avatar_url = gravatar.url(user.email, {s: '200'});
       user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);

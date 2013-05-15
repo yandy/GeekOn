@@ -12,7 +12,7 @@ var UserSchema = new Schema({
   uname: {type: String, required: true, unique: true},
 
   password: {type: String},
-  avatar_url: {type: String, default: 'http://localhost:3000/img/avatar_default.jpg'},
+  avatar_url: {type: String},
 
   email: {type: String, required: true},
   uemail: {type: String, required: true, unique: true},

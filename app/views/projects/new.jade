@@ -3,7 +3,7 @@ extends ../layout/layout
 block content
   div.new-project
     .new-project-cap
-      p 新建一个项目
+      p 新建项目
     form(method="post", action="/projects/create")
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid
@@ -18,12 +18,12 @@ block content
           span 项目概要
           span.icon-asterisk
         .span10
-          input(type="text",name="preview").project_preview
+          input(type="text",name="summary").project_summary
       div.row-fluid
         .span2
-          label 项目要求
+          label 项目描述
         .span10
-          textarea(name="requirement")
+          textarea(name="description")
       div.row-fluid
         .span2.offset2.submit-btn
           input(type="submit", value="创建").btn.btn-primary

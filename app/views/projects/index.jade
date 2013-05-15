@@ -9,22 +9,22 @@ block content
   div.row-fluid.project
     div.span9
       div.row-fluid.project-row
-       each project,i in projects
+       each project in projects
             div.span4.unit
               div.row-fluid.head
                 div.span3.head-img
                   a(href='/projects/'+project._id)
                    img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
                 div.span9.head-info
-                  a.title(href='/projects/'+project._id, title=project.name) #{project.name}
+                  a.title(href='/projects/'+project._id, title=project.name)= project.name
                   br
                   span 项目提供者:
-                  a(href="/users/"+project.provider.username)=project.provider.uname
+                  a(href="/users/"+project.provider.username)= project.provider.username
                   br
                   span 创建日期:
-                  span=formatDate(project.created_at, "%b %d, %Y at %I:%M %p")
+                  span= moment(project.created_at).format('LLL')
               div.row-fluid.desc
-                p #{project.preview}
+                !{project.description.substring(0, 140)}
               div.row-fluid.inf
                 .span4
                   a(href="#")
@@ -33,7 +33,7 @@ block content
                 .span4
                   a(href="#")
                     i.icon-comment
-                    span 留言
+                    span 留言(#{project.comments.length})
                 .span4
                   a(href="#")
                     i.icon-star

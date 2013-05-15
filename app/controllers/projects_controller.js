@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
 var User = mongoose.model('User');
 var _ = require('underscore');
+var sanitize = require('validator').sanitize;
 
 exports.project = function (req, res, next, id) {
   Project.load(id, function (err, project) {
@@ -20,7 +21,11 @@ exports.new = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  var project = new Project(req.body);
+  var project = new Project({
+    name: sanitize(req.body.name).xss(),
+    summary: sanitize(req.body.summary).xss(),
+    description: sanitize(req.body.description).xss()
+  });
   project.provider = req.session.user._id;
   project.participants.push({ user: req.session.user._id});
   project.save( function(err, project){
@@ -36,10 +41,25 @@ exports.create = function (req, res) {
 };
 
 exports.show = function (req, res) {
-  console.log(typeof req.project.created_at);
+  var project = req.project;
+  var isJoined = false;
+  var isStarred = false;
+  if (req.session.user) {
+    var filtered = project.participants.filter(function (element, index, array) {
+      return element.user._id == req.session.user._id;
+    });
+    isJoined = (filtered.length === 0) ? false: true;
+
+    filtered = project.followers.filter(function (element, index, array) {
+      return element.user._id == req.session.user._id;
+    });
+    isStarred = (filtered.length === 0) ? false: true;
+  }
   res.render('projects/show', {
     project: req.project,
-    title: req.project.name
+    title: req.project.name,
+    isJoined: isJoined,
+    isStarred: isStarred
   });
 };
 
@@ -72,19 +92,74 @@ exports.destroy = function (req, res) {
   });
 };
 
-exports.follow = function (req, res) {
-  console.log('come  into follow');
+exports.join = function (req, res, next) {
   var project = req.project;
-  project.participants.push({user: req.session.user._id});
-  project.save();
-  console.log(project.participants);
-  User.findOne({_id: req.session.user._id} ,function (err, user){
-    console.log(user);
+  var filtered = project.participants.filter(function (element, index, array) {
+    return element.user._id == req.session.user._id;
+  });
+  var isJoined = (filtered.length !== 0);
+  if (!isJoined) {
+    project.participants.push({user: req.session.user._id});
+  } else {
+    var index = project.participants.indexOf(filtered[0]);
+    project.participants.splice(index, 1);
+  }
+
+  project.save(function (err) {
     if (err) return next(err);
-    if (!user) return next(new Error('Failed to load user ' + id));
-    user.joined_projects.push({project: req.project._id});
-    user.save();
-    res.redirect('/projects/'+ project.id);
+    User.findOne({_id: req.session.user._id} ,function (err, user){
+      if (err) return next(err);
+      if (!user) return next(new Error('Failed to load user ' + id));
+      if (isJoined) {
+        var filtered = user.joined_projects.filter(function (element, index, array) {
+          return element.project._id == req.project._id;
+        });
+        var index = user.joined_projects.indexOf(filtered[0]);
+        user.joined_projects.splice(index, 1);
+      } else {
+        user.joined_projects.push({project: req.project._id});
+      }
+      user.save(function (err) {
+        if (err) return next(err);
+        res.redirect('/projects/'+ project.id);
+      });
+    });
+  });
+};
+
+exports.star = function (req, res, next) {
+  var project = req.project;
+  var filtered = project.followers.filter(function (element, index, array) {
+    return element.user._id == req.session.user._id;
+  });
+  var isStarred = (filtered.length !== 0);
+  var date = Date.now();
+  if (!isStarred) {
+    project.followers.push({user: req.session.user._id, created_at: date});
+  } else {
+    var index = project.followers.indexOf(filtered[0]);
+    project.followers.splice(index, 1);
+  }
+
+  project.save(function (err) {
+    if (err) return next(err);
+    User.findOne({_id: req.session.user._id} ,function (err, user){
+      if (err) return next(err);
+      if (!user) return next(new Error('Failed to load user ' + id));
+      if (isStarred) {
+        var filtered = user.starred_projects.filter(function (element, index, array) {
+          return element.project._id == req.project._id;
+        });
+        var index = user.starred_projects.indexOf(filtered[0]);
+        user.starred_projects.splice(index, 1);
+      } else {
+        user.starred_projects.push({project: req.project._id, created_at: date});
+      }
+      user.save(function (err) {
+        if (err) return next(err);
+        res.redirect('/projects/'+ project.id);
+      });
+    });
   });
 };
 
@@ -97,20 +172,21 @@ exports.edit = function (req, res) {
 
 exports.update = function (req, res) {
   var project = req.project;
-  project = _.extend(project, req.body);
+  project.name = sanitize(req.body.name).xss();
+  project.summary = sanitize(req.body.summary).xss();
+  project.description = sanitize(req.body.description).xss();
 
-  project.save(function (err, project) {
+  project.save(function (err) {
     if (err) {
       res.render('projects/edit', {
         title: 'Edit project',
-        project: projects,
+        project: project,
         errors: err.errors
-      })
-    }
-    else {
+      });
+    } else {
       req.flash("success","修改成功！");
       req.project = project;
       res.redirect('/projects/' + project._id);
     }
-  })
+  });
 };
