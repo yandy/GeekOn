@@ -4,7 +4,7 @@ block header
       div.span2
         a(href="/")
           img(src="/img/logo.png", alt="猴子")
-      div.span6#nav
+      div.span7#nav
         ul.nav.nav-pills
           li
             a(href="/") 首页
@@ -19,7 +19,7 @@ block header
           li
             a(href="#") 赞助合作
       br
-      div.span3.logout-in.offset1
+      div.span3.logout-in
         if locals.user && locals.user.username
           span
             img(src='#{locals.user.avatar_url}',height=30,width=30)

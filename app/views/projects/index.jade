@@ -1,13 +1,12 @@
 extends ../layout/layout
-
 block content
-  div.row-fluid
-    div.span2
-      h4 项目列表
-    div.span2.offset5
-       a.new-project-btn.btn(href='/projects/create') 创建项目
   div.row-fluid.project
     div.span9
+      .row-fluid
+        .span2
+          h4 &nbsp;项目列表
+        .span2.offset7
+          a.new-project-btn.btn(href='/projects/create') 创建项目
       div.row-fluid.project-row
        each project in projects
             div.span4.unit
@@ -16,26 +15,23 @@ block content
                   a(href='/projects/'+project._id)
                    img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
                 div.span9.head-info
-                  a.title(href='/projects/'+project._id, title=project.name)= project.name
-                  br
-                  span 项目提供者:
-                  a(href="/users/"+project.provider.username)= project.provider.username
-                  br
-                  span 创建日期:
-                  span= moment(project.created_at).format('LLL')
+                  div.row-fluid
+                    a(href='/projects/'+project._id, title=project.name)= project.name
+                  div.row-fluid
+                  span 由
+                    a(href="/users/"+project.provider.username)= project.provider.username
+                  div.row-fluid
+                    span 创建于
+                    span= moment(project.created_at).format('LLL')
               div.row-fluid.desc
                 !{project.description.substring(0, 140)}
               div.row-fluid.inf
                 .span4
                   a(href="#")
-                    i.icon-heart
-                    span 感兴趣
+                    i.icon-eye-open
+                    span 关注
                 .span4
                   a(href="#")
                     i.icon-comment
                     span 留言(#{project.comments.length})
-                .span4
-                  a(href="#")
-                    i.icon-star
-                    span 收藏
     include ../layout/right-side
