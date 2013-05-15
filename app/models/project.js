@@ -20,7 +20,7 @@ marked.setOptions({
 
 var ProjectSchema = new Schema({
   name: String,
-  provider: {type : Schema.ObjectId, ref : 'User'},
+  provider: {type :  Schema.Types.ObjectId, ref : 'User'},
 
   summary: String,
   summary_html: String,
@@ -29,19 +29,19 @@ var ProjectSchema = new Schema({
   description_html: String,
 
   participants: [{
-    user: {type : Schema.ObjectId, ref : 'User', unique: true},
+    user: {type :  Schema.Types.ObjectId, ref : 'User', unique: true},
     created_at: { type : Date, default : Date.now }
   }],
 
   followers: [{
-    user: {type : Schema.ObjectId, ref : 'User', unique: true},
+    user: {type :  Schema.Types.ObjectId, ref : 'User', unique: true},
     created_at: { type : Date, default : Date.now }
   }],
 
   comments: [{
     body: { type : String, default : '' },
     body_html: { type: String, default: ''},
-    user: { type : Schema.ObjectId, ref : 'User' },
+    user: { type :  Schema.Types.ObjectId, ref : 'User' },
     created_at: { type : Date, default : Date.now }
   }],
   created_at: { type: Date, default : Date.now }

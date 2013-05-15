@@ -64,11 +64,11 @@ block content
               each joined_project in profile.joined_projects
                 tr
                   td.img-project
-                    img(href='/users/#{joined_project.project.provider}',src= joined_project.project.provider.avatar_url)
+                    img(href='/users/#{joined_project.project.provider.avatar_url}',src= joined_project.project.provider.avatar_url)
                   td.info
                     a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
                     span 由
-                    a(href="/users/"+joined_project.project.provider._id)=joined_project.project.provider.username
+                    a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
                     span 创建于
                     span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
                     p.body #{joined_project.project.preview}

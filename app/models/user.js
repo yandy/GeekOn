@@ -29,12 +29,12 @@ var UserSchema = new Schema({
   github: {},
 
   starred_projects: [{
-    project: {type : Schema.ObjectId, ref : 'Project'},
+    project: {type :  Schema.Types.ObjectId, ref : 'Project'},
     created_at: { type : Date, default : Date.now }
   }],
 
   joined_projects: [{
-    project: {type : Schema.ObjectId, ref : 'Project'},
+    project: {type :  Schema.Types.ObjectId, ref : 'Project'},
     created_at: { type : Date, default : Date.now }
   }],
 
@@ -117,10 +117,13 @@ UserSchema.methods.generate_password_reset_token = function (cb) {
 };
 
 UserSchema.statics.load = function (username, cb) {
-  this.findOne({username : username.toLowerCase()})
-  .populate('joined_projects.project')
-  .populate('joined_projects.project.provider')
-  .exec(cb);
+  this.findOne({username : username.toLowerCase()}, function (err, user) {
+    if (err || !user) return cb(err);
+    user.populate({path: 'joined_projects.project starred_projects.project', model: 'Project'}, function (err, pop) {
+      if (err) return cb(err);
+      pop.populate({path: 'joined_projects.project.provider starred_projects.project.provider', model: 'User'}, cb);
+    });
+  });
 };
 
 UserSchema.statics.list = function (options, cb) {
