@@ -29,22 +29,22 @@ var ProjectSchema = new Schema({
   description_html: String,
 
   participants: [{
-    user: {type :  Schema.Types.ObjectId, ref : 'User', unique: true},
-    created_at: { type : Date, default : Date.now }
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now }
   }],
 
   followers: [{
-    user: {type :  Schema.Types.ObjectId, ref : 'User', unique: true},
-    created_at: { type : Date, default : Date.now }
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now }
   }],
 
   comments: [{
-    body: { type : String, default : '' },
-    body_html: { type: String, default: ''},
-    user: { type :  Schema.Types.ObjectId, ref : 'User' },
-    created_at: { type : Date, default : Date.now }
+    body: {type: String, default: ''},
+    body_html: {type: String, default: ''},
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now}
   }],
-  created_at: { type: Date, default : Date.now }
+  created_at: {type: Date, default: Date.now}
 });
 
 ProjectSchema.pre('save', function(next) {
@@ -62,12 +62,11 @@ ProjectSchema.methods = {
     });
     this.save(cb);
   }
-
 };
 
 ProjectSchema.statics = {
   load: function (id, cb) {
-    this.findOne({ _id : id })
+    this.findOne({_id: id})
     .populate('provider', 'username avatar_url')
     .populate('participants.user')
     .populate('followers.user')
@@ -85,7 +84,6 @@ ProjectSchema.statics = {
       .skip(options.perPage * options.page)
       .exec(cb);
     }
-
   };
 
   mongoose.model('Project', ProjectSchema);
