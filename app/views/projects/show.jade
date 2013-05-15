@@ -6,7 +6,9 @@ block content
       .project-content
         div.row-fluid
           div.span10
-            h2.project-title #{project.name}
+            h3.project-title #{project.name}
+            br
+            br
             br
             p !{project.summary_html}
           div.span2
@@ -24,22 +26,29 @@ block content
         .span1
           div.row-fluid.follow-btn
             a(href='/projects/#{project.id}/join')
-              i.icon-heart
               if isJoined
+                i.icon-chevron-left
                 span 退出
               else
+                i.icon-plus
                 span 加入
         .span1
           div.row-fluid.follow-btn
             a(href="/projects/#{project.id}/star")
-              i.icon-heart
               if isStarred
-                span 取消关注
+                i.icon-eye-close
+                span 取消
               else
+                i.icon-eye-open
                 span 关注
       table.table.table-condensed.table-hover
         each participant in project.participants
           include participant/participants
+      .row-fluid
+        h4 关注人员(#{project.participants.length})
+        table.table.table-condensed.table-hover
+          each participant in project.participants
+            include participant/participants
       .comments
         p.comments-cap 共 #{project.comments.length} 条回复
         table.table

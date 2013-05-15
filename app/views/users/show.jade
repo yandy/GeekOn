@@ -63,8 +63,6 @@ block content
             table.table
               each joined_project in profile.joined_projects
                 tr
-                  td.img-project
-                    img(href='/users/#{joined_project.project.provider}',src= joined_project.project.provider.avatar_url)
                   td.info
                     a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
                     span 由
@@ -72,7 +70,19 @@ block content
                     span 创建于
                     span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
                     p.body #{joined_project.project.preview}
-
+          .row-fluid.joined-projects
+            div.joined-projects-cap
+              p 关注的项目
+            talbe.table
+              each joined_project in profile.joined_projects
+                tr
+                  td.info
+                    a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                    span 由
+                    a(href="/users/"+joined_project.project.provider._id)=joined_project.project.provider.username
+                    span 创建于
+                    span=formatDate(joined_project.project.created_at, "%b %d, %Y at %I:%M %p")
+                    p.body #{joined_project.project.preview}
         if locals.user && locals.user.is_admin
           div.admin
             .admin-cap

@@ -11,18 +11,17 @@ block content
         div.span2
           span 名称
         div.span10
-          input(type="text", name="name",value= project.name)
+          input(type="text", name="name",value= project.name)#project_name
       div.row-fluid
         .span2
           span 概要
         .span10
-          input(type="text",name="summary").project_summary= project.summary
-          span.project_summary_error 请输入项目概要
+          textarea(name="summary")#project_summary= project.summary
       div.row-fluid
         .span2
-          label 项目描述
+          label 描述
         .span10
-          textarea(name="description")= project.description
+          textarea(name="description")#project_description= project.description
       div.row-fluid.submit
         .span2.offset2.submit-btn
           input(type="submit", value="提交").btn.btn-primary

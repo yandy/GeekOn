@@ -1,6 +1,6 @@
 body{
 	padding:0px 30px 10px 30px;
-	background-color: #FBFBFB;
+	background-color: #cccfff;
 	margin-left: 95px;
 	margin-right: 95px;
 	min-width: 1100px;
@@ -21,17 +21,19 @@ body{
 	margin-left: -2.5%;
 }
 .nav{
-	padding-top: 8px;
-	padding-left: 8px;
-	margin-top: -3px;
+	padding: 10px;
+	margin-top: -10px;
+	background-color: #4d58ff;
 
 }
 /* Logo图片 */
-.span2 img{
-	width:80px;
-	margin-bottom: 10px;
+.border-nav .span2 img{
+	width:150px;
+	height: 80px;
 }
-
+.border-nav .span2 {
+	margin-top: 5px;
+}
 /* 导航栏中间六个按钮 */
 .border-navbar{
 	border-color: #86ACCD;
@@ -42,12 +44,18 @@ body{
 }
 #nav{
 	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	font-style: oblique;
+	border-bottom-width: 2px;
+	color:#000fe6;
+	margin-bottom: 20px;
 }
 #nav a{
-	color:#002A50;
+	color:white;
 	font-size: 100%;
+	font-weight: 700;
+}
+#nav a:hover{
+	background-color: #4d58ff;
+	color:#ccc;
 }
 #nav li{
 	width:16%;
@@ -70,10 +78,14 @@ body{
 }
 .nav-btn a:hover{
 	color: #000000;
-	border:solid 1px #C5C5B5;
+}
+.nav-btn .btn{
+	background-image: none;
+	background-color: #99a0ff;
+	box-shadow: 1px 1px 1px 1px blue;
 }
 #name{
-	color:#06266F;
+	color:#041849;
 	text-decoration: none;
 }
 #name:hover{
@@ -92,38 +104,59 @@ body{
 }
 /* 首页 */
 .row-fluid.info{
-	height: 200px;
-	background-color: #E0F0FE;
+	height: 270px;
+	background-color: white;
 	border-radius: 8px;
 	text-align: center;
+	padding: 8px;
+}
+.row-fluid.info p{
+	text-align: left;
+	text-indent: 2em;
 }
 .row-fluid.step{
-	height: 200px;
-	background-color: #EDEDED;
+	height: 580px;
+	background-color: white;
 	border-radius: 8px;
+	text-align: center;
+	padding: 8px;
+}
+.row-fluid.step td{
+	text-align: center;
+}
+.row-fluid.step th{
 	text-align: center;
 }
 .row-fluid.prize{
 	height: 200px;
-	background-color: #E0F0FE;
+	background-color: white;
 	border-radius: 8px;
 	text-align: center;
+	padding: 8px;
+}
+.row-fluid.prize td{
+	width: 50%;
+	text-align: center;
+}
+.row-fluid.prize .money{
+	width: 50%;
+	text-align: left;
 }
 .row-fluid.news{
 	height: 200px;
-	background-color: #E8FFD7;
+	background-color: white;
 	border-radius: 8px;
 	text-align: center;
 }
 .row-fluid.sponsor{
 	height: 200px;
-	background-color: #E0F0FE;
+	background-color: white;
 	border-radius: 8px;
 	text-align: center;
 }
 .row-fluid.contact{
 	height: 200px;
-	background-color: #EAE0F7;
+	background-color: white;
 	border-radius: 8px;
 	text-align: center;
 }
@@ -138,10 +171,10 @@ body{
 .new-project-btn:hover{
 	color: #000000;
 	text-decoration: none;
-	box-shadow: 1px 1px 1px 1px blue;
+	border: solid 1px #E5E5D5;
 }
 .project .span9{
-	background-color: #F3FFFF;
+	background-color: white;
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -167,11 +200,16 @@ body{
 	padding-top: 2px;
 	box-shadow: 1px 2px 4px 1px #676B58;
 }
-.unit .head-info{
-	margin-top: 0px;
-	height: 48px;
-	overflow: hidden;
-	text-overflow:ellipsis;
+.head-info .row-fluid{
+	margin-bottom: 5px;
+    white-space: nowrap;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+.head-info :first-child{
+	margin: -5px 0px -5px 0px;
 }
 .unit .desc{
 	border-top-style:solid;
@@ -194,7 +232,7 @@ body{
 }
 /* 极客列表 */
 .users{
-	background-color: #F2FFFF;
+	background-color: white;
 	padding: 10px;
 	width: 99%;
 	border-radius: 4px;
@@ -209,7 +247,7 @@ body{
 }
 /* 极客主页 */
 .user-show{
-	background-color: #F4FFFF;
+	background-color: white;
 }
 .user-show .span8{
 	margin-left: 60px;
@@ -227,6 +265,8 @@ body{
 	padding: 10px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	border-radius: 4px;
+	width: 790px;
+
 }
 .basic-info-cap{
 	border-bottom-style: dashed;
@@ -245,6 +285,7 @@ body{
 	padding: 5px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	border-radius: 4px;
+	width: 800px;
 }
 .joined-projects-cap{
 	border-bottom-style: dashed;
@@ -278,6 +319,9 @@ body{
 	padding-top: 4px;
 	margin-left: 100px;
 }
+.project-show .username{
+	width: 150px;
+}
 /* 极客主页 -> 添加articles */
 .admin{
 	border: solid 1px #D5D5D5;
@@ -300,8 +344,8 @@ body{
 }
 /* 项目显示页面 */
 .project-show .span9{
-	background-color: #F6FFFF;
-	border-radius: 10px;
+	background-color: white;
+	border-radius: 5px;
 	padding: 5px;
 }
 .project-title{
@@ -312,9 +356,10 @@ body{
 	font-weight: 700;
 }
 .project-show .row-fluid p{
-	text-indent:2em;
-	padding-left: 40px;
 	padding-right: 40px;
+}
+.project-content > p{
+	text-indent: 1em;
 }
 .project-show img{
 	width: 70px;
@@ -333,7 +378,6 @@ body{
 }
 .follow-btn{
 	background-color: #F0E0E0;
-	width: 45px;
 	border-radius: 20%;
 	margin-right: 20px;
 }
@@ -378,7 +422,7 @@ body{
 	width: 200px;
 }
 .project-show .info{
-	background-color: #EEFFFF;
+	background-color: white;
 	width: 200px;
 	text-align: center;
 }
@@ -404,13 +448,13 @@ body{
 }
 /* 新建项目页面 */
 .new-project{
-	background-color: #FAFFFF;
+	background-color: white;
 	border-radius: 4px;
 	padding: 20px;
 	padding-left: 50px;
 	border: solid 1px #D5D5D5;
 	width: 900px;
-	margin-left: 65px;
+	margin-left: 55px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 
 }
@@ -438,12 +482,6 @@ body{
 	padding-left: 8px;
 	font-size: 120%;
 }
-#project_preview{
-	height: 40px;
-}
-#project_body{
-	height: 237px;
-}
 /* 项目编辑 */
 .edit-project textarea{
 	margin-top: 10px;
@@ -451,9 +489,20 @@ body{
 .edit-project .submit{
 	margin-top: 10px;
 }
+#project_name{
+	width: 550px;
+}
+#project_summary{
+	width: 550px;
+	height: 40px;
+}
+#project_description{
+	width: 550px;
+	height: 350px;
+}
 /* article活动详情列表显示*/
 .article-list{
-	background-color: #F7FFFF;
+	background-color: white;
 }
 .article-list .article-name{
 	width: 100px;
@@ -478,7 +527,7 @@ body{
 }
 /* article活动详情页面显示 */
 .article-show{
-	background-color: #FAFFFF;
+	background-color: white;
 	border-radius: 8px;
 }
 .article-show p{
@@ -487,10 +536,12 @@ body{
 /* 用户注册 */
 .registration{
 	margin: 40px;
-	margin-left: 10px;
+	margin-left: 30px;
 	border: solid 1px ;
 	border-color:#D5D5D5;
 	box-shadow: 1px 1px 3px 1px #D5D5D5;
+	background-color: white;
+	border-radius: 5px;
 }
 .registration-cap{
 	border-bottom-style: solid;
@@ -538,7 +589,7 @@ body{
 	padding: 10px;
 	border-radius: 5px;
 	box-shadow: 1px 1px 3px 1px #D5D5D5;
-	background-color: #FAFFFF;
+	background-color: white;
 }
 .user-edit-cap{
 	border-bottom-style: dashed;
@@ -573,6 +624,9 @@ body{
 	margin-left: 5px;
 	display: none;
 	color:#EB3370;
+}
+#introduction{
+	width: 340px;
 }
 /* 用户登录 */
 .signin-content{
@@ -635,7 +689,7 @@ body{
 }
 /* footer */
 .footer{
-	background-color: #E8FFD7;
+	background-color: white;
 	padding-left:300px;
 }
 .footer a{
