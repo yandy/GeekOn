@@ -10,7 +10,7 @@ block content
             br
             p !{project.summary_html}
           div.span2
-            img(src="/img/monkey.png", alt="")
+            img(src= project.provider.avatar_url, alt="")
         p.project-body !{project.description_html}
       .row-fluid
         .span3

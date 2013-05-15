@@ -1,8 +1,8 @@
 if (comment && comment.user)
   tr
     td.img
-      img(src="/img/monkey.png", alt="")
+      img(src=comment.user.avatar_url, alt="")
     td.uname
-      a(href="/users/"+comment.user.username) #{comment.user.uname}
+      a(href="/users/"+comment.user.username) #{comment.user.name || comment.user.username}
     td.date 在#{moment(comment.created_at).format('LLL')}&nbsp;&nbsp;&nbsp;说
     td.content !{comment.body_html}

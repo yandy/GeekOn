@@ -6,8 +6,8 @@ block content
       .row-fluid.user-edit-cap
         h4 信息设置
       .row-fluid.display
-        p 用户名：#{profile.uname}
-        P 邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: #{profile.email}
+        p 用户名&nbsp;&nbsp;#{profile.uname}
+        P 邮箱&nbsp;&nbsp;&nbsp;&nbsp; #{profile.email}
       .row-fluid.edit
         form.form-horizontal(method="post", action="/users/"+profile.username, enctype="multipart/form-data")
             input(type="hidden", name='_method', value='PUT')

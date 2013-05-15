@@ -156,7 +156,7 @@ exports.edit = function (req, res) {
 exports.update = function (req, res) {
   console.log("comes to update controller");
   var user = req.profile;
-  // user.name = sanitize(req.body.name).xss();)
+  user.name = sanitize(req.body.name).xss();
   user.website = sanitize(req.body.website).xss();
   user.location = sanitize(req.body.location).xss();
   user.company = sanitize(req.body.company).xss();
