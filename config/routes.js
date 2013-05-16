@@ -55,4 +55,6 @@ module.exports = function (app, passport, auth) {
   var home = require('../app/controllers/home_controller');
   app.get('/', home.index);
 
+  var details = require('../app/controllers/details_controller');
+  app.get('/details',details.index);
 };
