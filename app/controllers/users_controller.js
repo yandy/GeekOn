@@ -18,7 +18,7 @@ exports.user = function (req, res, next, username) {
 
 exports.authCallback = function (req, res, next) {
   passport.authenticate('github', function (err, user, profile) {
-    console.log('callback');
+    console.log(profile);
     if (err) return next(err);
     if (user) {
       req.logIn(user, function (err) {
@@ -33,6 +33,9 @@ exports.authCallback = function (req, res, next) {
         email: profile.emails[0].value,
         username: profile.username,
         avatar_url: profile._json.avatar_url,
+        company: profile._json.company,
+        website: profile._json.blog,
+        location: profile._json.location,
         provider: 'github',
         github: profile._json
       });

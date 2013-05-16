@@ -20,35 +20,33 @@ marked.setOptions({
 
 var ProjectSchema = new Schema({
   name: String,
-  provider: {type : Schema.ObjectId, ref : 'User'},
+  provider: {type :  Schema.Types.ObjectId, ref : 'User'},
 
   summary: String,
-  summary_html: String,
 
   description: String,
   description_html: String,
 
   participants: [{
-    user: {type : Schema.ObjectId, ref : 'User', unique: true},
-    created_at: { type : Date, default : Date.now }
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now }
   }],
 
   followers: [{
-    user: {type : Schema.ObjectId, ref : 'User', unique: true},
-    created_at: { type : Date, default : Date.now }
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now }
   }],
 
   comments: [{
-    body: { type : String, default : '' },
-    body_html: { type: String, default: ''},
-    user: { type : Schema.ObjectId, ref : 'User' },
-    created_at: { type : Date, default : Date.now }
+    body: {type: String, default: ''},
+    body_html: {type: String, default: ''},
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_at: {type: Date, default: Date.now}
   }],
-  created_at: { type: Date, default : Date.now }
+  created_at: {type: Date, default: Date.now}
 });
 
 ProjectSchema.pre('save', function(next) {
-  this.summary_html = marked(this.summary);
   this.description_html = marked(this.description);
   next();
 });
@@ -62,13 +60,12 @@ ProjectSchema.methods = {
     });
     this.save(cb);
   }
-
 };
 
 ProjectSchema.statics = {
   load: function (id, cb) {
-    this.findOne({ _id : id })
-    .populate('provider', 'username avatar_url')
+    this.findOne({_id: id})
+    .populate('provider', 'name username avatar_url')
     .populate('participants.user')
     .populate('followers.user')
     .populate('comments.user')
@@ -79,13 +76,12 @@ ProjectSchema.statics = {
     var criteria = options.criteria || {};
 
     this.find(criteria)
-    .populate('provider', 'username avatar_url')
+    .populate('provider', 'name username avatar_url')
       .sort({'created_at': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)
       .exec(cb);
     }
-
   };
 
   mongoose.model('Project', ProjectSchema);

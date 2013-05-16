@@ -42,14 +42,14 @@ module.exports = function (app, passport, auth) {
   app.param('projectId', project.project);
 
   var article = require('../app/controllers/articles_controller');
-  app.get('/create_article', article.new);
-  app.post('/create_article', article.create);
-  app.get('/destroy_article', article.destroy);
-  app.get('/article/:articleId', article.show);
+  app.get('/articles/create', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.new);
+  app.post('/articles/create', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.create);
+  app.get('/articles/:articleId/destroy', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.destroy);
+  app.get('/articles/:articleId', article.show);
   app.get('/articles', article.index);
-  app.get('/article/:articleId/edit', article.edit);
-  app.put('/article/:articleId', article.update);
-  app.post('/article/:articleId/create_comment', auth.ensureAuthenticated,comment.create);
+  app.get('/articles/:articleId/edit', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.edit);
+  app.put('/articles/:articleId', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.update);
+  app.post('/articles/:articleId/create_comment', auth.ensureAuthenticated, comment.create);
   app.param('articleId', article.article);
 
   var home = require('../app/controllers/home_controller');

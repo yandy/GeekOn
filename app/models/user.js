@@ -18,7 +18,7 @@ var UserSchema = new Schema({
   uemail: {type: String, required: true, unique: true},
 
   password_reset_token: {type: String},
-  password_reset_sent_at: {type: Date, default : Date.now},
+  password_reset_sent_at: {type: Date, default: Date.now},
 
   company: {type: String},
   location: {type: String},
@@ -29,17 +29,17 @@ var UserSchema = new Schema({
   github: {},
 
   starred_projects: [{
-    project: {type : Schema.ObjectId, ref : 'Project'},
-    created_at: { type : Date, default : Date.now }
+    project: {type: Schema.Types.ObjectId, ref: 'Project'},
+    created_at: {type: Date, default: Date.now }
   }],
 
   joined_projects: [{
-    project: {type : Schema.ObjectId, ref : 'Project'},
-    created_at: { type : Date, default : Date.now }
+    project: {type: Schema.Types.ObjectId, ref: 'Project'},
+    created_at: {type: Date, default: Date.now}
   }],
 
   is_admin: {type: Boolean, default: false},
-  created_at: {type: Date, default : Date.now}
+  created_at: {type: Date, default: Date.now}
 });
 
 UserSchema.pre('save', function (next) {
@@ -71,7 +71,8 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
  UserSchema.methods.validateUsername = function (cb) {
   var validator = new Validator();
   validator.check(this.username).len(3, 40).is(/^[\w-]+$/);
-  if (validator.getErrors().length > 0) return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
+  if (validator.getErrors().length > 0)
+    return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
 
   this.uname = this.username.toLowerCase();
   this.model('User').findOne({uname: this.uname}, function (err, user) {
@@ -87,7 +88,8 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 UserSchema.methods.validateEmail = function (cb) {
   var validator = new Validator();
   validator.check(this.email).isEmail();
-  if (validator.getErrors().length > 0) return cb(null, false, '请输入合法的Email地址');
+  if (validator.getErrors().length > 0)
+    return cb(null, false, '请输入合法的Email地址');
   this.uemail = this.email.toLowerCase();
   this.model('User').findOne({uemail: this.uemail}, function (err, user) {
     if (err) return cb(err);
@@ -100,13 +102,13 @@ UserSchema.methods.validateEmail = function (cb) {
 };
 
 UserSchema.methods.generate_token = function () {
- var chars = "_!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
- var   token = new Date().getTime() + '_';
- for ( var x = 0; x < 16; x++ ) {
-  var i = Math.floor( Math.random() * 62 );
-  token += chars.charAt( i );
-}
-return token;
+  var chars = "_!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  var token = new Date().getTime() + '_';
+  for (var x = 0; x < 16; x++) {
+    var i = Math.floor( Math.random() * 62);
+    token += chars.charAt(i);
+  }
+  return token;
 };
 
 UserSchema.methods.generate_password_reset_token = function (cb) {
@@ -117,15 +119,17 @@ UserSchema.methods.generate_password_reset_token = function (cb) {
 };
 
 UserSchema.statics.load = function (username, cb) {
-  this.findOne({username : username.toLowerCase()})
-  .populate('joined_projects.project')
-  .populate('joined_projects.project.provider')
-  .exec(cb);
+  this.findOne({uname : username.toLowerCase()}, function (err, user) {
+    if (err || !user) return cb(err);
+    user.populate({path: 'joined_projects.project starred_projects.project', model: 'Project'}, function (err, pop) {
+      if (err) return cb(err);
+      pop.populate({path: 'joined_projects.project.provider starred_projects.project.provider', model: 'User'}, cb);
+    });
+  });
 };
 
 UserSchema.statics.list = function (options, cb) {
   var criteria = options.criteria || {};
-
   this.find(criteria)
   .sort({'created_at': -1}) // sort by date
   .limit(options.perPage)

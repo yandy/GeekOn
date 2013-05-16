@@ -108,7 +108,7 @@ exports.update = function (req, res) {
       req.flash("success","修改成功！");
       req.article = article;
       console.log(req.article);
-      res.redirect('/article/' + article._id);
+      res.redirect('/articles/' + article._id);
     }
   })
 };

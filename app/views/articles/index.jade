@@ -13,7 +13,7 @@ block content
       each article in articles
         tr
           td.article-title
-            a.title(href='/article/'+article._id, title=article.title) #{article.title}
+            a.title(href='/articles/'+article._id, title=article.title) #{article.title}
           td.article-desc !{article.body_html}
           td.article-author hi
           td=formatDate(article.created_at, "%b %d, %Y at %I:%M %p")
