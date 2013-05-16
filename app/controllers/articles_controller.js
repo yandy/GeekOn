@@ -4,6 +4,9 @@ var _ = require('underscore');
 
 exports.article = function(req, res, next, id){
   var User = mongoose.model('User');
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.render('404');
+  }
 
   Article.load(id, function (err, article) {
     if (err) return next(err);
@@ -102,7 +105,7 @@ exports.update = function (req, res) {
         title: 'Edit article',
         article: article,
         errors: err.errors
-      })
+      });
     }
     else {
       req.flash("success","修改成功！");

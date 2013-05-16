@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
 var User = mongoose.model('User');
-var _ = require('underscore');
 var sanitize = require('validator').sanitize;
 
 exports.project = function (req, res, next, id) {
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.render('404');
+  }
   Project.load(id, function (err, project) {
     if (err) return next(err);
     if (!project) return next(new Error('Failed to load project' + id));

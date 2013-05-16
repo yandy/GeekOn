@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Email = require('../mailers/email');
-var _ = require('underscore');
 var passport = require('passport');
 var sanitize = require('validator').sanitize;
 var gravatar = require('gravatar');
 
 exports.user = function (req, res, next, username) {
-  console.log('comes into user controller');
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.render('404');
+  }
   User.load(username, function (err, user) {
     if (err) return next(err);
     if (!user) return res.render('404');
