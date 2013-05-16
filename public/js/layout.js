@@ -57,4 +57,59 @@ $(document).ready(function(){
     else
       $(".password_confirmation-error").css("display","none");
   });
+  $(".info-cap").click(function(){
+    $(".row-fluid.info").slideToggle(function(){
+      if($(".info-cap i").hasClass("icon-chevron-down")){
+        $(".info-cap i").removeClass("icon-chevron-down");
+        $(".info-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".info-cap i").removeClass("icon-chevron-up");
+        $(".info-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
+  $(".about-cap").click(function(){
+    $(".row-fluid.about").slideToggle(function(){
+      if($(".about-cap i").hasClass("icon-chevron-down")){
+        $(".about-cap i").removeClass("icon-chevron-down");
+        $(".about-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".about-cap i").removeClass("icon-chevron-up");
+        $(".about-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
+  $(".background-cap").click(function(){
+    $(".row-fluid.background").slideToggle(function(){
+      if($(".background-cap i").hasClass("icon-chevron-down")){
+        $(".background-cap i").removeClass("icon-chevron-down");
+        $(".background-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".background-cap i").removeClass("icon-chevron-up");
+        $(".background-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
+  $(".step-cap").click(function(){
+    $(".row-fluid.step").slideToggle(function(){
+      if($(".step-cap i").hasClass("icon-chevron-down")){
+        $(".step-cap i").removeClass("icon-chevron-down");
+        $(".step-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".step-cap i").removeClass("icon-chevron-up");
+        $(".step-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
+  $(".prize-cap").click(function(){
+    $(".row-fluid.prize").slideToggle(function(){
+      if($(".prize-cap i").hasClass("icon-chevron-down")){
+        $(".prize-cap i").removeClass("icon-chevron-down");
+        $(".prize-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".prize-cap i").removeClass("icon-chevron-up");
+        $(".prize-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
 });

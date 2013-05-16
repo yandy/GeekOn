@@ -73,16 +73,18 @@ body{
 	text-align: center;
 }
 .nav-btn a{
-	color:#06266F;
+	color:#26366F;
 	text-decoration: none;
 }
 .nav-btn a:hover{
 	color: #000000;
+	border: solid 1px #a9b0ff;
+	background: #99a0ff;
 }
 .nav-btn .btn{
 	background-image: none;
-	background-color: #99a0ff;
-	box-shadow: 1px 1px 1px 1px blue;
+	background-color: #a8aeff;
+
 }
 #name{
 	color:#041849;
@@ -102,24 +104,61 @@ body{
 .logout-in span ul li a span{
 	color:black;
 }
-/* 首页 */
+/* 首页   */
+.prize,.about,.background,.step{
+	display: none;
+}
+.info{
+	display: block;
+}
+.prize-cap,.info-cap,.about-cap,.background-cap,.step-cap{
+	background-image: url(/img/bar.png);
+	background-size: 822px;
+	background-repeat:no-repeat;
+	width: 812px;
+	height: 22px;
+	padding: 5px;
+	margin-top: 2px;
+	border: 1px;
+}
+.details i{
+	margin-left: 10px;
+}
 .row-fluid.info{
-	height: 270px;
 	background-color: white;
-	border-radius: 8px;
-	text-align: center;
-	padding: 8px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	padding: 6px 2px 6px 2px;
 }
 .row-fluid.info p{
 	text-align: left;
 	text-indent: 2em;
 }
-.row-fluid.step{
-	height: 580px;
+.row-fluid.about{
 	background-color: white;
-	border-radius: 8px;
-	text-align: center;
-	padding: 8px;
+	border-radius: 4px;
+	padding: 6px 2px 6px 2px;
+	margin-bottom: 20px;
+}
+.row-fluid.about p{
+	text-align: left;
+	text-indent: 2em;
+}
+.row-fluid.background{
+	background-color: white;
+	border-radius: 4px;
+	padding: 6px 2px 6px 2px;
+	margin-bottom: 20px;
+}
+.row-fluid.background p{
+	text-align: left;
+	text-indent: 2em;
+}
+.row-fluid.step{
+	background-color: white;
+	border-radius: 4px;
+	padding: 6px 2px 6px 2px;
+	margin-bottom: 20px;
 }
 .row-fluid.step td{
 	text-align: center;
@@ -128,11 +167,10 @@ body{
 	text-align: center;
 }
 .row-fluid.prize{
-	height: 200px;
 	background-color: white;
-	border-radius: 8px;
-	text-align: center;
-	padding: 8px;
+	border-radius: 4px;
+	padding: 6px 2px 6px 2px;
+	margin-bottom: 20px;
 }
 .row-fluid.prize td{
 	width: 50%;
