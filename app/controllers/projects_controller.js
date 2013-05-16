@@ -17,7 +17,7 @@ exports.project = function (req, res, next, id) {
 
 exports.new = function (req, res) {
   res.render( 'projects/new', {
-    title: 'new Project',
+    title: '新建项目',
     project: new Project({provider: req.session.user})
   });
 };
@@ -77,7 +77,7 @@ exports.index = function (req,res) {
     if (err) return res.render('500');
     Project.count(function (err, count) {
       res.render('projects/index', {
-        title: 'List of Projects',
+        title: '项目列表',
         projects: projects,
         page: page,
         pages: count / perPage
@@ -167,7 +167,7 @@ exports.star = function (req, res, next) {
 
 exports.edit = function (req, res) {
   res.render('projects/edit', {
-    title: 'Edit '+req.project.name,
+    title: '编辑 '+req.project.name,
     project: req.project
   });
 };
@@ -181,7 +181,7 @@ exports.update = function (req, res) {
   project.save(function (err) {
     if (err) {
       res.render('projects/edit', {
-        title: 'Edit project',
+        title: '编辑项目',
         project: project,
         errors: err.errors
       });

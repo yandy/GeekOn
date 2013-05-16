@@ -8,14 +8,14 @@ block content
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid
         div.span2
-          span 名称
+          span 项目名
         div.span10
           input(type="text", name="name")#project_name
       div.row-fluid
         .span2
           span 概要
         .span10
-          textarea(name="summary")#project_summary
+          input(type="text", name="summary", placeholder="一句话描述")#project_summary
       div.row-fluid
         .span2
           label 描述

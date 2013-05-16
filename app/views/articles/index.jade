@@ -6,17 +6,15 @@ block content
   div.article-list
     table.table.table-striped.table-hover
       tr
-        th.article-name 名称
-        th.desc 项目概要
-        th.author 作者
+        th.article-name 题目
+        th.desc 文章概要
         th.date 创建时间
       each article in articles
         tr
           td.article-title
             a.title(href='/articles/'+article._id, title=article.title) #{article.title}
-          td.article-desc !{article.body_html}
-          td.article-author hi
-          td=formatDate(article.created_at, "%b %d, %Y at %I:%M %p")
+          td.article-desc #{article.body}
+          td= moment(article.created_at).format('LL')
         tr
     div.row-fluid
       .span6
