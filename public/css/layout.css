@@ -1,6 +1,6 @@
 body{
 	padding:0px 30px 10px 30px;
-	background-color: #cccfff;
+	background-color: #f3f3f3;
 	margin-left: 65px;
 	margin-right: 65px;
 	min-width: 1100px;
@@ -84,7 +84,6 @@ body{
 .nav-btn .btn{
 	background-image: none;
 	background-color: #b3b8ff;
-
 }
 #name{
 	color:#041849;
@@ -106,50 +105,49 @@ body{
 }
 /* 首页 */
 .home-top{
-	background-color: #b3b8ff;
+	background-color: white;
 	border-radius: 5px;
-	padding-left: 8px;
+	padding-left: 5px;
 	padding-bottom: 20px;
 }
-.home .three-btn .span3{
-	background: #5e68ed;
-	height: 300px;
-	width: 250px;
-	border-radius: 50%;
+.home .three-btn .span4 h3{
+	text-indent: 4em;
+	color:#404040;
+}
+.home .three-btn .span4 h3:hover{
+	color:black;
 }
 .home-cap h3{
 	text-align: center;
 	color: #262626;
 	margin-top: -13px;
 	padding-top: 50px;
+	font-size: 230%;
+	margin-bottom: 30px;
 }
 .home-cap a{
 	text-decoration: none;
 	color:#01f;
 }
+.home h3 span{
+	color:#6b6b6b;
+}
 .home a:hover{
-	color: #000ecc;
+	color: #3941ac;
 }
-.home-cap span{
-	color: #4d4d4d;
+.create a{
+	color:#666dcc;
+	font-size: 90%;
 }
-.home .three-btn{
-	padding-top: 20px;
-}
-.home .three-btn .span3 h3{
-	color: #ccc;
-	text-align: center;
-	margin-top: 100px;
-}
-.home .three-btn .span3:hover{
-	background-color: #4752eb;
+.three-btn{
+	padding-left: 30px;
 }
 .discover h3{
 	background-image: url(/img/bar.png);
-	background-size: 1100px;
-	width: 1100px;
+	background-size: 100%;
+	width: 100%;
 	border-radius:3px;
-	margin:40px 0px 10px 0px;
+	margin:15px 0px 5px 0px;
 }
 .discover-row{
 	background: white;
@@ -161,7 +159,7 @@ body{
 	color: black;
 }
 .discover-row a:hover{
-	color:#000766;
+	color:#00054d;
 }
 .discover-row .title{
 	font-size: 130%;
@@ -188,9 +186,9 @@ body{
 }
 .prize-cap,.info-cap,.about-cap,.background-cap,.step-cap{
 	background-image: url(/img/bar.png);
-	background-size: 822px;
+	background-size: 100%;
 	background-repeat:no-repeat;
-	width: 812px;
+	width: 100%;
 	height: 22px;
 	padding: 5px;
 	margin-top: 2px;
@@ -691,7 +689,7 @@ body{
 	color:#EB3370;
 }
 .or{
-	margin-left: 650px;
+	margin-left: 695px;
 	margin-top: 10px;
 }
 /* 用户设置 */
