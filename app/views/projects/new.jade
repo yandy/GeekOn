@@ -3,7 +3,7 @@ extends ../layout/layout
 block content
   div.new-project
     .new-project-cap
-      p.nav-btn#name 新建项目
+      p.nav-btn 新建项目
     form(method="post", action="/projects/create")
       input(type="hidden", name='_csrf', value=token)
       div.row-fluid

@@ -1,8 +1,8 @@
 body{
 	padding:0px 30px 10px 30px;
 	background-color: #cccfff;
-	margin-left: 95px;
-	margin-right: 95px;
+	margin-left: 65px;
+	margin-right: 65px;
 	min-width: 1100px;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif,"宋体";
 }
@@ -83,7 +83,7 @@ body{
 }
 .nav-btn .btn{
 	background-image: none;
-	background-color: #a8aeff;
+	background-color: #b3b8ff;
 
 }
 #name{
@@ -104,7 +104,82 @@ body{
 .logout-in span ul li a span{
 	color:black;
 }
-/* 首页   */
+/* 首页 */
+.home-top{
+	background-color: #b3b8ff;
+	border-radius: 5px;
+	padding-left: 8px;
+	padding-bottom: 20px;
+}
+.home .three-btn .span3{
+	background: #4752eb;
+	height: 300px;
+	width: 250px;
+	border-radius: 50%;
+}
+.home-cap h3{
+	text-align: center;
+	color: #262626;
+	margin-top: -13px;
+	padding-top: 50px;
+}
+.home-cap a{
+	text-decoration: none;
+	color:#01f;
+}
+.home a:hover{
+	color: #000ecc;
+}
+.home-cap span{
+	color: #4d4d4d;
+}
+.home .three-btn{
+	padding-top: 20px;
+}
+.home .three-btn .span3 h3{
+	color: #ccc;
+	text-align: center;
+	margin-top: 100px;
+}
+.home .three-btn .span3:hover{
+	background-color: #2c38e8;
+}
+.discover h3{
+	background-image: url(/img/bar.png);
+	background-size: 1100px;
+	width: 1100px;
+	border-radius:3px;
+	margin:40px 0px 10px 0px;
+}
+.discover-row{
+	background: white;
+	border-radius: 6px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+.discover-row a{
+	color: black;
+}
+.discover-row a:hover{
+	color:#000766;
+}
+.discover-row .title{
+	font-size: 130%;
+	font-weight: 700;
+	width: 600px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+.discover-row .summary{
+	width: 700px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+/* details页面  */
 .prize,.about,.background,.step{
 	display: none;
 }
@@ -119,7 +194,7 @@ body{
 	height: 22px;
 	padding: 5px;
 	margin-top: 2px;
-	border: 1px;
+	border-radius: 3px;
 }
 .details i{
 	margin-left: 10px;
@@ -231,17 +306,14 @@ body{
 .span4.unit:first-child{
 	margin-left: 21px;
 }
-.unit.head-img{
-	border-right-style: solid;
-	border-right-width: 1px;
-	border-right-color: #9DD0EF;
-	padding-top: 2px;
+.unit .head-img{
 	box-shadow: 1px 2px 4px 1px #676B58;
+	margin-bottom:
 }
-.head-info .row-fluid{
+.head-info .title{
 	margin-bottom: 5px;
     white-space: nowrap;
-    width: 95%;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
@@ -253,10 +325,7 @@ body{
 	border-top-style:solid;
 	border-top-width: 1px;
 	border-top-color: #9DD0EF;
-	height: 170px;
-}
-.unit .desc p{
-	height: 104px;
+	height: 180px;
 	overflow: hidden;
 	text-overflow:ellipsis;
 }
@@ -306,7 +375,6 @@ body{
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	border-radius: 4px;
 	width: 790px;
-
 }
 .basic-info-cap{
 	border-bottom-style: dashed;
@@ -339,10 +407,6 @@ body{
 }
 .img-project{
 	width: 100px;
-}
-.joined-projects .info{
-	margin-left: 10px;
-	padding-left: 20px;
 }
 .joined-projects .body{
 	height: 40px;
@@ -397,13 +461,18 @@ body{
 }
 .project-show .row-fluid p{
 	padding-right: 40px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
 }
 .project-content > p{
 	text-indent: 1em;
 }
 .project-show img{
 	width: 70px;
-	margin-top: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .project-body{
 	border-top-style: solid;
@@ -493,8 +562,6 @@ body{
 	padding: 20px;
 	padding-left: 50px;
 	border: solid 1px #D5D5D5;
-	width: 900px;
-	margin-left: 55px;
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 
 }
@@ -530,19 +597,20 @@ body{
 	margin-top: 10px;
 }
 #project_name{
-	width: 550px;
+	width: 650px;
 }
 #project_summary{
-	width: 550px;
+	width: 650px;
 	height: 40px;
 }
 #project_description{
-	width: 550px;
+	width: 650px;
 	height: 350px;
 }
 /* article活动详情列表显示*/
 .article-list{
 	background-color: white;
+	border-radius: 8px;
 }
 .article-list .article-name{
 	width: 100px;

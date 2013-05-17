@@ -15,12 +15,11 @@ block content
                   a(href='/projects/'+project._id)
                    img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
                 div.span9.head-info
-                  div.row-fluid
+                  div.row-fluid.title
                     a(href='/projects/'+project._id, title=project.name)= project.name
                   div.row-fluid
-                  span 由
-                    a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
-                  div.row-fluid
+                    span 由
+                      a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
                     span 创建于
                     span= moment(project.created_at).format('LL')
               div.row-fluid.desc

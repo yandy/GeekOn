@@ -1,14 +1,38 @@
 extends layout/layout
 
 block content
-  div#container.border-container
-    div.row-fluid
-      div.span9
-        div.row-fluid.info
-          h4 大赛介绍
-          p 极客，是美国俚语“Geek”的音译。随着互联网文化的兴起，这个词含有智力超群和努力的语意，又被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。
-          p 极客行动（Geek On）是为期两天（36小时不间断）的围绕移动互联网和创意生活主题的技术开发大赛。活动旨在提升极客的协作能力，促进极客的思想碰撞，鼓励颠覆性创新。
-          p 极客行动为极客们提供协作开发的的机会，令极客团队在极限的时间内迸发最极致的技术与想法，从而创造令人惊叹的项目成果。连续两天的活动将为每一位参赛者带来极限时间完成项目成就感，解决问题与技术难题的满足感和与高水准的队友并肩作战的参与感。
-          p 极客行动是南京本土社会组举办的活动，它从行业发展的基石：“人”出发，自下而上，以活动为纽带，密切极客之间、极客与其他行业间的互动，推动技术创业创新。
-
-      include layout/right-side
+  div.home
+    .home-top
+      div.row-fluid.home-cap
+        h3 加入极客栈,发现项目
+          br
+          span OR
+          br
+          span
+            a(href='/projects/create') 创建项目
+      div.row-fluid.three-btn
+        .span3
+          h3 发现项目
+        .span3
+          h3 组队报名
+        .span3
+          h3 比赛ING
+        .span3
+          h3 评审&颁奖
+    div.row-fluid.discover
+        h3 &nbsp;热门项目
+        .discover-row
+          a(href="#")
+            .row-fluid
+              .span8
+                span.title 我校世界一流大学建设被列入苏南现代化建设示范区规划
+                p.summary  5月10日、13日，学校分别举行校级理论学习中心组学习和基层党委书记例会，传达学习苏南现代化建设示范区工作会议精神。会议由党委书记郭广银主持。
+              .span1
+                p
+                  i.icon-map-marker
+                  span 南京
+              .span1
+                i.icon-user
+                span wilxn
+              .span2
+                p 2013-5-17
