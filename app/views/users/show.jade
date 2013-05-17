@@ -52,7 +52,7 @@ block content
                 p= profile.introduction
         .row-fluid.joined-projects
           div.joined-projects-cap
-            p 参加的项目
+            p.cap 参加的项目
             if profile.joined_projects.length == 0
               div.prompt
                 p 还未参加任何项目
@@ -71,7 +71,7 @@ block content
                       p.body= joined_project.project.summary
         .row-fluid.joined-projects
           div.joined-projects-cap
-            p 关注的项目
+            p.cap 关注的项目
             if profile.starred_projects.length == 0
               div.prompt
                 p 还未关注任何项目
