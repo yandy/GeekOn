@@ -5,7 +5,7 @@ module.exports = function (app, passport, auth) {
   app.get('/users/:user', user.show);
   app.get('/auth/github', passport.authenticate('github'), function (req, res) {});
   app.get('/auth/github/callback', user.authCallback);
-  app.get('/geeks',user.index);
+  app.get('/geeks', user.index);
   app.get('/users/:user/edit', auth.ensureAuthenticated, auth.user.hasAuthorization, user.edit);
   app.put('/users/:user', auth.ensureAuthenticated, auth.user.hasAuthorization, user.update);
 
@@ -24,16 +24,17 @@ module.exports = function (app, passport, auth) {
 
   var session = require('../app/controllers/sessions_controller');
   app.get('/login', session.new);
-  app.post('/login',session.create);
+  app.post('/login', session.create);
   app.get('/logout', session.destroy);
 
   var project = require('../app/controllers/projects_controller');
   var comment = require('../app/controllers/comments_controller');
+  var article = require('../app/controllers/articles_controller');
   app.get('/projects/create', auth.ensureAuthenticated, project.new);
   app.post('/projects/create', auth.ensureAuthenticated, project.create);
   app.del('/projects/:projectId', project.destroy);
-  app.get('/projects/:projectId', project.show);
-  app.get('/projects', project.index);
+  app.get('/projects/:projectId', article.articles, project.show);
+  app.get('/projects', article.articles, project.index);
   app.get('/projects/:projectId/edit', project.edit);
   app.put('/projects/:projectId', project.update);
   app.post('/projects/:projectId/create_comment', auth.ensureAuthenticated, comment.create);
@@ -41,12 +42,11 @@ module.exports = function (app, passport, auth) {
   app.get('/projects/:projectId/star', auth.ensureAuthenticated, project.star);
   app.param('projectId', project.project);
 
-  var article = require('../app/controllers/articles_controller');
   app.get('/articles/create', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.new);
   app.post('/articles/create', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.create);
   app.get('/articles/:articleId/destroy', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.destroy);
-  app.get('/articles/:articleId', article.show);
-  app.get('/articles', article.index);
+  app.get('/articles/:articleId', article.articles, article.show);
+  app.get('/articles', article.articles, article.index);
   app.get('/articles/:articleId/edit', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.edit);
   app.put('/articles/:articleId', auth.ensureAuthenticated, auth.admin.hasAuthorization, article.update);
   app.post('/articles/:articleId/create_comment', auth.ensureAuthenticated, comment.create);

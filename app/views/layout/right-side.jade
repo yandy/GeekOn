@@ -2,6 +2,9 @@ block right-side
   div.span3.right-side
     div.row-fluid.news
       h4 最新动态
+      each article in articles
+        a(href="/articles/#{article._id}", target="_blank")= article.title
+        br
     br
     div.row-fluid.sponsor
       h4 赞助信息

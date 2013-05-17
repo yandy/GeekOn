@@ -1,6 +1,12 @@
-exports.index = function(req, res){
-  res.render('details/index',{
-    title: '活动详情'
-  }
-  );
+var mongoose = require('mongoose');
+var Article = mongoose.model('Article');
+
+exports.index = function(req, res, next){
+  Article.list({perPage: 5, page: 0}, function (err, articles) {
+    if (err) return next(err);
+    res.render('details/index',{
+      title: '活动详情',
+      articles: articles
+    });
+  });
 };

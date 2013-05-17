@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
+var Article = mongoose.model('Article');
 var User = mongoose.model('User');
 var sanitize = require('validator').sanitize;
 
@@ -9,7 +10,7 @@ exports.project = function (req, res, next, id) {
   }
   Project.load(id, function (err, project) {
     if (err) return next(err);
-    if (!project) return next(new Error('Failed to load project' + id));
+    if (!project) return res.render('404');
     req.project = project;
     next();
   });
@@ -60,6 +61,7 @@ exports.show = function (req, res) {
   res.render('projects/show', {
     project: req.project,
     title: req.project.name,
+    articles: req.articles,
     isJoined: isJoined,
     isStarred: isStarred
   });
@@ -80,11 +82,11 @@ exports.index = function (req, res, next) {
         title: '项目列表',
         projects: projects,
         page: page,
-        pages: count / perPage
+        pages: count / perPage,
+        articles: req.articles
       });
     });
   });
-
 };
 
 exports.destroy = function (req, res) {
