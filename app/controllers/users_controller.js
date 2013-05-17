@@ -1,13 +1,11 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Email = require('../mailers/email');
-var _ = require('underscore');
 var passport = require('passport');
 var sanitize = require('validator').sanitize;
 var gravatar = require('gravatar');
 
 exports.user = function (req, res, next, username) {
-  console.log('comes into user controller');
   User.load(username, function (err, user) {
     if (err) return next(err);
     if (!user) return res.render('404');
@@ -139,7 +137,7 @@ exports.index = function(req, res){
     User.count(
                function (err, count) {
                 res.render('users/index', {
-                  title: 'List of Users',
+                  title: '用户列表',
                   users: users,
                   page: page,
                   pages: count / perPage
@@ -149,9 +147,8 @@ exports.index = function(req, res){
 };
 
 exports.edit = function (req, res) {
-  console.log("comes into the edit controller")
   res.render('users/edit', {
-    title: 'Edit '+req.profile.name,
+    title: '编辑 '+req.profile.name,
     profile: req.profile
   });
 };
@@ -168,7 +165,7 @@ exports.update = function (req, res) {
   user.save(function (err, user) {
     if (err) {
       res.render('users/edit', {
-        title: 'Edit user',
+        title: '编辑用户',
         user: user,
         errors: err.errors
       });
@@ -184,7 +181,7 @@ exports.update = function (req, res) {
 exports.reset_edit = function (req, res) {
   console.log(req.profile);
   res.render('users/reset', {
-    title: 'reset',
+    title: '重置口令',
     profile: req.profile
   });
 };
@@ -212,7 +209,7 @@ exports.reset_update = function (req, res) {
 exports.forgot = function (req, res) {
   console.log('come into the forgot controller');
   res.render('users/forgot', {
-    title: 'forgot'
+    title: '忘记口令'
   });
 };
 
@@ -239,7 +236,7 @@ exports.reset_email_callback = function (req, res) {
     user.save(function (err, user) {
      Email.send_password_reset_token(user);
      res.redirect('/signup');
-   })
+   });
 
   }else {
     req.session.user = user;
@@ -250,7 +247,7 @@ exports.reset_email_callback = function (req, res) {
 
 exports.direct_reset_edit = function (req, res) {
   res.render('users/direct_reset', {
-    title: 'direct_reset',
+    title: '重置口令',
     profile: req.profile
   });
 };
@@ -279,6 +276,6 @@ exports.direct_reset_update = function (req, res) {
           res.redirect('/users/' + user.username);
         });
       }
-    })
+    });
   });
 };

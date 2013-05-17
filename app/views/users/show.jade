@@ -50,44 +50,44 @@ block content
                 label 自我介绍
               .span10
                 p= profile.introduction
-        if profile.joined_projects.length == 0
-          .row-fluid.joined-projects
-            div.joined-projects-cap
-              p 参加的项目
-            div.prompt
-              p 还未参加任何项目
-        else
-          .row-fluid.joined-projects
-            div.joined-projects-cap
-              p 参加的项目
-            table.table
-              each joined_project in profile.joined_projects
-                tr
-                  td.img-project
-                    img(src= joined_project.project.provider.avatar_url)
-                  td.info
-                    a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                    span 由
-                    a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
-                    span 创建于
-                    span= moment(joined_project.project.created_at).format('LL')
-                    p.body= joined_project.project.summary
-          .row-fluid.joined-projects
-            div.joined-projects-cap
-              p 关注的项目
-            table.table
-              each starred_project in profile.starred_projects
-                tr
-                  td.img-project
-                    img(src= starred_project.project.provider.avatar_url)
-                  td.info
-                    a.title(href='/projects/'+starred_project.project._id, title=starred_project.project.name) #{starred_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                    span 由
-                    a(href="/users/"+starred_project.project.provider._id)=starred_project.project.provider.name ||  starred_project.project.provider.username
-                    span 创建于
-                    span= moment(starred_project.project.created_at).format('LL')
-                    p.body= starred_project.project.summary
-
+        .row-fluid.joined-projects
+          div.joined-projects-cap
+            p 参加的项目
+            if profile.joined_projects.length == 0
+              div.prompt
+                p 还未参加任何项目
+            else
+              table.table
+                each joined_project in profile.joined_projects
+                  tr
+                    td.img-project
+                      img(src= joined_project.project.provider.avatar_url)
+                    td.info
+                      a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                      span 由
+                      a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
+                      span 创建于
+                      span= moment(joined_project.project.created_at).format('LL')
+                      p.body= joined_project.project.summary
+        .row-fluid.joined-projects
+          div.joined-projects-cap
+            p 关注的项目
+            if profile.starred_projects.length == 0
+              div.prompt
+                p 还未关注任何项目
+            else
+              table.table
+                each starred_project in profile.starred_projects
+                  tr
+                    td.img-project
+                      img(src= starred_project.project.provider.avatar_url)
+                    td.info
+                      a.title(href='/projects/'+starred_project.project._id, title=starred_project.project.name) #{starred_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                      span 由
+                      a(href="/users/"+starred_project.project.provider._id)=starred_project.project.provider.name ||  starred_project.project.provider.username
+                      span 创建于
+                      span= moment(starred_project.project.created_at).format('LL')
+                      p.body= starred_project.project.summary
         if locals.user && locals.user.is_admin
           div.admin
             .admin-cap

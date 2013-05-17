@@ -112,7 +112,7 @@ body{
 	padding-bottom: 20px;
 }
 .home .three-btn .span3{
-	background: #4752eb;
+	background: #5e68ed;
 	height: 300px;
 	width: 250px;
 	border-radius: 50%;
@@ -142,7 +142,7 @@ body{
 	margin-top: 100px;
 }
 .home .three-btn .span3:hover{
-	background-color: #2c38e8;
+	background-color: #4752eb;
 }
 .discover h3{
 	background-image: url(/img/bar.png);
@@ -394,6 +394,12 @@ body{
 	box-shadow: 1px 1px 4px 1px #D5D5D5;
 	border-radius: 4px;
 	width: 800px;
+}
+.joined-projects p{
+	font-weight: 500;
+}
+.joined-projects a{
+	text-decoration: none;
 }
 .joined-projects-cap{
 	border-bottom-style: dashed;

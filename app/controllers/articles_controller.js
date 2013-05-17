@@ -4,6 +4,9 @@ var _ = require('underscore');
 
 exports.article = function(req, res, next, id){
   var User = mongoose.model('User');
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.render('404');
+  }
 
   Article.load(id, function (err, article) {
     if (err) return next(err);
@@ -16,7 +19,7 @@ exports.article = function(req, res, next, id){
 
 exports.new = function (req, res) {
   res.render('articles/new', {
-    title: 'New Article',
+    title: '新建文章',
     article: new Article({})
   });
 };
@@ -24,21 +27,20 @@ exports.new = function (req, res) {
 /**
  * Create an article
  */
-
 exports.create = function (req, res) {
   var article = new Article(req.body);
 
   article.save(function (err) {
     if (err) {
       res.render('articles/new', {
-        title: 'New Article',
+        title: '新建文章',
         article: article,
         errors: err.errors
       });
     }
     else {
-      req.flash('success','Wa Wa Wa , a new article');
-      res.redirect('/article/'+article._id);
+      req.flash('success','成功创建新文章');
+      res.redirect('/articles/'+article._id);
     }
   });
 };
@@ -76,7 +78,7 @@ exports.index = function(req, res){
     if (err) return res.render('500');
     Article.count().exec(function (err, count) {
       res.render('articles/index', {
-        title: 'List of Articles',
+        title: '文章列表',
         articles: articles,
         page: page,
         pages: count / perPage
@@ -99,10 +101,10 @@ exports.update = function (req, res) {
   article.save(function (err, article) {
     if (err) {
       res.render('articles/edit', {
-        title: 'Edit article',
+        title: '编辑文章',
         article: article,
         errors: err.errors
-      })
+      });
     }
     else {
       req.flash("success","修改成功！");

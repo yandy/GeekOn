@@ -5,7 +5,7 @@ block content
   p body: !{article.body_html}
   .row
     .span7
-      form.form-horizontal(method="post", action="/article/"+article._id, enctype="multipart/form-data")
+      form.form-horizontal(method="post", action="/articles/"+article._id, enctype="multipart/form-data")
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
         .control-group
@@ -21,4 +21,4 @@ block content
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
           &nbsp;
-          a.btn(href='/article/'+article._id, title="cancel") Cancel
+          a.btn(href='/articles/'+article._id, title="cancel") Cancel
