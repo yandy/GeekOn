@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
+var Article = mongoose.model('Article');
 
 exports.index = function(req, res, next){
   var options = {
@@ -7,11 +8,15 @@ exports.index = function(req, res, next){
     page: 0
   };
 
-  Project.list(options, function (err, projects) {
+  Article.list(options, function (err, articles) {
     if (err) return next(err);
-    res.render('home', {
-      title: '极客行动官方网站',
-      projects: projects
+    Project.list(options, function (err, projects) {
+      if (err) return next(err);
+      res.render('home', {
+        title: '极客行动官方网站',
+        projects: projects,
+        articles: articles
+      });
     });
   });
 };

@@ -16,7 +16,6 @@ var ArticleSchema = new Schema({
 });
 
 ArticleSchema.pre('save', function (next) {
-  if (this.isNew) return next();
   this.body_html = marked(this.body);
   next();
 });

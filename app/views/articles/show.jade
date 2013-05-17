@@ -3,7 +3,7 @@ extends ../layout/layout
 block content
   div.row-fluid.article-show
     .span9
-      h3 #{article.title}
+      h3= article.title
       p !{article.body_html}
       br
       .comments

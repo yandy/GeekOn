@@ -10,7 +10,7 @@ exports.article = function(req, res, next, id){
 
   Article.load(id, function (err, article) {
     if (err) return next(err);
-    if (!article) return next(new Error('Failed to load article ' + id));
+    if (!article) return res.render('404');
     req.article = article;
     next();
   });

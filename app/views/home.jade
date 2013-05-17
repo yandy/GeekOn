@@ -21,35 +21,26 @@ block content
           h3 比赛&颁奖
     div.row-fluid.discover
       h3 &nbsp;最新动态
-      .discover-row
-        a(href="#")
-          .row-fluid
-              .span8
-                span.title 我校世界一流大学建设被列入苏南现代化建设示范区规划
-                p.summary  5月10日、13日，学校分别举行校级理论学习中心组学习和基层党委书记例会，传达学习苏南现代化建设示范区工作会议精神。会议由党委书记郭广银主持。
-              .span1
-                p
-                  i.icon-map-marker
-                  span 南京
-              .span1
-                i.icon-user
-                span wilxn
-              .span2
-                p 2013-5-17
-    div.row-fluid.discover
-        h3 &nbsp;热门项目
+      each article in articles
         .discover-row
-          a(href="#")
+          a(href="/articles/#{article._id}")
             .row-fluid
-              .span8
-                span.title 我校世界一流大学建设被列入苏南现代化建设示范区规划
-                p.summary  5月10日、13日，学校分别举行校级理论学习中心组学习和基层党委书记例会，传达学习苏南现代化建设示范区工作会议精神。会议由党委书记郭广银主持。
-              .span1
-                p
-                  i.icon-map-marker
-                  span 南京
-              .span1
-                i.icon-user
-                span wilxn
-              .span2
-                p 2013-5-17
+                .span8
+                  span.title= article.title
+                  p.summary= article.body.substring(0, 140)
+                .span2
+                  p= moment(article.created_at).format('LL')
+    div.row-fluid.discover
+        h3 &nbsp;最新项目
+        each project in projects
+          .discover-row
+            a(href= "/projects/#{project._id}")
+              .row-fluid
+                .span8
+                  span.title= project.name
+                  p.summary= project.summary
+                .span1
+                  i.icon-user
+                  span= project.provider.name|| project.provider.username
+                .span2
+                  p= moment(project.created_at).format('LL')
