@@ -65,7 +65,7 @@ exports.show = function (req, res) {
   });
 };
 
-exports.index = function (req,res) {
+exports.index = function (req, res, next) {
   var page = req.param('page') > 0 ? req.param('page') : 0;
   var perPage = 15;
   var options = {
@@ -74,7 +74,7 @@ exports.index = function (req,res) {
   };
 
   Project.list(options, function(err, projects) {
-    if (err) return res.render('500');
+    if (err) return next(err);
     Project.count(function (err, count) {
       res.render('projects/index', {
         title: '项目列表',
