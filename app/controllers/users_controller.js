@@ -14,9 +14,55 @@ exports.user = function (req, res, next, username) {
   });
 };
 
-exports.authCallback = function (req, res, next) {
+
+exports.googleCallback = function (req, res, next) {
+  passport.authenticate('google', function (err, user, profile) {
+    if (err) return next(err);
+    if (user) {
+      req.logIn(user, function (err) {
+        if (err) return next(err);
+        req.session.user = user;
+        req.flash('success', '欢迎');
+        return res.redirect('/users/' + user.username);
+      });
+    } else {
+      user = new User({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        username: profile.emails[0].value,
+        avatar_url: gravatar.url(profile.emails[0].value, {s: '200'}),
+        provider: 'google',
+        google:profile
+      });
+      user.validateUsername(function (err, isValid, message) {
+        if (err) return next(err);
+        if (!isValid) {
+          req.flash('error', message);
+          return res.redirect('signup');
+        }
+        user.validateEmail(function (err, isValid, message) {
+          if (err) return next(err);
+          if (!isValid) {
+            req.flash('error', message);
+            return res.redirect('/signup');
+          }
+          user.save(function (err) {
+            if (err) return next(err);
+            req.logIn(user, function (err) {
+              if (err) return next(err);
+              req.session.user = user;
+              req.flash('success', '欢迎');
+              return res.redirect('/users/' + user.username);
+            });
+          });
+        });
+      });
+    }
+  })(req, res, next);
+};
+
+exports.githubCallback = function (req, res, next) {
   passport.authenticate('github', function (err, user, profile) {
-    console.log(profile);
     if (err) return next(err);
     if (user) {
       req.logIn(user, function (err) {
@@ -82,7 +128,9 @@ exports.create = function (req, res, next) {
   var user = new User({
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    avatar_url: gravatar.url(req.body.email, {s: '200'}),
+    provider: 'local'
   });
 
   user.validateUsername(function (err, isValid, message) {
@@ -108,8 +156,6 @@ exports.create = function (req, res, next) {
         req.flash('error', '两次输入的口令不一致！');
         return res.redirect('/signup');
       }
-      user.avatar_url = gravatar.url(user.email, {s: '200'});
-      user.provider = 'local';
       user.save(function (err) {
         if (err) return next(err);
         // Email.send_email(user);

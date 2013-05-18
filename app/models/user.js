@@ -27,6 +27,7 @@ var UserSchema = new Schema({
 
   provider: {type: String, required: true},
   github: {},
+  google: {},
 
   starred_projects: [{
     project: {type: Schema.Types.ObjectId, ref: 'Project'},
@@ -70,9 +71,9 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
  */
  UserSchema.methods.validateUsername = function (cb) {
   var validator = new Validator();
-  validator.check(this.username).len(3, 40).is(/^[\w-]+$/);
+  validator.check(this.username).len(3, 40).is(/^[\w\.@-]+$/);
   if (validator.getErrors().length > 0)
-    return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_及连字符-');
+    return cb(null, false, '用户名只能是3-40位英文字母，数字，下划线_连字符-，@和.');
 
   this.uname = this.username.toLowerCase();
   this.model('User').findOne({uname: this.uname}, function (err, user) {

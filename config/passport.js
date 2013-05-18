@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
 var User = require('mongoose').model('User');
 
 module.exports = function (passport, config) {
@@ -43,4 +44,21 @@ module.exports = function (passport, config) {
         return done(err, null, profile);
       });
     }));
+
+  /**
+   * use Google Strategy
+   */
+  passport.use(new GoogleStrategy({
+    returnURL: config.google.returnURL,
+    realm: config.google.realm,
+    profile: true
+  },
+  function (identifier, profile, done) {
+    profile.id = identifier;
+    User.findOne({'google.id': profile.id}, function (err, user) {
+      if (err) return done(err);
+      if (user) return done(err, user);
+      return done(err, null, profile);
+    });
+  }));
 };

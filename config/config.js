@@ -9,6 +9,10 @@ module.exports = {
       clientID: '64bd1cd2bd08947654e2',
       clientSecret: '460b0d7ad999d4728e3ab2daec4298cefc795cb0',
       callbackURL: 'http://localhost:3000/auth/github/callback'
+    },
+    google: {
+      returnURL: 'http://localhost:3000/auth/google/callback',
+      realm: 'http://localhost:3000'
     }
   }
 };
