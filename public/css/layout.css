@@ -114,6 +114,9 @@ body{
 	text-indent: 4em;
 	color:#404040;
 }
+.three-btn img{
+	margin-left: 48px;
+}
 .home .three-btn .span4 h3:hover{
 	color:black;
 }
@@ -133,11 +136,11 @@ body{
 	color:#6b6b6b;
 }
 .home a:hover{
-	color: #3941ac;
+	color: #aa7f08;
 }
 .create a{
-	color:#666dcc;
-	font-size: 80%;
+	color:#dba30a;
+	font-size: 70%;
 }
 .three-btn{
 	padding-left: 30px;
@@ -294,9 +297,10 @@ body{
 .unit{
 	width:30%;
 	border:solid 1px #D5D5D5;
-	box-shadow: 1px 1px 4px 1px #D5D5D5;
+	box-shadow: 1px 1px 3px 1px #99a0ff;
 	margin-top: 10px;
 	padding: 5px;
+	background-color: #fafaff;
 }
 .span4.unit{
 	width:26%;
@@ -306,7 +310,6 @@ body{
 }
 .unit .head-img{
 	box-shadow: 1px 2px 4px 1px #676B58;
-	margin-bottom:
 	border-radius:5px;
 }
 .head-info .title{
@@ -637,21 +640,26 @@ body{
 	width: 200px;
 }
 .article-desc{
-	width: 750px;
-	height: 20px;
+	width: 700px;
+	height: 80px;
 	overflow: hidden;
 	text-overflow:ellipsis;
 }
 .article-date{
-	width:100px;
+	width:150px;
 }
 /* article活动详情页面显示 */
-.article-show{
+.article-show .span9{
 	background-color: white;
-	border-radius: 8px;
+	padding:10px;
+	border-radius: 6px;
 }
 .article-show p{
 	text-indent: 2em;
+}
+.article-show img{
+	border-radius: 3px;
+	box-shadow: 2px 1px 4px 1px #676B58;
 }
 /* 用户注册 */
 .registration{

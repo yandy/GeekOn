@@ -4,13 +4,14 @@ block content
     table.table.table-striped.table-hover
       tr
         th.article-name 题目
-        th.desc 文章概要
-        th.date 创建时间
+        th.desc 概要
+        th.date 创建
       each article in articles
         tr
           td.article-title
             a.title(href='/articles/'+article._id, title=article.title) #{article.title}
-          td.article-desc #{article.body}
+          td
+            p.article-desc #{article.body}
           td= moment(article.created_at).format('LL')
         tr
     div.row-fluid
