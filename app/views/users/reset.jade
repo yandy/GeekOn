@@ -6,7 +6,6 @@ block content
     p 用户名：#{profile.uname}
     P 昵称: #{profile.name}
     p Email：#{profile.email}
-    h2 joined_projects
 
   .row
     .span7
@@ -14,16 +13,16 @@ block content
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
         .control-group
-          label.control-label(for='text') new password
+          label.control-label(for='text') 新口令
           .controls
-            input#password.input-xlarge(type='text', name="password",placeholder='Enter the password')
+            input#password.input-xlarge(type='text', name="password",placeholder='输入新口令')
 
         .control-group
-          label.control-label(for='text') confirm your password
+          label.control-label(for='text') 确认口令
           .controls
-            input#confirmation_password(type='text', name="password_confirmation", placeholder='confirm your password')
+            input#confirmation_password(type='text', name="password_confirmation", placeholder='输入相同口令')
 
         .form-actions
-          button.btn.btn-primary(type='submit') Save changes
+          button.btn.btn-primary(type='submit') 确定
           &nbsp;
-          a.btn(href='/users/'+profile.username, title="cancel") Cancel
+          a.btn(href='/users/'+profile.username, title="cancel") 取消

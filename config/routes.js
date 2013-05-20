@@ -12,7 +12,7 @@ module.exports = function (app, passport, auth) {
   app.put('/users/:user', auth.ensureAuthenticated, auth.user.hasAuthorization, user.update);
 
   //for those whose forgot his password to reset password with an email notify
-  app.get('/users/:user/reset', auth.ensureAuthenticated, auth.token_user.hasAuthorization, user.reset_edit);
+  app.get('/users/:user/reset', auth.ensureAuthenticated, auth.user.hasAuthorization, user.reset_edit);
   app.put('/users/:user/reset/update', auth.ensureAuthenticated, auth.user.hasAuthorization, user.reset_update);
   app.get('/forgot', user.forgot);
   app.post('/send_forgot_email', user.send_forgot_email);

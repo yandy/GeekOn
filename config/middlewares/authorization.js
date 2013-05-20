@@ -14,15 +14,6 @@ exports.user = {
     }
 };
 
-exports.token_user = {
-  hasAuthorization : function (req, res, next) {
-    if(!req.query['token'] || req.query['token'] !== req.session.user.password_reset_token) {
-        return res.redirect('/users/'+req.profile.username);
-    }
-    next();
-  }
-};
-
 exports.admin = {
   hasAuthorization : function (req, res, next) {
     if(!req.session.user.is_admin) {

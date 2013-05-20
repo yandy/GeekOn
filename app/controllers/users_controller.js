@@ -48,6 +48,7 @@ exports.googleCallback = function (req, res, next) {
           }
           user.save(function (err) {
             if (err) return next(err);
+            Email.send_email(user);
             req.logIn(user, function (err) {
               if (err) return next(err);
               req.session.user = user;
@@ -97,7 +98,7 @@ exports.githubCallback = function (req, res, next) {
           }
           user.save(function (err) {
             if (err) return next(err);
-            // Email.send_email(user);
+            Email.send_email(user);
             req.logIn(user, function (err) {
               if (err) return next(err);
               req.session.user = user;
@@ -158,7 +159,7 @@ exports.create = function (req, res, next) {
       }
       user.save(function (err) {
         if (err) return next(err);
-        // Email.send_email(user);
+        Email.send_email(user);
         req.logIn(user, function(err) {
           if (err) return next(err);
           req.flash('success','注册成功！');
@@ -262,7 +263,7 @@ exports.forgot = function (req, res) {
 exports.send_forgot_email = function (req, res) {
   User.findOne({email: req.body.email}, function (err, user){
     user.generate_password_reset_token();
-    user.save(function (err, user){
+    user.save(function (err){
       Email.send_password_reset_token(user);
       req.flash('success', 'email has been sent, please wait.....');
       res.redirect('/signup');
@@ -273,25 +274,30 @@ exports.send_forgot_email = function (req, res) {
 
 exports.reset_email_callback = function (req, res) {
   User.findOne({password_reset_token: req.query['token']}, function (err, user) {
-   var expire = new Date();
-   expire.setUTCMinutes(expire.getUTCMinutes()-1);
-   console.log(user);
-   if(user.password_reset_sent_at < expire) {
-    req.flash('error',"The token's time is over the expire, new token has been sent" );
-    user.generate_password_reset_token();
-    user.save(function (err, user) {
-     Email.send_password_reset_token(user);
-     res.redirect('/signup');
-   });
-
-  }else {
-    req.session.user = user;
-    res.redirect('/users/'+ user.username+'/reset');
-  }
-});
+    var expire = new Date();
+    expire.setUTCMinutes(expire.getUTCMinutes()-1);
+    if(user.password_reset_sent_at < expire) {
+      req.flash('error',"The token's time is over the expire, new token has been sent" );
+      user.generate_password_reset_token();
+      user.save(function (err, user) {
+        Email.send_password_reset_token(user);
+        return res.redirect('/signup');
+      });
+    } else {
+     user.save(function (err) {
+      if (err) return next(err);
+      req.logIn(user, function(err) {
+        if (err) return next(err);
+        req.session.user = user;
+        return res.redirect('/users/'+ user.username + '/reset');
+      });
+    });
+   }
+ });
 };
 
 exports.direct_reset_edit = function (req, res) {
+  console.log('reset edit');
   res.render('users/direct_reset', {
     title: '重置口令',
     profile: req.profile

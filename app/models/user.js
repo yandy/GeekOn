@@ -113,10 +113,8 @@ UserSchema.methods.generate_token = function () {
 };
 
 UserSchema.methods.generate_password_reset_token = function (cb) {
-  this.password_reset_token = this.model('User').generate_token().toString('base64');
+  this.password_reset_token = this.generate_token().toString('base64');
   this.password_reset_sent_at = new Date();
-  this.markModified('password_reset_token');
-  this.markModified('password_reset_sent_at');
 };
 
 UserSchema.statics.load = function (username, cb) {
