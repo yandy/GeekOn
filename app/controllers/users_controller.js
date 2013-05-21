@@ -201,7 +201,6 @@ exports.edit = function (req, res) {
 };
 
 exports.update = function (req, res) {
-  console.log("comes to update controller");
   var user = req.profile;
   user.name = sanitize(req.body.name).xss();
   user.website = sanitize(req.body.website).xss();
@@ -226,14 +225,12 @@ exports.update = function (req, res) {
 };
 
 exports.reset_edit = function (req, res) {
-  console.log(req.profile);
   res.render('users/reset', {
     title: '重置口令',
     profile: req.profile
   });
 };
 exports.reset_update = function (req, res) {
-  console.log('come into the reset controller');
   if (req.body.password.length < 6) {
     req.flash('error', '请设置6位以上的口令');
     return res.redirect('/users/'+req.profile.username+'/reset');
@@ -254,7 +251,6 @@ exports.reset_update = function (req, res) {
 
 
 exports.forgot = function (req, res) {
-  console.log('come into the forgot controller');
   res.render('users/forgot', {
     title: '忘记口令'
   });
@@ -297,7 +293,6 @@ exports.reset_email_callback = function (req, res) {
 };
 
 exports.direct_reset_edit = function (req, res) {
-  console.log('reset edit');
   res.render('users/direct_reset', {
     title: '重置口令',
     profile: req.profile
@@ -305,8 +300,6 @@ exports.direct_reset_edit = function (req, res) {
 };
 
 exports.direct_reset_update = function (req, res) {
-  console.log('come into the direct_reset controller');
-
   if (req.body.password.length < 6) {
     req.flash('error', '请设置6位以上的口令');
     return res.redirect('/users/'+req.profile.username+'/direct_reset');

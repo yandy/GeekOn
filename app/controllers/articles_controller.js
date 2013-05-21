@@ -123,7 +123,6 @@ exports.update = function (req, res) {
     else {
       req.flash("success","修改成功！");
       req.article = article;
-      console.log(req.article);
       res.redirect('/articles/' + article._id);
     }
   })
