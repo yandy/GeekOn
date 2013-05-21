@@ -11,14 +11,17 @@ block content
             a(href='/projects/create') 创建项目
       div.row-fluid.three-btn
         .span4
-          img(src="/img/project.png")
-          h3 发现项目
+          a(href="/projects")
+            img(src="/img/project.png")
+            h3 发现项目
         .span4
-          img(src="/img/team.png")
-          h3 组队报名
+          a(href="/geeks")
+            img(src="/img/team.png")
+            h3 寻找队友
         .span4
-          img(src="/img/prize.png")
-          h3 比赛&颁奖
+          a(href="/details")
+            img(src="/img/prize.png")
+            h3 比赛颁奖
     div.row-fluid.discover
       h3 &nbsp;最新动态
       each article in articles
