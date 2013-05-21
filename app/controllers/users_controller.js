@@ -265,7 +265,7 @@ exports.send_forgot_email = function (req, res) {
     user.generate_password_reset_token();
     user.save(function (err){
       Email.send_password_reset_token(user);
-      req.flash('success', 'email has been sent, please wait.....');
+      req.flash('success', '邮件已发出，请稍候');
       res.redirect('/signup');
     });
   });
@@ -275,9 +275,9 @@ exports.send_forgot_email = function (req, res) {
 exports.reset_email_callback = function (req, res) {
   User.findOne({password_reset_token: req.query['token']}, function (err, user) {
     var expire = new Date();
-    expire.setUTCMinutes(expire.getUTCMinutes()-1);
+    expire.setUTCMinutes(expire.getUTCMinutes() - 30);
     if(user.password_reset_sent_at < expire) {
-      req.flash('error',"The token's time is over the expire, new token has been sent" );
+      req.flash('error',"该token已过期，新邮件已发送");
       user.generate_password_reset_token();
       user.save(function (err, user) {
         Email.send_password_reset_token(user);
