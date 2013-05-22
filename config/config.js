@@ -22,11 +22,11 @@ module.exports = {
     github: {
       clientID: '5830cf0d80d4c9b8c62f',
       clientSecret: '168059ea4de1fdebeabe53106d515d835868c016',
-      callbackURL: 'http://ec2-54-251-161-104.ap-southeast-1.compute.amazonaws.com/auth/github/callback'
+      callbackURL: 'http://geekstack.org/auth/github/callback'
     },
     google: {
-      returnURL: 'http://ec2-54-251-161-104.ap-southeast-1.compute.amazonaws.com/auth/google/callback',
-      realm: 'http://ec2-54-251-161-104.ap-southeast-1.compute.amazonaws.com'
+      returnURL: 'http://geekstack.org/auth/google/callback',
+      realm: 'http://geekstack.org'
     }
   }
 };
