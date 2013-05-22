@@ -8,8 +8,8 @@ exports.send_email = function (user, next) {
         secureConnection: true,
         port: 465,
         auth: {
-            user: "di.wang@geekstack.org",
-            pass: "password123"
+            user: "geekon@geekstack.org",
+            pass: "geekstackorg2013"
         }
     });
 
@@ -56,8 +56,8 @@ exports.send_password_reset_token = function (user, next) {
         secureConnection: true,
         port: 465,
         auth: {
-            user: "di.wang@geekstack.org",
-            pass: "password123"
+            user: "geekon@geekstack.org",
+            pass: "geekstackorg2013"
         }
     });
 
