@@ -39,7 +39,7 @@ module.exports = function (app, config, passport) {
   app.use(express.static(path.join(config.root, 'public')));
   app.use(function (req, res, next) {
     res.status(404);
-    res.render('404');
+    return res.render('404');
   });
 
   // development only
@@ -48,6 +48,7 @@ module.exports = function (app, config, passport) {
   } else {
     app.use(function (err, req, res, next) {
       console.error(err.stack);
+      res.status(500);
       return res.render('500');
     });
   }
