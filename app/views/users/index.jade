@@ -10,7 +10,7 @@ block content
             a(href="/users/#{user.username}")
               img(src="#{user.avatar_url}", alt="用户图片")
             a(href="/users/#{user.username}")
-              p #{user.username}
+              p= user.name || user.username
 
     div.row-fluid
       div.offset4
