@@ -3,7 +3,8 @@ body{
 	background-color: #f3f3f3;
 	margin-left: 65px;
 	margin-right: 65px;
-	min-width: 1100px;
+	min-width: 1200px;
+	max-width: 1200px;
 	font-family: "Helvetica Neue", Helvetica, Arial, 'microsoft yahei', sans-serif;
 }
 .border{
@@ -21,9 +22,9 @@ body{
 	margin-left: -2.5%;
 }
 .nav{
-	padding: 10px;
+	padding: 8px 5px 0px 5px;
 	margin-top: -10px;
-	background-color: #4d58ff;
+	background-color: #4d79ff;
 
 }
 /* Logo图片 */
@@ -54,7 +55,7 @@ body{
 	font-weight: 700;
 }
 #nav a:hover{
-	background-color: #4d58ff;
+	background-color: #4d79ff;
 	color:#ccc;
 }
 #nav li{
@@ -160,6 +161,7 @@ body{
 }
 .discover-row a{
 	color: black;
+	text-decoration: none;
 }
 .discover-row a:hover{
 	color:#00054d;
@@ -167,18 +169,21 @@ body{
 .discover-row .title{
 	font-size: 130%;
 	font-weight: 700;
-	width: 600px;
+	width: 90%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
 }
 .discover-row .summary{
-	width: 700px;
+	width: 90%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
+}
+.discover-row:hover{
+	background-color: #f9f9ff;
 }
 /* details页面  */
 .prize,.about,.background,.step{
@@ -343,16 +348,28 @@ body{
 .users{
 	background-color: white;
 	padding: 10px;
-	width: 99%;
 	border-radius: 4px;
+}
+.user-unit{
+	float: left;
+	margin-left: 40px;
 }
 .user-unit img{
 	border-radius: 3px;
 	box-shadow: 2px 1px 4px 1px #676B58;
+	width:100px;
+	height: 100px;
 }
 .user-unit a{
-	text-align: center;
 	text-decoration: none;
+}
+.user-unit p{
+	width: 100px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space: nowrap;
 }
 /* 极客主页 */
 .user-show{
