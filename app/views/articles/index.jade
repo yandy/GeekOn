@@ -1,22 +1,17 @@
 extends ../layout/layout
 block content
-  div.article-list
-    table.table.table-striped.table-hover
-      tr
-        th.article-name 题目
-        th.desc 概要
-        th.date 创建
-      each article in articles
-        tr
-          td.article-title
-            a.title(href='/articles/'+article._id, title=article.title) #{article.title}
-          td
-            p.article-desc #{article.body}
-          td= moment(article.created_at).format('LL')
-        tr
-    div.row-fluid
-      .span6
-        if (pages > 1)
-          .pagination
-            ul
-              != createPagination(pages, page)
+  each article in articles
+    .discover-row
+        .row-fluid
+          .span10
+            a(href="/articles/#{article.id}")
+              span.title= article.title
+            p.summary= article.body
+          .span2
+            p= moment(article.created_at).format('LL')
+  div.row-fluid
+    .span6
+      if (pages > 1)
+        .pagination
+          ul
+            != createPagination(pages, page)

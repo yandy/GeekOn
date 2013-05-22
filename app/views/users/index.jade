@@ -6,11 +6,9 @@ block content
   div.users
     div.row-fluid.users-list
       each user in users
-        div.span2.user-unit
-          div.row-fluid
+          div.user-unit
             a(href="/users/#{user.username}")
-              img(src="#{user.avatar_url}")
-          div.row-fluid
+              img(src="#{user.avatar_url}", alt="用户图片")
             a(href="/users/#{user.username}")
               p #{user.username}
 

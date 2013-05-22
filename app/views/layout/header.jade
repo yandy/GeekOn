@@ -20,31 +20,32 @@ block header
             a(href="#") 赞助合作
       br
       div.span3.logout-in
-        if locals.user && locals.user.username
-          span
-            img(src='#{locals.user.avatar_url}',height=30,width=30)
-          &nbsp;&nbsp;&nbsp;
-          span.dropdown.nav-btn
-            a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}").btn #{locals.user.uname}&nbsp;&nbsp
-              span.caret.nav-btn
-            ul.dropdown-menu
-              li
-                a(href="/users/#{locals.user.username}")
-                  i.icon-user
-                  span &nbsp;&nbsp;个人主页
-              li
-                a(href="/users/#{locals.user.username}/edit")
-                  i.icon-edit
-                  span &nbsp;&nbsp;个人设置
-              li
-                a(href="/logout")
-                  i.icon-chevron-left
-                  span &nbsp;&nbsp;登出
-        else
-          span.nav-btn
-            a(href="/signup").btn 注册
+        .span7
+          if locals.user && locals.user.username
+            span
+              img(src='#{locals.user.avatar_url}',height=30,width=30)
             &nbsp;&nbsp;&nbsp;
-            a(href="/login").btn 登录
-            &nbsp;&nbsp;&nbsp;
-          span.nav-btn
-            wb:follow-button(uid="3240119923", type="red_1")
+            span.dropdown.nav-btn
+              a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}").btn #{locals.user.uname}&nbsp;&nbsp
+                span.caret.nav-btn
+              ul.dropdown-menu
+                li
+                  a(href="/users/#{locals.user.username}")
+                    i.icon-user
+                    span &nbsp;&nbsp;个人主页
+                li
+                  a(href="/users/#{locals.user.username}/edit")
+                    i.icon-edit
+                    span &nbsp;&nbsp;个人设置
+                li
+                  a(href="/logout")
+                    i.icon-chevron-left
+                    span &nbsp;&nbsp;登出
+          else
+            span.nav-btn
+              a(href="/signup").btn 注册
+              &nbsp;&nbsp;&nbsp;
+              a(href="/login").btn 登录
+              &nbsp;&nbsp;&nbsp;
+        .span5
+          wb:follow-button(uid="3240119923", type="red_1")#follow
