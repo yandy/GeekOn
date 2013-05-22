@@ -45,5 +45,10 @@ module.exports = function (app, config, passport) {
   // development only
   if ('development' == app.get('env')) {
     app.use(express.errorHandler());
+  } else {
+    app.use(function (err, req, res, next) {
+      console.error(err.stack);
+      return res.render('500');
+    });
   }
 };
