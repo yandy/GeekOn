@@ -112,4 +112,15 @@ $(document).ready(function(){
       }
     });
   });
+  $(".committee-cap").click(function(){
+    $(".committee.row-fluid").slideToggle(function(){
+      if($(".committee-cap i").hasClass("icon-chevron-down")){
+        $(".committee-cap i").removeClass("icon-chevron-down");
+        $(".committee-cap i").addClass("icon-chevron-up");
+      }else{
+        $(".committee-cap i").removeClass("icon-chevron-up");
+        $(".committee-cap i").addClass("icon-chevron-down");
+      }
+    });
+  });
 });
