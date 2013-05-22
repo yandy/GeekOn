@@ -20,7 +20,7 @@ block header
             a(href="#") 赞助合作
       br
       div.span3.logout-in
-        .span7
+        .span8
           if locals.user && locals.user.username
             span
               img(src='#{locals.user.avatar_url}',height=30,width=30)
@@ -47,5 +47,5 @@ block header
               &nbsp;&nbsp;&nbsp;
               a(href="/login").btn 登录
               &nbsp;&nbsp;&nbsp;
-        .span5
+        .span4
           wb:follow-button(uid="3240119923", type="red_1")#follow
