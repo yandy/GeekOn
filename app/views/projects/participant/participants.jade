@@ -3,4 +3,4 @@ if(participant && participant.user)
     td.username
       a(href="/users/"+participant.user.username) #{participant.user.name || participant.user.username}
     td
-      p 于 #{moment(participant.created_at).format('LLL')}
+      p 于 #{moment(participant.created_at).fromNow()}
