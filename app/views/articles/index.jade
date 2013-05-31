@@ -7,7 +7,7 @@ block content
             .span10
               a(href="/articles/#{article.id}")
                 span.title= article.title
-              p.summary= article.body
+                p.summary= article.body
             .span2
               p= moment(article.created_at).format('LL')
     div.row-fluid

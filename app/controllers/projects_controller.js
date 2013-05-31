@@ -79,7 +79,7 @@ exports.index = function (req, res, next) {
     if (err) return next(err);
     Project.count(function (err, count) {
       res.render('projects/index', {
-        title: '项目列表',
+        title: '创意项目',
         projects: projects,
         page: page,
         pages: count / perPage,

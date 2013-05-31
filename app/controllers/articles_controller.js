@@ -92,7 +92,7 @@ exports.index = function(req, res){
 
   Article.count().exec(function (err, count) {
     res.render('articles/index', {
-      title: '文章列表',
+      title: '最新动态',
       articles: req.articles,
       page: page,
       pages: count / perPage
