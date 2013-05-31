@@ -1,64 +1,65 @@
 extends ../layout/layout
 
 block content
-  div.project-show.row-fluid
-    div.span9
-      .project-content
-        div.row-fluid
-          div.span10
-            h3.project-title #{project.name}
-            br
-            br
-            br
-            p !{project.summary}
-          div.span2
-            img(src= project.provider.avatar_url, alt="")
-        p.project-body !{project.description_html}
-      .row-fluid
-        .span3
-          h4 参与人员(#{project.participants.length})
-        .span1.offset5
-          if locals.user && project.provider._id == locals.user._id
+  .content-wrap
+    div.project-show.row-fluid
+      div.span9
+        .project-content
+          div.row-fluid
+            div.span10
+              h3.project-title #{project.name}
+              br
+              br
+              br
+              p !{project.summary}
+            div.span2
+              img(src= project.provider.avatar_url, alt="")
+          p.project-body !{project.description_html}
+        .row-fluid
+          .span3
+            h4 参与人员(#{project.participants.length})
+          .span1.offset5
+            if locals.user && project.provider._id == locals.user._id
+              div.row-fluid.follow-btn
+                a(href='/projects/#{project.id}/edit')
+                  i.icon-edit
+                  span 编辑
+          .span1
             div.row-fluid.follow-btn
-              a(href='/projects/#{project.id}/edit')
-                i.icon-edit
-                span 编辑
-        .span1
-          div.row-fluid.follow-btn
-            a(href='/projects/#{project.id}/join')
-              if isJoined
-                i.icon-chevron-left
-                span 退出
-              else
-                i.icon-plus
-                span 加入
-        .span1
-          div.row-fluid.follow-btn
-            a(href="/projects/#{project.id}/star")
-              if isStarred
-                i.icon-eye-close
-                span 取消
-              else
-                i.icon-eye-open
-                span 关注
-      table.table.table-condensed.table-hover
-        each participant in project.participants
-          include participant/participants
-      .row-fluid
-        h4 关注人员(#{project.followers.length})
+              a(href='/projects/#{project.id}/join')
+                if isJoined
+                  i.icon-chevron-left
+                  span 退出
+                else
+                  i.icon-plus
+                  span 加入
+          .span1
+            div.row-fluid.follow-btn
+              a(href="/projects/#{project.id}/star")
+                if isStarred
+                  i.icon-eye-close
+                  span 取消
+                else
+                  i.icon-eye-open
+                  span 关注
         table.table.table-condensed.table-hover
-          each follower in project.followers
-            include follower/followers
-      .comments
-        p.comments-cap 共 #{project.comments.length} 条评论
-        table.table
-          each comment in project.comments
-            include ../comment/comments
-        if project.comments.length == 0
-          .prompt
-            p 尚无评论
-      if locals.user
-          include comment/add_comment
-      else
-          p.info 登录后即可发表评论
-    include ../layout/right-side
+          each participant in project.participants
+            include participant/participants
+        .row-fluid
+          h4 关注人员(#{project.followers.length})
+          table.table.table-condensed.table-hover
+            each follower in project.followers
+              include follower/followers
+        .comments
+          p.comments-cap 共 #{project.comments.length} 条评论
+          table.table
+            each comment in project.comments
+              include ../comment/comments
+          if project.comments.length == 0
+            .prompt
+              p 尚无评论
+        if locals.user
+            include comment/add_comment
+        else
+            p.info 登录后即可发表评论
+      include ../layout/right-side

@@ -1,48 +1,49 @@
 extends ../layout/layout
 
 block content
-  div.registration
-    div.registration-cap
-      p 注册新用户
-    p.or or
-    div.registration-content
-      div.row-fluid
-        div.span8
-            form.form-horizontal(action="/signup", method="post")
-              input(type="hidden", name='_csrf', value=token)
-              .control-group
-                label.control-label(for='email') 邮箱
-                .controls
-                  input#email.email(type='text', name="email", placeholder='username@example.com', value=user.email)
-                  span.email-error
-              .control-group
-                label.control-label(for='username') 用户名
-                .controls
-                  input#username.username(type='text', name="username", placeholder='3-40位英文字母，数字，下划线_及连字符-', value=user.username)
-                  span.username-error
-              .control-group
-                label.control-label(for='password') 密码
-                .controls
-                  input#password.password(type='password', name="password", placeholder='长度最少为6')
-                  span.password-error
-              .control-group
-                label.control-label(for='password_confirmation') 密码确认
-                .controls
-                  input#password_confirmation.password_confirmation(type='password', name="password_confirmation", placeholder='请再输入一次密码')
-                  span.password_confirmation-error
-                .offset3
-                  button.btn.btn-primary(type='submit') 注册
-        div.span4.third-singup
-          div.row-fluid
-            div.info
-              p 您也可以通过如下方式注册:
-            div.third-singup-btn
-              a(href="/auth/github").btn
-                img(src="/img/github.png")
-                span &nbsp;&nbsp;&nbsp;Github
-              a(href="/auth/google").btn
-                img(src="/img/google.png")
-                span &nbsp;&nbsp;&nbsp;Google
-              a(href="#").btn
-                img(src="/img/weibo.png")
-                span &nbsp;&nbsp;&nbsp;Weibo
+  .content-wrap
+    div.registration
+      div.registration-cap
+        p 注册新用户
+      p.or or
+      div.registration-content
+        div.row-fluid
+          div.span8
+              form.form-horizontal(action="/signup", method="post")
+                input(type="hidden", name='_csrf', value=token)
+                .control-group
+                  label.control-label(for='email') 邮箱
+                  .controls
+                    input#email.email(type='text', name="email", placeholder='username@example.com', value=user.email)
+                    span.email-error
+                .control-group
+                  label.control-label(for='username') 用户名
+                  .controls
+                    input#username.username(type='text', name="username", placeholder='3-40位英文字母，数字，下划线_及连字符-', value=user.username)
+                    span.username-error
+                .control-group
+                  label.control-label(for='password') 密码
+                  .controls
+                    input#password.password(type='password', name="password", placeholder='长度最少为6')
+                    span.password-error
+                .control-group
+                  label.control-label(for='password_confirmation') 密码确认
+                  .controls
+                    input#password_confirmation.password_confirmation(type='password', name="password_confirmation", placeholder='请再输入一次密码')
+                    span.password_confirmation-error
+                  .offset3
+                    button.btn.btn-primary(type='submit') 注册
+          div.span4.third-singup
+            div.row-fluid
+              div.info
+                p 您也可以通过如下方式注册:
+              div.third-singup-btn
+                a(href="/auth/github").btn
+                  img(src="/img/github.png")
+                  span &nbsp;&nbsp;&nbsp;Github
+                a(href="/auth/google").btn
+                  img(src="/img/google.png")
+                  span &nbsp;&nbsp;&nbsp;Google
+                a(href="#").btn
+                  img(src="/img/weibo.png")
+                  span &nbsp;&nbsp;&nbsp;Weibo

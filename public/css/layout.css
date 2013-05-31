@@ -13,6 +13,8 @@ body{
 	padding-top: 60px;
 }
 .content-wrap{
+	width: 960px;
+	margin: 0 auto;
 }
 .nav{
 	padding: 8px 5px 0px 5px;

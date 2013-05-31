@@ -1,34 +1,35 @@
 extends ../layout/layout
 block content
-  div.row-fluid.project
-    div.span9
-      .row-fluid
-        .span2
-          h4 &nbsp;项目列表
-        .span2.offset7
-          a.new-project-btn.btn(href='/projects/create') 创建项目
-      div.row-fluid.project-row
-       each project in projects
-            div.span4.unit
-              div.row-fluid.head
-                div.span3.head-img
-                  a(href='/projects/'+project._id)
-                   img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
-                div.span9.head-info
-                  div.row-fluid.title
-                    a(href='/projects/'+project._id, title=project.name)= project.name
-                  div.row-fluid
-                    span 由
-                      a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
-                    span 创建于
-                    span= moment(project.created_at).format('LL')
-              div.row-fluid.desc
-                !{project.description.substring(0, 140)}
-              div.row-fluid.inf
-                .span4
-                  i.icon-eye-open
-                  span 关注(#{project.followers.length})
-                .span4
-                  i.icon-comment
-                  span 评论(#{project.comments.length})
-    include ../layout/right-side
+  .content-wrap
+    div.row-fluid.project
+      div.span9
+        .row-fluid
+          .span2
+            h4 &nbsp;项目列表
+          .span2.offset7
+            a.new-project-btn.btn(href='/projects/create') 创建项目
+        div.row-fluid.project-row
+         each project in projects
+              div.span4.unit
+                div.row-fluid.head
+                  div.span3.head-img
+                    a(href='/projects/'+project._id)
+                     img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
+                  div.span9.head-info
+                    div.row-fluid.title
+                      a(href='/projects/'+project._id, title=project.name)= project.name
+                    div.row-fluid
+                      span 由
+                        a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
+                      span 创建于
+                      span= moment(project.created_at).format('LL')
+                div.row-fluid.desc
+                  !{project.description.substring(0, 140)}
+                div.row-fluid.inf
+                  .span4
+                    i.icon-eye-open
+                    span 关注(#{project.followers.length})
+                  .span4
+                    i.icon-comment
+                    span 评论(#{project.comments.length})
+      include ../layout/right-side

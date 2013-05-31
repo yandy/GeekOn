@@ -1,17 +1,18 @@
 extends ../layout/layout
 block content
-  each article in articles
-    .discover-row
-        .row-fluid
-          .span10
-            a(href="/articles/#{article.id}")
-              span.title= article.title
-            p.summary= article.body
-          .span2
-            p= moment(article.created_at).format('LL')
-  div.row-fluid
-    .span6
-      if (pages > 1)
-        .pagination
-          ul
-            != createPagination(pages, page)
+  .content-wrap
+    each article in articles
+      .discover-row
+          .row-fluid
+            .span10
+              a(href="/articles/#{article.id}")
+                span.title= article.title
+              p.summary= article.body
+            .span2
+              p= moment(article.created_at).format('LL')
+    div.row-fluid
+      .span6
+        if (pages > 1)
+          .pagination
+            ul
+              != createPagination(pages, page)
