@@ -7,7 +7,8 @@ block content
         div.span2
           a(href="/users/#{profile.username}")
             img(src= profile.avatar_url, alt="用户图片").user-img
-          a(href="http://gravatar.com/", target="_blank") 在Gravatar修改头像
+          div.gravatar-btn
+            a(href="http://gravatar.com/", target="_blank") 去Gravatar修改头像
         div.span8
           .row-fluid.basic-info
             .basic-info-cap
@@ -66,10 +67,10 @@ block content
                         img(src= joined_project.project.provider.avatar_url)
                       td.info
                         a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                        span 由
-                        a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
-                        span 创建于
-                        span= moment(joined_project.project.created_at).format('LL')
+                        div.title-info
+                          a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
+                          span 创建于
+                          span= moment(joined_project.project.created_at).format('LL')
                         p.body= joined_project.project.summary
           .row-fluid.joined-projects
             div.joined-projects-cap

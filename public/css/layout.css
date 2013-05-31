@@ -33,6 +33,7 @@ body{
 	left: 0px;
 	right: 0px;
 	width: 100%;
+	z-index: 10;
 }
 .user-in{
 	margin-top: 6px;
@@ -62,10 +63,9 @@ body{
 .user-profile .dropdown-menu>li>a{
 	color:#eee;
 }
-/* Logo图片 */
-.nav img{
-	width:67px;
-	height: 40px;
+.user-profile img{
+	box-shadow: 1px 1px 1px 1px #444;
+	border-radius: 5px;
 }
 .nav li a h4{
 	text-shadow:3px 3px 4px #202;
@@ -208,11 +208,15 @@ body{
 	color:#666;
 	font-size: 15px;
 }
+.quote a{
+	color:#666;
+}
 .quote a:hover{
 	text-decoration: none;
+	color:#222;
 }
 .new-row .quote .title{
-	font-size: 20px;
+	font-size: 22px;
 	margin-bottom: 10px;
 	font-style: italic;
 }
@@ -445,10 +449,26 @@ body{
 	margin-left: 60px;
 }
 .user-show .user-img{
-	width: 110%;
+	width: 200px;
 	margin: 20px;
 	border-radius: 8px;
 	box-shadow: 2px 2px 2px 1px #676B58;
+}
+.user-show .gravatar-btn{
+	background-color: #ADCDD0;
+	border-radius: 5px;
+	padding: 8px;
+	position: relative;
+	left: 20px;
+	border:solid 1px #d0d0d0;
+}
+.gravatar-btn a{
+	color:#333;
+	text-shadow:0px 1px 1px #222;
+}
+.gravatar-btn a:hover{
+	text-decoration: none;
+	color:#000;
 }
 /* 极客主页 -> 基本资料 */
 .basic-info{
@@ -501,6 +521,9 @@ body{
 }
 .img-project{
 	width: 100px;
+}
+.joined-projects .title-info{
+	float: right;
 }
 .joined-projects .body{
 	height: 40px;
@@ -911,7 +934,6 @@ body{
 	background-color: black;
 }
 .footer-body{
-	border-bottom: solid 1px #f0f0f0;
 	padding: 20px;
 	width: 1000px;
 	margin: 0 auto;
