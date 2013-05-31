@@ -59,6 +59,9 @@ body{
 	padding: 10px;
 	border-bottom: solid 1px #066ab7;
 }
+.user-profile .dropdown-menu>li>a{
+	color:#eee;
+}
 /* Logo图片 */
 .nav img{
 	width:67px;
@@ -244,7 +247,7 @@ body{
 	-o-text-overflow: ellipsis;
 }
 .discover-row .summary{
-	width: 90%;
+	width: 100%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -326,7 +329,6 @@ body{
 	margin-bottom: 20px;
 }
 .project-row{
-	margin-left: 34px;
 	margin-bottom: 10px;
 }
 .new-project-btn{
@@ -346,17 +348,24 @@ body{
 /* 创意项目列表的每个单元格 */
 .unit{
 	width:30%;
-	border:solid 1px #D5D5D5;
-	box-shadow: 1px 1px 3px 1px #99a0ff;
+	border:solid 1px #DdDdDd;
 	margin-top: 10px;
 	padding: 5px;
 	background-color: #fafaff;
+	border-radius: 3px;
+}
+.unit:hover{
+	border:solid 1px #c0c0c0;
 }
 .span4.unit{
-	width:26%;
+	width:30%;
+	background-color: #fffbf5;
+}
+.head-info.span9{
+	background-color: #fffbf5;
 }
 .span4.unit:first-child{
-	margin-left: 21px;
+	margin-left: 19px;
 }
 .unit .head-img{
 	box-shadow: 1px 2px 4px 1px #676B58;
@@ -364,19 +373,27 @@ body{
 }
 .head-info .title{
 	margin-bottom: 5px;
-    white-space: nowrap;
-    white-space: nowrap;
     overflow: hidden;
+    height: 2.5em;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
 }
-.head-info :first-child{
-	margin: -5px 0px -5px 0px;
+.head-info .title a{
+	color: #444;
+	font-size: 110%;
+	text-shadow:1px 1px 1px #bbb;
+}
+.head-info .title a:hover{
+	color:#000;
+	text-decoration: none;
+}
+.head-info .title-info{
+	float: right;
 }
 .unit .desc{
 	border-top-style:solid;
 	border-top-width: 1px;
-	border-top-color: #9DD0EF;
+	border-top-color: #ffe2b8;
 	height: 180px;
 	overflow: hidden;
 	text-overflow:ellipsis;
@@ -384,7 +401,7 @@ body{
 .unit .inf{
 	border-top-style:solid;
 	border-top-width: 1px;
-	border-top-color: #9DD0EF;
+	border-top-color: #ffe2b8;
 }
 .unit .row-fluid.inf a{
 	text-decoration: none;
