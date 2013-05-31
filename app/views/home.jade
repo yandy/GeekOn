@@ -3,47 +3,63 @@ extends layout/layout
 block content
   div.home
     .home-top
-      div.row-fluid.home-cap
-        h3 加入极客栈&nbsp;&nbsp;发现项目
-          span&nbsp;OR
-          br
-          span.create
-            a(href='/projects/create') 创建项目
-      div.row-fluid.three-btn
-        .span4
-          a(href="/projects")
-            img(src="/img/project.png")
-            h3 发现项目
-        .span4
-          a(href="/geeks")
-            img(src="/img/team.png")
-            h3 寻找队友
-        .span4
-          a(href="/details#prize")
-            img(src="/img/prize.png")
-            h3 比赛颁奖
-    div.row-fluid.discover
-      h3 &nbsp;最新动态
-      each article in articles
-        .discover-row
-          a(href="/articles/#{article._id}")
-            .row-fluid
-                .span8
-                  span.title= article.title
-                  p.summary= article.body.substring(0, 140)
-                .span2
-                  p= moment(article.created_at).format('LL')
-    div.row-fluid.discover
-        h3 &nbsp;最新项目
-        each project in projects
+      div.home-top-wrap
+        div.row-fluid.home-cap
+          h3 加入极客栈&nbsp;&nbsp;发现项目&nbsp;或者
+            br
+            span.create
+              a(href='/projects/create') 创建项目
+        div.row-fluid.three-btn
+          .span4
+            a(href="/projects")
+              img(src="/img/project.png")
+              h3 发现项目
+          .span4
+            a(href="/geeks")
+              img(src="/img/team.png")
+              h3 寻找队友
+          .span4
+            a(href="/details#prize")
+              img(src="/img/prize.png")
+              h3 比赛颁奖
+        div.home-projects
+          each project in projects
+            .discover-row
+              a(href= "/projects/#{project._id}")
+                .row-fluid
+                  .span8
+                    span.title= project.name
+                    p.summary= project.summary
+                  .span2
+                    .row-fluid
+                      i.icon-user
+                      span= project.provider.name|| project.provider.username
+                    .row-fluid
+                      p= moment(project.created_at).format('LL')
+                  .span1.join-btn
+                    a(href='/projects/#{project.id}/join').join
+                      i.icon-plus
+                      span 加入
+    div.row-fluid.latest-news
+      div.home-bottom-wrap.row-fluid
+        .span6
+        .span6
+          h4 LATESTED NEWS
           .discover-row
-            a(href= "/projects/#{project._id}")
+              a(href="#")
+                .row-fluid
+                    .span8
+                      span.title= "mongodb 查询命令"
+                      p.summary= "根据条件查找数据并返回指定记录数查找排序根据条件查询只查询一条数据 返回表所属的库 "
+                    .span2
+                      p="2012-12-12"
+
+        each article in articles
+          .discover-row
+            a(href="/articles/#{article._id}")
               .row-fluid
-                .span8
-                  span.title= project.name
-                  p.summary= project.summary
-                .span1
-                  i.icon-user
-                  span= project.provider.name|| project.provider.username
-                .span2
-                  p= moment(project.created_at).format('LL')
+                  .span8
+                    span.title= article.title
+                    p.summary= article.body.substring(0, 140)
+                  .span2
+                    p= moment(article.created_at).format('LL')
