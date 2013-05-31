@@ -1,51 +1,41 @@
 block header
-  div.nav.border-nav
-    div.row-fluid
-      div.span2
-        a(href="/")
-          img(src="/img/logo.png", alt="GeekOn")
-      div.span7#nav
-        ul.nav.nav-pills
-          li
-            a(href="/") 首页
-          li
-            a(href="/articles") 最新动态
-          li
-            a(href="/details") 活动详情
-          li
-            a(href="/projects") 创意项目
-          li
-            a(href="/geeks") Geek
-          li
-            a(href="#") 赞助合作
-      br
-      div.span3.logout-in
-        .span8
+    div.navbar
+        .container
+            ul.nav
+              li
+                a(href="/")
+                  img(src="/img/logo.png", alt="")
+              li.current
+                a(href="/articles") 最新动态
+              li
+                a(href="/details") 活动详情
+              li
+                a(href="/projects") 创意项目
+              li
+                a(href="/geeks") Geek
+              li
+                a(href="#") 赞助合作
+        div.user-profile
           if locals.user && locals.user.username
-            span
+            .user-in
               img(src='#{locals.user.avatar_url}',height=30,width=30)
-            &nbsp;&nbsp;&nbsp;
-            span.dropdown.nav-btn
-              a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}").btn #{locals.user.uname}&nbsp;&nbsp
-                span.caret.nav-btn
-              ul.dropdown-menu
-                li
-                  a(href="/users/#{locals.user.username}")
-                    i.icon-user
-                    span &nbsp;&nbsp;个人主页
-                li
-                  a(href="/users/#{locals.user.username}/edit")
-                    i.icon-edit
-                    span &nbsp;&nbsp;个人设置
-                li
-                  a(href="/logout")
-                    i.icon-chevron-left
-                    span &nbsp;&nbsp;登出
+              span.dropdown
+                  a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}") #{locals.user.uname}&nbsp;&nbsp
+                    span.icon-chevron-down.icon-white
+                  ul.dropdown-menu
+                    li
+                      a(href="/users/#{locals.user.username}")
+                        i.icon-user.icon-white
+                        span &nbsp;&nbsp;个人主页
+                    li
+                      a(href="/users/#{locals.user.username}/edit")
+                        i.icon-edit.icon-white
+                        span &nbsp;&nbsp;个人设置
+                    li
+                      a(href="/logout")
+                        i.icon-chevron-left.icon-white
+                        span &nbsp;&nbsp;登出
           else
-            span.nav-btn
-              a(href="/signup").btn 注册
-              &nbsp;&nbsp;&nbsp;
-              a(href="/login").btn 登录
-              &nbsp;&nbsp;&nbsp;
-        .span4
-          wb:follow-button(uid="3240119923", type="red_1")#follow
+                a(href="/signup") 注册
+                a(href="/login") 登录
+                wb:follow-button(uid="3240119923", type="red_1")#follow-button

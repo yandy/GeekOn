@@ -1,71 +1,113 @@
 body{
-	padding:0px 30px 10px 30px;
-	background-color: #f3f3f3;
-	margin-left: 65px;
-	margin-right: 65px;
-	min-width: 1200px;
-	max-width: 1200px;
-	font-family: "Helvetica Neue", Helvetica, Arial, 'microsoft yahei', sans-serif;
+	font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
+	font-size: 13px;
+	color:#222;
+	line-height: 17px;
+	min-width: 960px;
+	background:url(../img/background.png) no-repeat;
+	background-size: 100%;
 }
-.border{
-	border:solid 1px black;
+.wrap{
+	width: 960px;
+	margin: auto;
 }
-.border-nav{
-	border-color: #216BAC;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px 1px #004B8D;
-	background-color: white;
+.content{
+	padding-top: 30px;
 }
-.border-nav .span6{
-	margin-left: -2.5%;
+.content-wrap{
 }
 .nav{
 	padding: 8px 5px 0px 5px;
-	margin-top: -10px;
-	background-color: #4d79ff;
-
+	width: 100%;
+}
+.nav-wrap{
+	width: 960px;
+	margin: 0 auto;
+}
+.navbar .container{
+	width: 940px;
+	margin: auto;
+}
+.navbar{
+	background-color: #0d7dcb;
+	background-image: url(../img/blue-nav.png);
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+}
+.user-in{
+	margin-top: 6px;
+}
+.user-profile .user-in a{
+	color:#eee;
+	text-shadow:0 1px 1px rgba(0,0,0,.5);
+	font-weight: 400;
+}
+.user-profile .user-in a:hover,a:focus{
+	color: #fff;
+	text-decoration: none;
+}
+.user-profile ul{
+	background-color: #0672C2;
+	border-radius: 3px;
+	top:20px;
+}
+.user-profile li{
+	line-height: 45px;
+}
+.user-profile li a{
+	background-color: #0672C2;
+	padding: 10px;
+	border-bottom: solid 1px #066ab7;
 }
 /* Logo图片 */
-.border-nav .span2 img{
-	width:150px;
-	height: 70px;
+.nav img{
+	width:67px;
+	height: 40px;
 }
-.border-nav .span2 {
-	margin-top: 5px;
+.navbar .nav>li:first-child a{
+	padding: 0px;
 }
-/* 导航栏中间六个按钮 */
-.border-navbar{
-	border-color: #86ACCD;
-	border-left-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
-	box-shadow: 4px 0px 1px 2px #93C3FD;
+.navbar .nav{
+	margin: 0px;
+	padding: 0px;
 }
-#nav{
-	border-bottom-style: solid;
-	border-bottom-width: 2px;
-	color:#000fe6;
-	margin-bottom: 20px;
-}
-#nav a{
-	color:white;
-	font-size: 100%;
+.navbar .nav li{
+	text-align: center;
+	width: 100px;
 	font-weight: 700;
 }
-#nav a:hover{
-	background-color: #4d79ff;
-	color:#ccc;
+.navbar .nav .current{
+	background: url(../img/li-current.png) no-repeat;
+	background-size: 100px;
 }
-#nav li{
-	width:16%;
-	text-align: center;
+.navbar .nav li a{
+	color:#eee;
+	text-shadow:0 1px 1px rgba(0,0,0,.5);
+	padding: 13px 15px 13px;
 }
-#nav ul{
-	margin:0px 0px 0px 0px;
+.navbar .nav li a:hover{
+	color: #fff;
 }
-/* 导航栏右侧登录/注册/微博按钮/用户*/
+.user-profile{
+	position: absolute;
+	right: 200px;
+	top: 0px;
+}
+.user-profile a{
+	color:#eee;
+	text-shadow:0px 1px 1px rgba(0,0,0,.5);
+	padding: 15px 15px 13px;
+	font-weight: 700;
+	position: relative;
+	top: 3px;
+}
+#follow-button{
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
 .logout-in{
 	padding-left: 20px;
 }
@@ -85,24 +127,6 @@ body{
 .nav-btn .btn{
 	background-image: none;
 	background-color: #b3b8ff;
-}
-#name{
-	color:#041849;
-	text-decoration: none;
-}
-#name:hover{
-	color: #000000;
-	box-shadow: 1px 1px 1px 1px blue;
-}
-.logout-in span img{
-	border-radius: 4px;
-	box-shadow: 1px 1px 1px 1px;
-}
-.logout-in span ul li a{
-	text-align: left;
-}
-.logout-in span ul li a span{
-	color:black;
 }
 /* 首页 */
 .home-top{

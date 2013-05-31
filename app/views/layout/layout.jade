@@ -6,14 +6,16 @@ html(xmlns:wb="http://open.weibo.com/wb")
     link(rel="stylesheet", href="/css/bootstrap-responsive.min.css")
     link(rel="stylesheet", href="/css/layout.css")
   body
-    div.header
-      include header
-    div.content
-      include notice
-      block content
-    include footer
-    block scripts
-      script(type="text/javascript", src="/js/jquery-1.9.1.min.js")
-      script(type="text/javascript", src="/js/bootstrap.min.js")
-      script(type="text/javascript", src="/js/layout.js")
-      script(type="text/javascript", src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js")
+    div.wrap
+      div.header
+        include header
+      div.content
+        div.content-wrap
+          include notice
+          block content
+      include footer
+      block scripts
+        script(type="text/javascript", src="/js/jquery-1.9.1.min.js")
+        script(type="text/javascript", src="/js/bootstrap.min.js")
+        script(type="text/javascript", src="/js/layout.js")
+        script(type="text/javascript", src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js")
