@@ -1,7 +1,7 @@
 extends ../layout/layout
 
 block content
-  div.container
+  div.content-wrap
     form(method="post", action="/create_article")
       input(type="hidden", name='_csrf', value=token)
       div

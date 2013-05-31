@@ -1,27 +1,28 @@
 extends ../layout/layout
 
 block content
-  div.new-project.edit-project
-    .new-project-cap
-      p 编辑项目
-    form.form-horizontal(method="post", action="/projects/"+project._id, enctype="multipart/form-data")
-      input(type="hidden", name='_method', value='PUT')
-      input(type="hidden", name='_csrf', value=token)
-      div.row-fluid
-        div.span2
-          span 名称
-        div.span10
-          input(type="text", name="name",value= project.name)#project_name
-      div.row-fluid
-        .span2
-          span 概要
-        .span10
-          textarea(name="summary")#project_summary= project.summary
-      div.row-fluid
-        .span2
-          label 描述
-        .span10
-          textarea(name="description")#project_description= project.description
-      div.row-fluid.submit
-        .span2.offset2.submit-btn
-          input(type="submit", value="提交").btn.btn-primary
+  div.content-wrap
+    div.new-project.edit-project
+      .new-project-cap
+        p 编辑项目
+      form.form-horizontal(method="post", action="/projects/"+project._id, enctype="multipart/form-data")
+        input(type="hidden", name='_method', value='PUT')
+        input(type="hidden", name='_csrf', value=token)
+        div.row-fluid
+          div.span2
+            span 名称
+          div.span10
+            input(type="text", name="name",value= project.name)#project_name
+        div.row-fluid
+          .span2
+            span 概要
+          .span10
+            textarea(name="summary")#project_summary= project.summary
+        div.row-fluid
+          .span2
+            label 描述
+          .span10
+            textarea(name="description")#project_description= project.description
+        div.row-fluid.submit
+          .span2.offset2.submit-btn
+            input(type="submit", value="提交").btn.btn-primary
