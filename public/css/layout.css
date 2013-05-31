@@ -64,6 +64,11 @@ body{
 	width:67px;
 	height: 40px;
 }
+.nav li a h4{
+	text-shadow:3px 3px 4px #202;
+	font-size: 150%;
+	font-family: cursive;
+}
 .navbar .nav>li:first-child a{
 	padding: 0px;
 }
