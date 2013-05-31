@@ -7,8 +7,6 @@ body{
 	background:url(../img/background.png) no-repeat;
 	background-size: 100% 100%;
 }
-.wrap{
-}
 .content{
 	padding-top: 60px;
 }
@@ -123,6 +121,7 @@ body{
 	color: #3d9ae1;
 	margin-top: 13px;
 	margin-bottom: 30px;
+	font-weight: 400;
 }
 .home-cap a{
 	text-decoration: none;
@@ -715,13 +714,15 @@ body{
 	box-shadow: 1px 1px 3px 1px #D5D5D5;
 	background-color: white;
 	border-radius: 5px;
+	margin-bottom: 60px;
+	margin-top: 30px;
 }
 .registration-cap{
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	border-color:#D5D5D5;
-	width: 1000px;
 	margin-left: 40px;
+	width: 95%;
 }
 .registration-cap p{
 	font-size: 170%;
@@ -737,7 +738,7 @@ body{
 	width: 60%;
 }
 .registration-content input{
-	width: 310px;
+	width: 260px;
 }
 .registration-content button{
 	width: 200px;
@@ -752,7 +753,7 @@ body{
 	color:#EB3370;
 }
 .or{
-	margin-left: 695px;
+	margin-left: 570px;
 	margin-top: 10px;
 }
 /* 用户设置 */

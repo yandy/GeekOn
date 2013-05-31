@@ -1,38 +1,39 @@
 extends ../layout/layout
 
 block content
-  div.registration.login-content
-    div.registration-cap
-      p 登录
-    p.or or
-    div.registration-content
-      div.row-fluid
-        div.span8.login-content-left
-            form.login.form-horizontal(action="/login", method="post")
-              input(type="hidden", name='_csrf', value=token)
-              br
-              .control-group
-                label.control-label(for='Email') 邮箱
-                .controls
-                  input(type='text', name="username", placeholder='Email'))
-              .control-group
-                label.control-label(for='password') 密码
-                .controls
-                  input(type='password', name="password", placeholder='Password')
-                  span
-                .offset3
-                  button.btn.btn-primary(ttype='submit') 登录
-        div.span4.third-singup#login
-          div.row-fluid
-            div.info
-              p 您也可以通过如下方式:
-            div.third-singup-btn
-              a(href="/auth/github").btn
-                img(src="/img/github.png")
-                span &nbsp;&nbsp;&nbsp;Github
-              a(href="/auth/google").btn
-                img(src="/img/google.png")
-                span &nbsp;&nbsp;&nbsp;Google
-              a(href="#").btn
-                img(src="/img/weibo.png")
-                span &nbsp;&nbsp;&nbsp;Weibo
+  .content-wrap
+    div.registration.login-content
+      div.registration-cap
+        p 登录
+      p.or or
+      div.registration-content
+        div.row-fluid
+          div.span8.login-content-left
+              form.login.form-horizontal(action="/login", method="post")
+                input(type="hidden", name='_csrf', value=token)
+                br
+                .control-group
+                  label.control-label(for='Email') 邮箱
+                  .controls
+                    input(type='text', name="username", placeholder='Email'))
+                .control-group
+                  label.control-label(for='password') 密码
+                  .controls
+                    input(type='password', name="password", placeholder='Password')
+                    span
+                  .offset3
+                    button.btn.btn-primary(ttype='submit') 登录
+          div.span4.third-singup#login
+            div.row-fluid
+              div.info
+                p 您也可以通过如下方式:
+              div.third-singup-btn
+                a(href="/auth/github").btn
+                  img(src="/img/github.png")
+                  span &nbsp;&nbsp;&nbsp;Github
+                a(href="/auth/google").btn
+                  img(src="/img/google.png")
+                  span &nbsp;&nbsp;&nbsp;Google
+                a(href="#").btn
+                  img(src="/img/weibo.png")
+                  span &nbsp;&nbsp;&nbsp;Weibo
