@@ -5,7 +5,7 @@ body{
 	line-height: 17px;
 	min-width: 960px;
 	background:url(../img/background.png) no-repeat;
-	background-size: 100%;
+	background-size: 100% 100%;
 }
 .wrap{
 }
@@ -159,6 +159,53 @@ body{
 .home-projects{
 	margin-top: 50px;
 }
+.card{
+	margin:10px 0px 10px 0px;
+	border: solid 1px #dddddd;
+	width: 82%;
+	border-radius: 4px;
+	height: 150px;
+}
+.card .span2{
+	background-color: #f7f7f7;
+	height: 150px;
+	padding: 20px 0px 10px 20px;
+}
+.card .span2 p{
+	font-size: 16px;
+	direction: ltr;
+	width: 1.5em;
+	color:#3d9ae1;
+	text-shadow:0px 1px 1px #222;
+}
+.card .span10{
+	background-color: #fcfcfc;
+	padding: 20px 25px 0px 10px;
+}
+.card .span10 p{
+	line-height: 30px;
+}
+.quote:before{
+	content: '\201c';
+	position: relative;
+	left:-100px;
+	top: 60px;
+	font-size: 75px;
+	color:#ccc;
+	font-style: italic;
+}
+.new-row .quote{
+	color:#666;
+	font-size: 15px;
+}
+.quote a:hover{
+	text-decoration: none;
+}
+.new-row .quote .title{
+	font-size: 20px;
+	margin-bottom: 10px;
+	font-style: italic;
+}
 .discover h3{
 	background-image: url(/img/bar.png);
 	background-size: 100%;
@@ -197,7 +244,6 @@ body{
 	-o-text-overflow: ellipsis;
 }
 .discover-row:hover{
-	background-color: #f9f9ff;
 }
 .discover-row .span1.date p{
 	font-size:5px;
@@ -240,53 +286,20 @@ body{
 .details i{
 	margin-left: 10px;
 }
-.row-fluid.info{
+.details .span9 .row-fluid .row-fluid{
 	background-color: white;
-	border-radius: 4px;
-	margin-bottom: 20px;
-	padding: 6px 2px 6px 2px;
+	border-radius: 6px;
+	margin-bottom: 10px;
 }
-.row-fluid.info p{
-	text-align: left;
-	text-indent: 2em;
-}
-.row-fluid.about{
-	background-color: white;
-	border-radius: 4px;
-	padding: 6px 2px 6px 2px;
-	margin-bottom: 20px;
-}
-.row-fluid.about p{
-	text-align: left;
-	text-indent: 2em;
-}
-.row-fluid.background{
-	background-color: white;
-	border-radius: 4px;
-	padding: 6px 2px 6px 2px;
-	margin-bottom: 20px;
-}
-.row-fluid.background p{
-	text-align: left;
-	text-indent: 2em;
-}
-.row-fluid.step{
-	background-color: white;
-	border-radius: 4px;
-	padding: 6px 2px 6px 2px;
-	margin-bottom: 20px;
+.details .span9 .row-fluid .row-fluid p{
+	margin: 20px 10px 10px 10px;
+	line-height: 20px;
 }
 .row-fluid.step td{
 	text-align: center;
 }
 .row-fluid.step th{
 	text-align: center;
-}
-.row-fluid.prize{
-	background-color: white;
-	border-radius: 4px;
-	padding: 6px 2px 6px 2px;
-	margin-bottom: 20px;
 }
 .row-fluid.prize td{
 	width: 50%;
@@ -295,24 +308,6 @@ body{
 .row-fluid.prize .money{
 	width: 50%;
 	text-align: left;
-}
-.row-fluid.news{
-	height: 200px;
-	background-color: white;
-	border-radius: 8px;
-	text-align: center;
-}
-.row-fluid.sponsor{
-	height: 200px;
-	background-color: white;
-	border-radius: 8px;
-	text-align: center;
-}
-.row-fluid.contact{
-	height: 200px;
-	background-color: white;
-	border-radius: 8px;
-	text-align: center;
 }
 /* 创意项目列表 */
 .project-row{
@@ -873,12 +868,23 @@ body{
 	padding: 30px 0px 30px 0px;
 	background-color: black;
 }
+.footer-body{
+	border-bottom: solid 1px #f0f0f0;
+	padding: 20px;
+	width: 1000px;
+	margin: 0 auto;
+}
 .footer a{
-	color:#135086;
+	color:#fff;
 }
 .border-footer{
 	border-color: #216BAC;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 3px;
+}
+.right-side > .row-fluid{
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
 }

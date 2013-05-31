@@ -43,30 +43,30 @@ block content
     div.row-fluid.latest-news
       div.home-bottom-wrap.row-fluid
         .span6
+          h4 GEEK名片
+          div.row-fluid.card
+            .span2
+              p 极客
+            .span10
+              p 含有智力超群和努力的语意，又被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。
+          div.row-fluid.card
+            .span2
+              p 极客行动
+            .span10
+              p 为期两天（36小时不间断）的围绕移动互联网和创意生活主题的技术开发大赛。活动旨在提升极客的协作能力，促进极客的思想碰撞，鼓励颠覆性创新。
+          div.row-fluid.card
+            .span2
+              p 极客栈
+            .span10
+              p 极客栈是南京本土的一个非营利性社会组织，于2013年3月成立。他们都是技术爱好者，其中既有来自于高校的老师和学生、科技型企业的工程师、还有处在奋斗阶段的创业者。
         .span6
           h4 LATESTED NEWS
-          .discover-row
-              a(href="#")
-                .row-fluid
-                    .span8
-                      span.title= "mongodb 查询命令"
-                      p.summary= "根据条件查找数据并返回指定记录数查找排序根据条件查询只查询一条数据 返回表所属的库 "
-                    .span2
-                      p="2012-12-12"
-          .discover-row
-              a(href="#")
-                .row-fluid
-                    .span8
-                      span.title= "mongodb 查询命令"
-                      p.summary= "根据条件查找数据并返回指定记录数查找排序根据条件查询只查询一条数据 返回表所属的库 "
-                    .span2
-                      p="2012-12-12"
-        each article in articles
-          .discover-row
-            a(href="/articles/#{article._id}")
-              .row-fluid
-                  .span8
-                    span.title= article.title
-                    p.summary= article.body.substring(0, 140)
-                  .span2
-                    p= moment(article.created_at).format('LL')
+          each article in articles
+            .new-row
+                .quote
+                    .row-fluid
+                        a(href="/articles/#{article._id}")
+                          p.title= article.title
+                    .row-fluid
+                      p.summary= article.body.substring(0, 140)
+                      p= moment(article.created_at).format('LL')
