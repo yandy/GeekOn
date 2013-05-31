@@ -4,5 +4,5 @@ if (comment && comment.user)
       img(src=comment.user.avatar_url, alt="")
     td.uname
       a(href="/users/"+comment.user.username) #{comment.user.name || comment.user.username}
-    td.date 在#{moment(comment.created_at).format('LLL')}&nbsp;&nbsp;&nbsp;说
+    td.date 在#{moment(comment.created_at).fromNow()}&nbsp;&nbsp;&nbsp;说
     td.content !{comment.body_html}
