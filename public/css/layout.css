@@ -84,6 +84,10 @@ body{
 	width: 100px;
 	font-weight: 700;
 }
+.nav img{
+	height: 50px;
+	width: 100px;
+}
 .navbar .nav .current{
 	background: url(../img/li-current.png) no-repeat;
 	background-size: 100px;
