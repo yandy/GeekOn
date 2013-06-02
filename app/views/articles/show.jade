@@ -8,16 +8,16 @@ block content
         p !{article.body_html}
         br
         .comments
-          p.comments-cap 共 #{article.comments.length} 条回复
+          p.comments-cap 共 #{article.comments.length} 条评论
           table.table
             each comment in article.comments
               include ../comment/comments
           if article.comments.length == 0
             .prompt
-              p 尚无回复
+              p 尚无评论
         if locals.user
             include comment/add_comment
         else
-            p Only if you login, can you make a comment!
+            p.info 登录后即可发表评论!
       include ../layout/right-side
 

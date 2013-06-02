@@ -21,7 +21,7 @@ block content
           .span4
             a(href="/details#prize")
               img(src="/img/prize.png")
-              h3 比赛颁奖
+              h3 创造杰作
         div.home-projects
           each project in projects
             .discover-row
@@ -36,19 +36,16 @@ block content
                       span= project.provider.name|| project.provider.username
                     .row-fluid
                       p= moment(project.created_at).format('LL')
-                  .span1.join-btn
-                    a(href='/projects/#{project.id}/join').join
-                      i.icon-plus
-                      span 加入
+
     div.row-fluid.latest-news
       div.home-bottom-wrap.row-fluid
         .span6
-          h4 GEEK名片
+          h4 GEEK卡片
           div.row-fluid.card
             .span2
               p 极客
             .span10
-              p 含有智力超群和努力的语意，又被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。
+              p 美国俚语“Geek”的音译。随着互联网文化的兴起，这个词含有智力超群和努力的语意，又被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。
           div.row-fluid.card
             .span2
               p 极客行动
@@ -61,14 +58,6 @@ block content
               p 极客栈是南京本土的一个非营利性社会组织，于2013年3月成立。他们都是技术爱好者，其中既有来自于高校的老师和学生、科技型企业的工程师、还有处在奋斗阶段的创业者。
         .span6
           h4 LATESTED NEWS
-          .new-row
-                .quote
-                    .row-fluid
-                        a(href="http://www.baidu.com")
-                          p.title= "通过插件重新设计 WordPress 的登陆界面"
-                    .row-fluid
-                      p.summary= "你可能和我一样不止一次抱怨过WordPress登陆界面的样子，千篇一律，不可定制化，每个站点的都是一样“丑陋”的登录页面："
-                      p= "2013-12-21"
           each article in articles
             .new-row
                 .quote
