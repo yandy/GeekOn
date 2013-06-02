@@ -7,6 +7,9 @@ body{
 	background:url(../img/background.png) no-repeat;
 	background-size: 100% 100%;
 }
+.project-content > p{
+	line-height:30px;
+}
 .content{
 	padding-top: 60px;
 }
@@ -85,8 +88,8 @@ body{
 	font-weight: 700;
 }
 .nav img{
-	height: 50px;
-	width: 100px;
+	height: 45px;
+	width: 120px;
 }
 .navbar .nav .current{
 	background: url(../img/li-current.png) no-repeat;
@@ -403,6 +406,7 @@ body{
 	border-top-width: 1px;
 	border-top-color: #ffe2b8;
 	height: 180px;
+	line-height:20px;
 	overflow: hidden;
 	text-overflow:ellipsis;
 }
