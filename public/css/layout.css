@@ -3,7 +3,7 @@ body{
 	font-size: 13px;
 	color:#222;
 	line-height: 17px;
-	min-width: 1300px;
+	min-width: 960px;
 	background:url(../img/background.png) no-repeat;
 	background-size: 100% 100%;
 }
