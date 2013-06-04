@@ -1,0 +1,19 @@
+/* Color */
+$gblueDarkest:                          hsl(194, 65%, 5%);
+$gblueDarker:                           hsl(194, 65%, 13%);
+$gblueDark:                             hsl(194, 65%, 28%);
+$gblue:                                 hsl(194, 65%, 48%);
+$gblueLight:                            hsl(194, 65%, 68%);
+$gblueLighter:                          hsl(194, 65%, 83%);
+$gblueLightest:                         hsl(194, 65%, 95%);
+
+/* Link */
+$linkColor:                             $gblue;
+$linkColorHover:                        darken($linkColor, 5%);
+
+/* Dropdown */
+$dropdownLinkBackgroundHover:           $gblue;
+
+/* Navbar */
+$navbarBackground:                      $gblueLighter !default;
+$navbarBackgroundHighlight:             darken($navbarBackground, 15%);
