@@ -1,11 +1,11 @@
 doctype 5
 html(xmlns:wb="http://open.weibo.com/wb")
   head
-    title= title
+    title= title || '极客行动'
     link(rel="stylesheet", href="/css/bootstrap.min.css")
     link(rel="stylesheet", href="/css/bootstrap-responsive.min.css")
     link(rel="stylesheet", href="/css/geekon.min.css")
-    link(rel="stylesheet", href="/css/layout.css")
+    //- link(rel="stylesheet", href="/css/layout.css")
   body
     div.wrap
       div.header
@@ -15,8 +15,8 @@ html(xmlns:wb="http://open.weibo.com/wb")
           include notice
           block content
       include footer
+      script(type="text/javascript", src="/js/jquery-1.9.1.min.js")
+      script(type="text/javascript", src="/js/bootstrap.min.js")
+      script(type="text/javascript", src="/js/layout.js")
+      script(type="text/javascript", src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js")
       block scripts
-        script(type="text/javascript", src="/js/jquery-1.9.1.min.js")
-        script(type="text/javascript", src="/js/bootstrap.min.js")
-        script(type="text/javascript", src="/js/layout.js")
-        script(type="text/javascript", src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js")

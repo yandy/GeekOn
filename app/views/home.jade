@@ -1,69 +1,75 @@
 extends layout/layout
 
 block content
-  div.home
-    .home-top
-      div.home-top-wrap
-        div.row-fluid.home-cap
-          h3 加入极客栈&nbsp;&nbsp;发现项目&nbsp;或者
-            br
-            span.create
-              a(href='/projects/create') 创建项目
-        div.row-fluid.three-btn
-          .span4
-            a(href="/projects")
-              img(src="/img/project.png")
-              h3 发现项目
-          .span4
-            a(href="/geeks")
-              img(src="/img/team.png")
-              h3 寻找队友
-          .span4
-            a(href="/details#prize")
-              img(src="/img/prize.png")
-              h3 创造杰作
-        div.home-projects
-          each project in projects
-            .discover-row
-              a(href= "/projects/#{project._id}")
-                .row-fluid
-                  .span10
-                    p.title= project.name
-                    p.summary= project.summary
-                  .span2
-                    .row-fluid
-                      i.icon-user
-                      span= project.provider.name|| project.provider.username
-                    .row-fluid
-                      p= moment(project.created_at).format('LL')
+  .page-title
+    .container
+      .row
+        #intro.span8
+          #geekon.row.intro
+            .span1.intro-badge
+              span.flat-btn.flat-btn-intro 极客行动
+            .span5
+              p
+                | 为期两天（36小时不间断）的围绕移动互联网和创意生活主题的技术开发大赛。
+                | 活动旨在提升极客的协作能力，促进极客的思想碰撞，鼓励颠覆性创新。
+          #geekstack.row.intro
+            .span1.intro-badge
+              span.flat-btn.flat-btn-intro 极客栈
+            .span5
+              p
+                | 极客栈是南京本土的一个非营利性社会组织，于2013年3月成立。
+                | 他们都是技术爱好者，其中既有来自于高校的老师和学生、科技型企业的工程师、还有处在奋斗阶段的创业者。
+        #workflow.span2
+          ul
+            li
+              a(href="/projects/create").flat-btn.flat-btn-go
+                i.icon-plus.icon-white
+                | &nbsp;创建项目
+            li
+              a(href="/geeks").flat-btn.flat-btn-go
+                .icon-globe.icon-white
+                | &nbsp;寻找队友
+            li
+              a(href="/projects").flat-btn.flat-btn-go
+                .icon-gift.icon-white
+                | &nbsp;寻找项目
+  .trends
+    .container
+      .row
+        .span8.projects
+          each pro in projects
+            article.clearfix
+              a(href="/users/#{pro.provider.username}", data-toggle="tooltip",
+                title="#{pro.provider.name || pro.provider.username}").pull-left
+                img(src="#{pro.provider.avatar_url}").avatar-middle
+              .pro-item
+                .pro-name
+                  a(href="/projects/#{pro._id}")= pro.name
+                .pro-meta
+                  .pro-datetime
+                    p
+                      i.icon-time.icon-white
+                      | &nbsp;
+                      = moment(pro.created_at).fromNow()
+                  .pro-summary
+                    p= pro.summary.substring(0, 120)
+                  .pro-part
+                    each part in pro.participants
+                      a(href="/users/#{part.user.username}", data-toggle="tooltip",
+                        title="#{part.user.name || part.user.username}")
+                        img(src="#{part.user.avatar_url}").avatar-small
+        .span4.news
+          .news-box
+            - var article = articles[0]
+            if article
+              .news-title
+                a(href="/articles/#{article._id}")
+                  h4= article.title
+              .news-body
+                p= article.body.substring(0, 90)
+              wb:follow-button(uid="3240119923", type="red_1").follow-button
 
-    div.row-fluid.latest-news
-      div.home-bottom-wrap.row-fluid
-        .span6
-          h4 GEEK卡片
-          div.row-fluid.card
-            .span2
-              p 极客
-            .span10
-              p 美国俚语“Geek”的音译。随着互联网文化的兴起，这个词含有智力超群和努力的语意，又被用于形容对计算机和网络技术有狂热兴趣并投入大量时间钻研的人。
-          div.row-fluid.card
-            .span2
-              p 极客行动
-            .span10
-              p 为期两天（36小时不间断）的围绕移动互联网和创意生活主题的技术开发大赛。活动旨在提升极客的协作能力，促进极客的思想碰撞，鼓励颠覆性创新。
-          div.row-fluid.card
-            .span2
-              p 极客栈
-            .span10
-              p 极客栈是南京本土的一个非营利性社会组织，于2013年3月成立。他们都是技术爱好者，其中既有来自于高校的老师和学生、科技型企业的工程师、还有处在奋斗阶段的创业者。
-        .span6
-          h4 LATESTED NEWS
-          each article in articles
-            .new-row
-                .quote
-                    .row-fluid
-                        a(href="/articles/#{article._id}")
-                          p.title= article.title
-                    .row-fluid
-                      p.summary= article.body.substring(0, 140)
-                      p= moment(article.created_at).format('LL')
+
+block scripts
+  script(type='text/javascript')
+    $(".trends .projects a").tooltip()

@@ -1,12 +1,10 @@
 block header
-    div.navbar
+    div.navbar.navbar-fixed-top.navbar-inverse.navbar-header
+      .navbar-inner
         .container
+          a.brand(href="/")
+            img(src="/img/logo.png", alt="GeekOn")
           ul.nav
-            li
-              a(href="/")
-                img(src="/img/logo.png", alt="GeekOn")
-            li
-              a(href="/") 首页
             li
               a(href="/details") 活动详情
             li
@@ -15,27 +13,33 @@ block header
               a(href="/geeks") Geek
             //- li
             //-   a(href="#") 赞助合作
-          div.user-profile
+          ul.nav.pull-right
             if locals.user && locals.user.username
-              .user-in
-                img(src='#{locals.user.avatar_url}',height=30,width=30)
-                span.dropdown
-                    a.dropdown-toggle(data-toggle="dropdown",href="/user/#{locals.user.username}") #{locals.user.uname}&nbsp;&nbsp
-                      span.icon-chevron-down.icon-white
-                    ul.dropdown-menu
-                      li
-                        a(href="/users/#{locals.user.username}")
-                          i.icon-user.icon-white
-                          span &nbsp;&nbsp;个人主页
-                      li
-                        a(href="/users/#{locals.user.username}/edit")
-                          i.icon-edit.icon-white
-                          span &nbsp;&nbsp;个人设置
-                      li
-                        a(href="/logout")
-                          i.icon-chevron-left.icon-white
-                          span &nbsp;&nbsp;登出
+              li
+                img(src='#{locals.user.avatar_url}').avatar-middle
+              li.dropdown
+                a.dropdown-toggle(data-toggle='dropdown', data-target='#', href="/user/#{locals.user.username}")
+                  | #{locals.user.username}
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/projects/create')
+                      i.icon-plus
+                      | 创建项目
+                  li
+                    a(href="/users/#{locals.user.username}")
+                      i.icon-user
+                      | 个人主页
+                  li
+                    a(href="/users/#{locals.user.username}/edit")
+                      i.icon-wrench
+                      | 个人设置
+                  li
+                    a(href="/logout")
+                      i.icon-chevron-left
+                      | 登出
             else
-                  a(href="/signup") 注册
-                  a(href="/login") 登录
-                  wb:follow-button(uid="3240119923", type="red_1")#follow-button
+              li
+                a(href="/signup") 注册
+              li
+                a(href="/login") 登录
