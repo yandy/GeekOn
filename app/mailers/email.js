@@ -17,7 +17,7 @@ exports.send_email = function (user, next) {
     var message = {
 
         // sender info
-        from: 'Hemslo Wang <di.wang@geekstack.org>',
+        from: 'GeekOn <geekon@geekstack.org>',
 
         // Comma separated list of recipients
         to: user.username + ' <' + user.email + '>',
@@ -30,7 +30,7 @@ exports.send_email = function (user, next) {
         '<p>您好！您已经在极客行动官网注册成功。<br />' +
         '现在您可以对项目留言，还可以报名参加感兴趣的项目了。<br />' +
         '我们期待您的参与！</p><p>极客行动组委会<br />' +
-        '联系邮箱：di.wang@geekstack.org <br />' +
+        '联系邮箱：geekon@geekstack.org <br />' +
         '<a href="http://geekon.geekstack.org">极客行动官方网站</a><br /></p>'
 
     };
@@ -65,7 +65,7 @@ exports.send_password_reset_token = function (user, next) {
     var message = {
 
         // sender info
-        from: 'Hemslo Wang <di.wang@geekstack.org>',
+        from: 'GeekOn <geekon@geekstack.org>',
 
         // Comma separated list of recipients
         to: user.username + ' <' + user.email + '>',
@@ -76,9 +76,9 @@ exports.send_password_reset_token = function (user, next) {
         // An array of alternatives
         html: '<p>' + user.username + ',</p>' +
         '<p> 您好！这是修改密码的链接：' +
-        'http://localhost:3000/send_forgot_email/callback?token=' + user.password_reset_token.toString() +
+        'https://geekon.geekstack.org/send_forgot_email/callback?token=' + user.password_reset_token.toString() +
         '如果链接无法直接点击，请复制链接到您的浏览器地址栏打开。</p>' +
-        '<p>极客行动组委会<br /> 联系邮箱：di.wang@geekstack.org <br />' +
+        '<p>极客行动组委会<br /> 联系邮箱：geekon@geekstack.org <br />' +
         '<a href="http://geekon.geekstack.org">极客行动官方网站</a><br /></p>'
     };
 
