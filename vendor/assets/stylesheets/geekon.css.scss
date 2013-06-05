@@ -186,6 +186,22 @@ body {
   }
 }
 
+.details {
+  h3 {
+    border-top: 1px solid $gblueLight;
+    margin: 30px 0 20px;
+    color: $gblue;
+  }
+  .table {
+    th {
+      color: $gblue;
+    }
+  }
+  .table-bold {
+    font-weight: bold;
+  }
+}
+
 .block-light-gblue {
   background-color: $gblueLightest;
 }
@@ -262,5 +278,11 @@ body {
   border: 1px solid $white;
 }
 
-.big-title {
+.table-hover {
+  tbody {
+    tr:hover td,
+    tr:hover th {
+      background-color: $gblueLightest;
+  }
+  }
 }
