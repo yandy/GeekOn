@@ -138,6 +138,18 @@ body {
   margin-bottom: 25px;
 }
 
+.user-index {
+  margin-top: 25px;
+  margin-bottom: 25px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid $white;
+    @include border-radius(4px);
+  }
+}
+
 .unit {
   border: solid 1px $gblueLightest;
   background-color: $gblueLightest;

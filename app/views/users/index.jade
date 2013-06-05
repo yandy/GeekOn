@@ -3,17 +3,18 @@ extends ../layout/layout
 block main
   h1 Users
 block content
-  .content-wrap
-    div.users
-      div.row-fluid.users-list
-        each user in users
-            div.user-unit
+  .container
+    .row.user-index
+      .span12
+        .row
+          each user in users
+            .span2
               a(href="/users/#{user.username}")
                 img(src="#{user.avatar_url}", alt="用户图片")
               a(href="/users/#{user.username}")
                 p= user.name || user.username
 
-      div.row-fluid
+      div.row
         div.offset4
           if (pages > 1)
             .pagination
