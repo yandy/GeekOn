@@ -64,6 +64,7 @@ body {
     padding: 5px 5px 15px 10px;
     border-top: 1px solid $gblueLight;
     position: relative;
+    width: 600px;
   }
 
   .pro-item {
@@ -81,7 +82,7 @@ body {
 
     .pro-summary {
       color: lighten($black, 20%);
-      width: 600px;
+      width: 550px;
     }
 
     .pro-datetime {
@@ -107,7 +108,7 @@ body {
 
   .news-box {
     background-color: $gblueLighter;
-    margin: auto;
+    margin-left: 20px;
     padding: 15px 10px 15px 10px;
     width: 180px;
     color: $gblueDarker;
@@ -117,6 +118,19 @@ body {
     .news-body {
       margin-left: 10px;
       margin-right: 10px;
+    }
+  }
+}
+
+.corp {
+  padding: 20px 10px 30px 10px;
+  .corp-title {
+    padding-left: 30px;
+    color: lighten($black, 15%);
+  }
+  .ent-list {
+    a {
+      margin-right: 15px;
     }
   }
 }
