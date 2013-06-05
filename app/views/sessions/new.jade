@@ -1,36 +1,23 @@
 extends ../layout/layout
 
 block content
-  .content-wrap
-    div.registration.login-content
-      div.registration-cap
-        p 登录
-      p.or or
-      div.registration-content
-        div.row-fluid
-          div.span8.login-content-left
-              form.login.form-horizontal(action="/login", method="post")
-                input(type="hidden", name='_csrf', value=token)
-                br
-                .control-group
-                  label.control-label(for='Email') 邮箱
-                  .controls
-                    input(type='text', name="username", placeholder='Email'))
-                .control-group
-                  label.control-label(for='password') 密码
-                  .controls
-                    input(type='password', name="password", placeholder='Password')
-                    span
-                  .offset3
-                    button.btn.btn-primary(ttype='submit') 登录
-          div.span4.third-singup#login
-            div.row-fluid
-              div.info
-                p 您也可以通过如下方式:
-              div.third-singup-btn
-                a(href="/auth/github").btn
-                  img(src="/img/github.png")
-                  span &nbsp;&nbsp;&nbsp;Github
-                a(href="/auth/google").btn
-                  img(src="/img/google.png")
-                  span &nbsp;&nbsp;&nbsp;Google
+  .container.session-body
+    div.min-inner
+      h3 登录
+      form.session-form(action="/login", method="post")
+        div.session-aside
+          | 如果您有下列网站帐号，可使用这些帐号
+          a(href="/login") 直接登录
+          |，无需注册
+          .oauth-list
+            a(href="/auth/github")
+              img(src="/img/auth-github-big.png")
+              | GitHub
+            a(href="/auth/google")
+              img(src="/img/auth-google-big.png")
+              | Google
+        input(type="hidden", name='_csrf', value=token)
+        fieldset
+          input.input-xlarge(type='text', name="username", placeholder='Email或用户名')
+          input.input-xlarge(type='password', name="password", placeholder='密码')
+          button.btn.btn-primary(type='submit') 登录

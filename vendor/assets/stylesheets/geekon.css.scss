@@ -18,7 +18,7 @@ body {
   .nav > li > a {
     color: $white;
     &:hover {
-      background-color: lighten($black, 25%);
+      background-color: $grayDark;
     }
   }
 
@@ -37,8 +37,19 @@ body {
 
 }
 
+.footer {
+  background-color: $black;
+  color: $white;
+  li{
+    list-style: none;
+  }
+
+  a {
+    color: $gblueLighter;
+  }
+}
+
 .page-title {
-  background-color: $gblue;
   padding: 25px 0 15px 0;
   color: $gblueLightest;
 
@@ -57,7 +68,6 @@ body {
 }
 
 .trends {
-  background-color: $gblueLightest;
   padding: 20px 10px 30px 10px;
 
   article {
@@ -81,7 +91,7 @@ body {
     }
 
     .pro-summary {
-      color: lighten($black, 20%);
+      color: $grayDark;
       width: 550px;
     }
 
@@ -124,27 +134,64 @@ body {
 
 .corp {
   padding: 20px 10px 30px 10px;
-  .corp-title {
-    padding-left: 30px;
-    color: lighten($black, 15%);
-  }
   .ent-list {
     a {
       margin-right: 15px;
     }
+    img {
+      height: 35px;
+    }
   }
 }
 
-.footer {
-  background-color: $black;
-  color: $white;
-  li{
-    list-style: none;
-  }
+.session-body {
+  padding-top: 60px;
+}
 
-  a {
-    color: $gblueLighter;
+.min-inner {
+  margin: auto;
+  width: 720px;
+  h3 {
+    margin: 0 0 20px;
+    color: $gblue;
   }
+}
+
+.session-form {
+  position: relative;
+  width: 320px;
+  line-height: 1.6;
+}
+
+.session-aside {
+  position: absolute;
+  right: -330px;
+  width: 252px;
+  color: $gray;
+}
+
+.oauth-list {
+  a {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid $grayLight;
+    padding: 15px;
+    line-height: 1;
+    color: $grayDark !important;
+    text-decoration: none;
+    @include border-radius(2px);
+    &:hover {
+      border: 1px solid $gblue;
+    }
+  }
+}
+
+.block-light-gblue {
+  background-color: $gblueLightest;
+}
+
+.block-dark-gblue {
+  background-color: $gblue;
 }
 
 .flat-btn {
@@ -178,6 +225,17 @@ body {
   }
 }
 
+.flat-btn-primary {
+  line-height: 40px;
+  color: $gblueLightest;
+  background-color: $gblue;
+  &:hover {
+    color: $gblueLightest;
+    background-color: $gblueDark;
+    text-decoration: none;
+  }
+}
+
 .btn-primary {
   @include button-background($gblue, $gblue);
 }
@@ -202,4 +260,7 @@ body {
   width: 33px;
   height: 33px;
   border: 1px solid $white;
+}
+
+.big-title {
 }
