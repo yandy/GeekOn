@@ -1,32 +1,27 @@
 extends ../layout/layout
 block content
-  .content-wrap
-    div.row-fluid.project
-      div.span9
-        .row-fluid
-          .span2
-          .span2.offset7
-            a.new-project-btn.btn(href='/projects/create') 创建项目
-        div.row-fluid.project-row
+  .container
+    div.row.project-index
+      div.span12
+        div.row
          each project in projects
-              div.span4.unit
-                div.row-fluid.head
-                  div.span3.head-img
-                    a(href='/projects/'+project._id)
-                     img(href='/users/project.provider._id',src='#{project.provider.avatar_url}')
-                  div.span9.head-info
-                    div.row-fluid.title
-                      a(href='/projects/'+project._id, title=project.name)= project.name
-                    div.row-fluid.title-info
-                        span
-                          .icon-user.icon-black
-                          a(href="/users/"+project.provider.username)= project.provider.name || project.provider.username
-                div.row-fluid.desc
-                  !{project.description.substring(0, 140)}
-                div.row-fluid.inf
-                  .span6
-                    i.icon-eye-open
-                    span 关注(#{project.followers.length})
-                  .span6
-                    i.icon-comment
-                    span 评论(#{project.comments.length})
+          div.span3.unit
+            div.head
+              a(href='/users/#{project.provider.username}', data-toggle="tooltip",
+                title="#{project.provider.name || project.provider.username}").pull-left
+                img(src='#{project.provider.avatar_url}').avatar-middle
+              div.head-info
+                a(href='/projects/#{project._id}', title=project.name).unit-title= project.name
+              div.clearfix
+            div.desc
+              !{project.description.substring(0, 140)}
+            div.info
+              i.icon-eye-open
+              span 关注(#{project.followers.length})
+              i.icon-comment
+              span 评论(#{project.comments.length})
+
+
+block scripts
+  script(type='text/javascript')
+    $(".unit a").tooltip()

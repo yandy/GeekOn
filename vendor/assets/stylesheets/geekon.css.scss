@@ -69,7 +69,27 @@ body {
 
 .trends {
   padding: 20px 10px 30px 10px;
+}
 
+.news {
+  padding-top: 35px;
+  .news-box {
+    background-color: $gblueLighter;
+    margin-left: 20px;
+    padding: 15px 10px 15px 10px;
+    width: 180px;
+    color: $gblueDarker;
+    .news-title {
+      text-align: center;
+    }
+    .news-body {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.projects {
   article {
     padding: 5px 5px 15px 10px;
     border-top: 1px solid $gblueLight;
@@ -111,24 +131,51 @@ body {
       float: left;
     }
   }
+}
 
-  .news {
-    padding-top: 35px;
+.project-index {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.unit {
+  border: solid 1px $gblueLightest;
+  background-color: $gblueLightest;
+  @include border-radius(4px);
+  margin-top: 10px;
+  padding: 0 0 5px 0;
+
+  .unit-title {
+    font-size: 16px;
+    font-weight: bold;
   }
 
-  .news-box {
-    background-color: $gblueLighter;
-    margin-left: 20px;
-    padding: 15px 10px 15px 10px;
-    width: 180px;
-    color: $gblueDarker;
-    .news-title {
-      text-align: center;
+  .head {
+    height: 60px;
+    padding: 5px;
+    background-color: $gblue;
+
+    a {
+      color: $gblueLightest;
     }
-    .news-body {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+  }
+
+  .head-info {
+    margin-left: 50px;
+  }
+
+  .desc {
+    height: 180px;
+    padding: 5px;
+    background-color: $white;
+  }
+
+  .info {
+    margin-top: 15px;
+  }
+
+  &:hover {
+    border:solid 1px $gblue;
   }
 }
 

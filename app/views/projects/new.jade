@@ -1,27 +1,26 @@
 extends ../layout/layout
 
 block content
-  .content-wrap
-    div.new-project
-      .new-project-cap
-        p.nav-btn 新建项目
+  .container.session-body
+    div.min-inner
+      h3 新建项目
       form(method="post", action="/projects/create")
         input(type="hidden", name='_csrf', value=token)
-        div.row-fluid
-          div.span2
-            span 项目名
-          div.span10
+        div.row
+          .span2
+            span.input-xlarge 项目名
+          .span10
             input(type="text", name="name")#project_name
-        div.row-fluid
+        div.row
           .span2
             span 概要
           .span10
-            input(type="text", name="summary", placeholder="一句话描述")#project_summary
-        div.row-fluid
+            input.input-xlarge(type="text", name="summary", placeholder="一句话描述")#project_summary
+        div.row
           .span2
             label 描述
           .span10
-            textarea(name="description")#project_description
-        div.row-fluid
-          .span2.offset2.submit-btn
+            textarea.input-xlarge(name="description")#project_description
+        div.row
+          .span2
             input(type="submit", value="创建").btn.btn-primary

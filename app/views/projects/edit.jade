@@ -1,28 +1,27 @@
 extends ../layout/layout
 
 block content
-  div.content-wrap
-    div.new-project.edit-project
-      .new-project-cap
-        p 编辑项目
-      form.form-horizontal(method="post", action="/projects/"+project._id, enctype="multipart/form-data")
+  .container.session-body
+    div.min-inner
+      h3 编辑项目
+      form(method="post", action="/projects/"+project._id, enctype="multipart/form-data")
         input(type="hidden", name='_method', value='PUT')
         input(type="hidden", name='_csrf', value=token)
-        div.row-fluid
+        div.row
           div.span2
             span 名称
           div.span10
-            input(type="text", name="name",value= project.name)#project_name
-        div.row-fluid
+            input.input-xlarge(type="text", name="name", value=project.name)#project_name
+        div.row
           .span2
             span 概要
           .span10
-            textarea(name="summary")#project_summary= project.summary
-        div.row-fluid
+            input.input-xlarge(type="text", name="summary", value=project.summary)#project_summary
+        div.row
           .span2
             label 描述
           .span10
-            textarea(name="description")#project_description= project.description
-        div.row-fluid.submit
-          .span2.offset2.submit-btn
+            textarea.input-xlarge(name="description")#project_description= project.description
+        div.row.submit
+          .span2
             input(type="submit", value="提交").btn.btn-primary
