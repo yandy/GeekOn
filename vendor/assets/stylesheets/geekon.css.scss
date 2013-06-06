@@ -6,8 +6,8 @@ body {
   padding-bottom: 40px;
 }
 
-.bg-gblue {
-  background-color: $gblueLightest;
+.content {
+  min-height:600px;
 }
 
 .navbar-header {
@@ -140,17 +140,24 @@ body {
 .project-index {
   margin-top: 25px;
   margin-bottom: 25px;
+  min-height: 600px;
 }
 
 .user-index {
   margin-top: 25px;
   margin-bottom: 25px;
+  min-height: 600px;
 
   img {
     width: 100px;
     height: 100px;
     border: 2px solid $white;
     @include border-radius(4px);
+  }
+
+  h5 {
+    width: 104px;
+    text-align:center;
   }
 }
 
@@ -297,6 +304,10 @@ body {
 
 .block-dark-gblue {
   background-color: $gblue;
+}
+
+.bg-gblue {
+  background-color: $gblueLightest;
 }
 
 .flat-btn {

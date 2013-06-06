@@ -184,7 +184,6 @@ exports.index = function(req, res){
     User.count(
                function (err, count) {
                 res.render('users/index', {
-                  title: 'Geek',
                   users: users,
                   page: page,
                   pages: count / perPage
