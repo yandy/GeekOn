@@ -3,4 +3,4 @@ if(follower && follower.user)
     td.username
       a(href="/users/"+follower.user.username) #{follower.user.name || follower.user.username}
     td
-      p 于 #{moment(follower.created_at).format('LLL')}
+      p 于 #{moment(follower.created_at).format('LL')}

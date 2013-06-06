@@ -261,6 +261,28 @@ body {
   }
 }
 
+.pro-title {
+  margin-bottom: 15px;
+}
+
+.pro-meta {
+
+  margin-top: 15px;
+
+  .meta-block {
+    position: relative;
+  }
+
+  .pro-actions {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    a {
+      margin-right: 5px;
+    }
+  }
+}
+
 .block-light-gblue {
   background-color: $gblueLightest;
 }

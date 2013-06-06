@@ -1,8 +1,8 @@
 if (comment && comment.user)
   tr
     td.img
-      img(src=comment.user.avatar_url, alt="")
-    td.uname
-      a(href="/users/"+comment.user.username) #{comment.user.name || comment.user.username}
+      a(href="/users/#{comment.user.username}", data-toggle="tooltip",
+          title="#{project.provider.name || project.provider.username}")
+       img(src=comment.user.avatar_url, alt="").avatar-small
     td.date 在#{moment(comment.created_at).fromNow()}&nbsp;&nbsp;&nbsp;说
     td.content !{comment.body_html}
