@@ -6,6 +6,10 @@ body {
   padding-bottom: 40px;
 }
 
+.bg-gblue {
+  background-color: $gblueLightest;
+}
+
 .navbar-header {
 
   height: 45px;
@@ -152,7 +156,8 @@ body {
 
 .unit {
   border: solid 1px $gblueLightest;
-  background-color: $gblueLightest;
+  background-color: $gblueLighter;
+  color: $gblueDark;
   @include border-radius(4px);
   margin-top: 10px;
   padding: 0 0 5px 0;
@@ -183,7 +188,10 @@ body {
   }
 
   .info {
-    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    text-align: right;
   }
 
   &:hover {

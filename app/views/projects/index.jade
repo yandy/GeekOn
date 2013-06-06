@@ -1,25 +1,27 @@
 extends ../layout/layout
 block content
-  .container
-    div.row.project-index
-      div.span12
-        div.row
-         each project in projects
-          div.span3.unit
-            div.head
-              a(href='/users/#{project.provider.username}', data-toggle="tooltip",
-                title="#{project.provider.name || project.provider.username}").pull-left
-                img(src='#{project.provider.avatar_url}').avatar-middle
-              div.head-info
-                a(href='/projects/#{project._id}', title=project.name).unit-title= project.name
-              div.clearfix
-            div.desc
-              !{project.description.substring(0, 140)}
-            div.info
-              i.icon-eye-open
-              span 关注(#{project.followers.length})
-              i.icon-comment
-              span 评论(#{project.comments.length})
+  .bg-gblue
+    .container
+      div.row.project-index
+        div.span12
+          div.row
+           each project in projects
+            div.span3.unit
+              div.head
+                a(href='/users/#{project.provider.username}', data-toggle="tooltip",
+                  title="#{project.provider.name || project.provider.username}").pull-left
+                  img(src='#{project.provider.avatar_url}').avatar-middle
+                div.head-info
+                  a(href='/projects/#{project._id}', title=project.name).unit-title= project.name
+                div.clearfix
+              div.desc
+                !{project.description.substring(0, 140)}
+              div.info
+                i.icon-eye-open
+                span 关注(#{project.followers.length})
+                | &nbsp;&nbsp;
+                i.icon-comment
+                span 评论(#{project.comments.length})
 
 
 block scripts
