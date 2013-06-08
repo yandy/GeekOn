@@ -14,18 +14,7 @@ block content
       .span8 !{project.description_html}
     .row.pro-meta
       .span8.meta-block
-        .pro-actions
-          if locals.user && project.provider._id == locals.user._id
-            a(href='/projects/#{project.id}/edit').btn.btn-primary
-              i.icon-edit.icon-white
-              span 编辑
-          a(href='/projects/#{project.id}/join').btn.btn-primary
-            if isJoined
-              i.icon-chevron-left.icon-white
-              span 退出
-            else
-              i.icon-plus.icon-white
-              span 加入
+        .pro-actions.clearfix
           a(href="/projects/#{project.id}/star").btn.btn-primary
             if isStarred
               i.icon-eye-close.icon-white
@@ -33,18 +22,26 @@ block content
             else
               i.icon-eye-open.icon-white
               span 关注
+          a(href='/projects/#{project.id}/join').btn.btn-primary
+            if isJoined
+              i.icon-chevron-left.icon-white
+              span 退出
+            else
+              i.icon-plus.icon-white
+              span 加入
+          if locals.user && project.provider._id == locals.user._id
+            a(href='/projects/#{project.id}/edit').btn.btn-primary
+              i.icon-edit.icon-white
+              span 编辑
         h4 参与者(#{project.participants.length})
-        table.table.table-condensed.table-hover
-          each participant in project.participants
-            include participant/participants
+        each participant in project.participants
+          include participant/participants
         h4 关注者(#{project.followers.length})
-        table.table.table-condensed.table-hover
-          each follower in project.followers
-            include follower/followers
+        each follower in project.followers
+          include follower/followers
         h4 共 #{project.comments.length} 条评论
-        table.table
-          each comment in project.comments
-            include ../comment/comments
+        each comment in project.comments
+          include ../comment/comments
         if locals.user
             include comment/add_comment
         else
