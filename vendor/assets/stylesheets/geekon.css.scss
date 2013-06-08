@@ -284,17 +284,47 @@ body {
 
   margin-top: 15px;
 
+  h4 {
+    color: $grayDark;
+    border-top: 1px solid $grayLighter;
+    padding-top: 5px;
+    margin-top: 15px;
+  }
+
   .meta-block {
     position: relative;
   }
 
   .pro-actions {
-    position: absolute;
-    right: 0px;
-    top: 0px;
     a {
+      float: right;
       margin-right: 5px;
     }
+  }
+}
+
+.comment {
+  padding: 5px 5px 15px 10px;
+  border-top: 1px solid $grayLighter;
+  position: relative;
+  width: 600px;
+
+  .comment-body {
+    color: $grayDark;
+    width: 550px;
+  }
+
+  .comment-datetime {
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    font-size: 11px;
+    color: $white;
+    height: 25px;
+    width: 75px;
+    margin: auto;
+    background-color: $gblue;
+    @include border-radius(4px);
   }
 }
 

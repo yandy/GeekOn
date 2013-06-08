@@ -1,8 +1,12 @@
 if (comment && comment.user)
-  tr
-    td.img
-      a(href="/users/#{comment.user.username}", data-toggle="tooltip",
-          title="#{comment.user.name || comment.user.username}")
-       img(src=comment.user.avatar_url, alt="").avatar-small
-    td.date 在#{moment(comment.created_at).fromNow()}&nbsp;&nbsp;&nbsp;说
-    td.content !{comment.body_html}
+  article.comment.clearfix
+    a(href="/users/#{comment.user.username}", data-toggle="tooltip",
+      title="#{comment.user.name || comment.user.username}").pull-left
+      img(src="#{comment.user.avatar_url}").avatar-middle
+    .comment-item
+      .comment-datetime
+        p
+          i.icon-time.icon-white
+          | &nbsp;
+          = moment(comment.created_at).fromNow()
+      .comment-body !{comment.body_html}

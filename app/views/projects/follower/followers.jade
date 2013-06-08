@@ -1,6 +1,4 @@
 if(follower && follower.user)
-  tr
-    td.username
-      a(href="/users/"+follower.user.username) #{follower.user.name || follower.user.username}
-    td
-      p 于 #{moment(follower.created_at).format('LL')}
+  a(href="/users/#{follower.user.username}", data-toggle="tooltip",
+    title="#{follower.user.name || follower.user.username}")
+    img(src="#{follower.user.avatar_url}").avatar-small

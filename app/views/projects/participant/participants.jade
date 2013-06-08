@@ -1,6 +1,4 @@
 if(participant && participant.user)
-  tr
-    td.username
-      a(href="/users/"+participant.user.username) #{participant.user.name || participant.user.username}
-    td
-      p 于 #{moment(participant.created_at).fromNow()}
+  a(href="/users/#{participant.user.username}", data-toggle="tooltip",
+    title="#{participant.user.name || participant.user.username}")
+    img(src="#{participant.user.avatar_url}").avatar-small

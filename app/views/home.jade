@@ -45,19 +45,18 @@ block content
               .pro-item
                 .pro-name
                   a(href="/projects/#{pro._id}")= pro.name
-                .pro-meta
-                  .pro-datetime
-                    p
-                      i.icon-time.icon-white
-                      | &nbsp;
-                      = moment(pro.created_at).fromNow()
-                  .pro-summary
-                    p= pro.summary.substring(0, 120)
-                  .pro-part
-                    each part in pro.participants
-                      a(href="/users/#{part.user.username}", data-toggle="tooltip",
-                        title="#{part.user.name || part.user.username}")
-                        img(src="#{part.user.avatar_url}").avatar-small
+                .pro-datetime
+                  p
+                    i.icon-time.icon-white
+                    | &nbsp;
+                    = moment(pro.created_at).fromNow()
+                .pro-summary
+                  p= pro.summary.substring(0, 120)
+                .pro-part
+                  each part in pro.participants
+                    a(href="/users/#{part.user.username}", data-toggle="tooltip",
+                      title="#{part.user.name || part.user.username}")
+                      img(src="#{part.user.avatar_url}").avatar-small
         .span4.news
           .news-box
             - var article = articles[0]
