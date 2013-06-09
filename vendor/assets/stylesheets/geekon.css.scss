@@ -4,6 +4,13 @@
 body {
   padding-top: 45px;
   padding-bottom: 40px;
+  li {
+    list-style: none;
+  }
+}
+
+.content {
+  min-height:600px;
 }
 
 .content {
@@ -42,12 +49,10 @@ body {
 }
 
 .footer {
-  background-color: $black;
+  background-color: $grayDark;
   color: $white;
-  li{
-    list-style: none;
-  }
-
+  height: 35px;
+  padding-top: 15px;
   a {
     color: $gblueLighter;
   }
@@ -59,7 +64,6 @@ body {
 
   li{
     line-height: 55px;
-    list-style: none;
   }
 
   .intro {
@@ -133,6 +137,29 @@ body {
     }
     .pro-part {
       float: left;
+    }
+  }
+}
+
+.form-horizontal {
+  legend {
+    color: $gblue;
+  }
+}
+
+.user {
+  .user-info {
+    .labl {
+      text-align: right;
+    }
+  }
+  .user-projects {
+    margin-top: 15px;
+    h4 {
+      color: $grayDark;
+      border-top: 1px solid $grayLighter;
+      padding-top: 5px;
+      margin-top: 15px;
     }
   }
 }
@@ -242,6 +269,10 @@ body {
   right: -330px;
   width: 252px;
   color: $gray;
+}
+
+.rule {
+  border-top: 1px solid $grayLighter;
 }
 
 .oauth-list {

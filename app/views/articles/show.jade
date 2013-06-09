@@ -1,20 +1,17 @@
 extends ../layout/layout
 
 block content
-  .content-wrap
-    div.row-fluid.article-show
-      .span9
+  .container
+    div.row
+      .span12
         h3= article.title
-        p !{article.body_html}
-        br
+        .article-body !{article.body_html}
         .comments
-          p.comments-cap 共 #{article.comments.length} 条评论
-          table.table
-            each comment in article.comments
-              include ../comment/comments
+          h4 共 #{article.comments.length} 条评论
+          each comment in article.comments
+            include ../comment/comments
           if article.comments.length == 0
-            .prompt
-              p 尚无评论
+            p 尚无评论
         if locals.user
             include comment/add_comment
         else
