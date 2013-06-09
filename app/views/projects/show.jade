@@ -5,7 +5,7 @@ block content
     .row.pro-title
       .span1.provider
         a(href='/users/#{project.provider.username}', data-toggle="tooltip",
-          title="#{project.provider.name || project.provider.username}").pull-left
+          title="#{project.provider.name || project.provider.username}")
           img(src='#{project.provider.avatar_url}').avatar-large
       .span11
         a(href="/projects/#{project._id}")

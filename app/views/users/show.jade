@@ -1,113 +1,70 @@
 extends ../layout/layout
 
 block content
-  .content-wrap
-    div.user-show
-      div.row-fluid
-        div.span2
-          a(href="/users/#{profile.username}")
-            img(src= profile.avatar_url, alt="用户图片").user-img
-          div.gravatar-btn
-            a(href="http://gravatar.com/", target="_blank") 去Gravatar修改头像
-        div.span8
-          .row-fluid.basic-info
-            .basic-info-cap
-              p 基本资料
-            .row-fluid
-              .span2
-                label 用户名
-              .span10
-                p= profile.username
-            .row-fluid
-              .span2
-                label 邮箱
-              .span10
-                p= profile.email
-            if profile.name
-              .row-fluid
-                .span2
-                  label 昵称
-                .span10
-                  p= profile.name
-            if profile.company
-              .row-fluid
-                .span2
-                  label 公司
-                .span10
-                  p= profile.company
-            if profile.location
-              .row-fluid
-                .span2
-                  label 地点
-                .span10
-                  p= profile.location
-            if profile.website
-              .row-fluid
-                .span2
-                  label 个人主页
-                .span10
-                  a(href= profile.website, target="_blank")= profile.website
-            if profile.introduction
-              .row-fluid
-                .span2
-                  label 自我介绍
-                .span10
-                  p= profile.introduction
-          .row-fluid.joined-projects
-            div.joined-projects-cap
-              p.cap 参加的项目
-              if profile.joined_projects.length == 0
-                div.prompt
-                  p 还未参加任何项目
-              else
-                table.table
-                  each joined_project in profile.joined_projects
-                    tr
-                      td.img-project
-                        img(src= joined_project.project.provider.avatar_url)
-                      td.info
-                        a.title(href='/projects/'+joined_project.project._id, title=joined_project.project.name) #{joined_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                        div.title-info
-                          a(href="/users/"+joined_project.project.provider.username)=joined_project.project.provider.name || joined_project.project.provider.username
-                          span 创建于
-                          span= moment(joined_project.project.created_at).format('LL')
-                        p.body= joined_project.project.summary
-          .row-fluid.joined-projects
-            div.joined-projects-cap
-              p.cap 关注的项目
-              if profile.starred_projects.length == 0
-                div.prompt
-                  p 还未关注任何项目
-              else
-                table.table
-                  each starred_project in profile.starred_projects
-                    tr
-                      td.img-project
-                        img(src= starred_project.project.provider.avatar_url)
-                      td.info
-                        a.title(href='/projects/'+starred_project.project._id, title=starred_project.project.name) #{starred_project.project.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                        span 由
-                        a(href="/users/"+starred_project.project.provider._id)=starred_project.project.provider.name ||  starred_project.project.provider.username
-                        span 创建于
-                        span= moment(starred_project.project.created_at).format('LL')
-                        p.body= starred_project.project.summary
-          if locals.user && locals.user.is_admin
-            div.admin
-              .admin-cap
-                p 添加一篇文章
-              form(method="post", action="/articles/create")
-                input(type="hidden", name='_csrf', value=token)
-                div.new-news
-                  .row-fluid
-                    .span2
-                      label 标题
-                    .span10
-                      input(type="text", name="title")#title
-                  .row-fluid
-                      .span2
-                        label 内容
-                      .span10
-                        textarea(name="body",rows="5")
-                  .row-fluid
-                    .span2.offset2
-                      input(type="submit", value="Submit").btn.btn-primary
+  .container.session-body
+    .row.user
+      .span1.user-head
+        a(href='/users/#{profile.username}', data-toggle="tooltip",
+          title="#{profile.name || profile.username}")
+          img(src='#{profile.avatar_url}').avatar-large
+      .span11.user-info
+        ul
+          li
+            label 用户名
+            strong= profile.username
+          li
+            label 邮箱
+            strong= profile.email
+          if profile.name
+            li
+              label 全名
+              strong= profile.name
+          if profile.company
+            li
+              label 公司
+              strong= profile.company
+          if profile.location
+            li
+              label 地点
+              strong= profile.location
+          if profile.website
+            li
+              label 个人主页
+              a(href= profile.website, target="_blank")
+                strong= profile.website
+          if profile.introduction
+            li
+              label 自我介绍
+              strong= profile.introduction
+    .row.user-projects
+      .span8
+        h4 参加的项目
+        if profile.joined_projects.length == 0
+          p 还未参加任何项目
+        else
+          ul
+            each joined_project in profile.joined_projects
+              li
+                a(href="/users/#{joined_project.project.provider.username}", data-toggle="tooltip",
+                  title="#{joined_project.project.provider.name || joined_project.project.provider.username}")
+                  img(src= joined_project.project.provider.avatar_url).avatar-small
+                a(href="/projects/#{joined_project.project._id}") #{joined_project.project.name}
+        h4 关注的项目
+        if profile.starred_projects.length == 0
+          p 还未关注任何项目
+        else
+          ul
+            each starred_project in profile.starred_projects
+              li
+                a(href="/users/#{starred_project.project.provider.username}", data-toggle="tooltip",
+                  title="#{starred_project.project.provider.name || starred_project.project.provider.username}")
+                  img(src= starred_project.project.provider.avatar_url).avatar-small
+                a(href="/projects/#{starred_project.project._id}") #{starred_project.project.name}
+        if locals.user && locals.user.is_admin
+          form.form-vertical(method="post", action="/articles/create")
+            input(type="hidden", name='_csrf', value=token)
+            .control-group
+              .controls
+                input(type="text", name="title", placeholder = "标题")
+                textarea(name="body",rows="5", placeholder = "内容")
+            button.btn.btn-primary(type='submit') 发布
