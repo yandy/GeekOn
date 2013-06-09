@@ -1,41 +1,48 @@
 extends ../layout/layout
 
 block content
-  .container.session-body
-    .row.user
+  .container.session-body.user
+    .row.user-meta
       .span1.user-head
         a(href='/users/#{profile.username}', data-toggle="tooltip",
           title="#{profile.name || profile.username}")
           img(src='#{profile.avatar_url}').avatar-large
       .span11.user-info
-        ul
-          li
-            label 用户名
-            strong= profile.username
-          li
-            label 邮箱
-            strong= profile.email
+        table
+          tr
+            td.labl 用户名
+            td
+              strong= profile.username
+          tr
+            td.labl 邮箱
+            td
+              strong= profile.email
           if profile.name
-            li
-              label 全名
-              strong= profile.name
+            tr
+              td.labl 全名
+              td
+                strong= profile.name
           if profile.company
-            li
-              label 公司
-              strong= profile.company
+            tr
+              td.labl 公司
+              td
+                strong= profile.company
           if profile.location
-            li
-              label 地点
-              strong= profile.location
+            tr
+              td.labl 地点
+              td
+                strong= profile.location
           if profile.website
-            li
-              label 个人主页
-              a(href= profile.website, target="_blank")
-                strong= profile.website
+            tr
+              td.labl 个人主页
+              td
+                a(href= profile.website, target="_blank")
+                  strong= profile.website
           if profile.introduction
-            li
-              label 自我介绍
-              strong= profile.introduction
+            tr
+              td.labl 自我介绍
+              td
+                strong= profile.introduction
     .row.user-projects
       .span8
         h4 参加的项目

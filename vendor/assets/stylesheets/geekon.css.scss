@@ -4,6 +4,9 @@
 body {
   padding-top: 45px;
   padding-bottom: 40px;
+  li {
+    list-style: none;
+  }
 }
 
 .content {
@@ -42,12 +45,10 @@ body {
 }
 
 .footer {
-  background-color: $black;
+  background-color: $grayDark;
   color: $white;
-  li{
-    list-style: none;
-  }
-
+  height: 35px;
+  padding-top: 15px;
   a {
     color: $gblueLighter;
   }
@@ -59,7 +60,6 @@ body {
 
   li{
     line-height: 55px;
-    list-style: none;
   }
 
   .intro {
@@ -133,6 +133,23 @@ body {
     }
     .pro-part {
       float: left;
+    }
+  }
+}
+
+.user {
+  .user-info {
+    .labl {
+      text-align: right;
+    }
+  }
+  .user-projects {
+    margin-top: 15px;
+    h4 {
+      color: $grayDark;
+      border-top: 1px solid $grayLighter;
+      padding-top: 5px;
+      margin-top: 15px;
     }
   }
 }
