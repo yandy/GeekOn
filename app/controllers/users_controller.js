@@ -194,7 +194,7 @@ exports.index = function(req, res){
 
 exports.edit = function (req, res) {
   res.render('users/edit', {
-    title: '编辑 '+req.profile.name,
+    title: '编辑 ' + (req.profile.name || req.profile.username),
     profile: req.profile
   });
 };

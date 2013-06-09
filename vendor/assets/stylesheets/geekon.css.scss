@@ -137,6 +137,12 @@ body {
   }
 }
 
+.form-horizontal {
+  legend {
+    color: $gblue;
+  }
+}
+
 .user {
   .user-info {
     .labl {
@@ -259,6 +265,10 @@ body {
   right: -330px;
   width: 252px;
   color: $gray;
+}
+
+.rule {
+  border-top: 1px solid $grayLighter;
 }
 
 .oauth-list {
