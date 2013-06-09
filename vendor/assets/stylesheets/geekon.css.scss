@@ -297,6 +297,9 @@ body {
     margin: 30px 0 20px;
     color: $gblue;
   }
+  h4 {
+    border-top: 1px solid $grayLighter;
+  }
   .table {
     th {
       color: $gblue;

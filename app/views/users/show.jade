@@ -7,42 +7,35 @@ block content
         a(href='/users/#{profile.username}', data-toggle="tooltip",
           title="#{profile.name || profile.username}")
           img(src='#{profile.avatar_url}').avatar-large
-      .span11.user-info
-        table
-          tr
-            td.labl 用户名
-            td
-              strong= profile.username
-          tr
-            td.labl 邮箱
-            td
-              strong= profile.email
+      .span6.user-info
+        dl.dl-horizontal
+          dt.labl 用户名:
+          dd
+            strong= profile.username
+          dt.labl 邮箱:
+          dd
+            strong= profile.email
           if profile.name
-            tr
-              td.labl 全名
-              td
-                strong= profile.name
+            dt.labl 全名
+            dd
+              strong= profile.name
           if profile.company
-            tr
-              td.labl 公司
-              td
-                strong= profile.company
+            dt.labl 公司
+            dd
+              strong= profile.company
           if profile.location
-            tr
-              td.labl 地点
-              td
-                strong= profile.location
+            dt.labl 地点
+            dd
+              strong= profile.location
           if profile.website
-            tr
-              td.labl 个人主页
-              td
-                a(href= profile.website, target="_blank")
-                  strong= profile.website
+            dt.labl 个人主页
+            dd
+              a(href= profile.website, target="_blank")
+                strong= profile.website
           if profile.introduction
-            tr
-              td.labl 自我介绍
-              td
-                strong= profile.introduction
+            dt.labl 自我介绍
+            dd
+              strong= profile.introduction
     .row.user-projects
       .span8
         h4 参加的项目
