@@ -31,11 +31,11 @@ block content
           .control-group
             label.control-label(for='company') 公司
             .controls
-              input#company(type='text', name="company", value=profile.company)
+              input#company.input-xlarge(type='text', name="company", value=profile.company)
           .control-group
             label.control-label(for='introduction') 自我介绍
             .controls
-              textarea#introduction(name="introduction", placeholder="技术栈，爱好等")= profile.introduction
+              textarea#introduction.input-xlarge(name="introduction", rows="6", placeholder="技术栈，爱好等")= profile.introduction
           .control-group
             .controls
               button.btn.btn-primary(type='submit') 提交

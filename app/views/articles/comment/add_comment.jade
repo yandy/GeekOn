@@ -2,5 +2,5 @@ form.form-vertical(method="post", action="/articles/#{article._id}/create_commen
   input(type="hidden", name='_csrf', value=token)
   .control-group
     .controls
-      textarea#comment.input-xxlarge(type='text', rows="6", name="comment", placeholder='Add your comment')
+      textarea#comment.input-xxlarge(rows="6", name="comment", placeholder='Add your comment')
   button.btn.btn-primary(type='submit') 发布回复
