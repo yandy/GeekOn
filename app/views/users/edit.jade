@@ -9,6 +9,11 @@ block content
           input(type="hidden", name='_csrf', value=token)
           legend 信息设置
           .control-group
+            label.control-label
+              img(src='#{profile.avatar_url}').avatar-large
+            .controls
+              a(href="http://www.gravatar.com") 使用gravator来设置头像
+          .control-group
             label.control-label 用户名
             .controls
               strong= profile.uname
