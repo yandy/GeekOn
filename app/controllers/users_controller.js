@@ -26,10 +26,11 @@ exports.googleCallback = function (req, res, next) {
         return res.redirect('/users/' + user.username);
       });
     } else {
+      mail = profile.emails[0].value;
       user = new User({
         name: profile.displayName,
-        email: profile.emails[0].value,
-        username: profile.emails[0].value,
+        email: mail,
+        username: mail.substring(0, mail.indexOf('@')),
         avatar_url: gravatar.url(profile.emails[0].value, {s: '200'}),
         provider: 'google',
         google:profile
