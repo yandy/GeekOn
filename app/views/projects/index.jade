@@ -22,6 +22,16 @@ block content
                 | &nbsp;&nbsp;
                 i.icon-comment
                 span 评论(#{project.comments.length})
+          div.row
+            div.pagination.pagination-centered
+              ul
+                - for(var i = 0; i <= pages; ++i)
+                  if i == page
+                    li.active
+                      a(href="/projects?page=#{i}")= i
+                  else
+                    li
+                      a(href="/projects?page=#{i}")= i
 
 
 block scripts
