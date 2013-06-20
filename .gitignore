@@ -16,3 +16,7 @@ npm-debug.log
 node_modules
 
 /vendor/assets/stylesheets/.sass-cache
+
+*.sublime-project
+
+*.sublime-workspace
