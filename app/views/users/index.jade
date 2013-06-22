@@ -6,7 +6,7 @@ block content
         .span12
           .row
             each user in users
-              .span2
+              .span2.user-unit
                 a(href="/users/#{user.username}")
                   img(src="#{user.avatar_url}", alt="用户图片")
                 a(href="/users/#{user.username}")
