@@ -15,7 +15,17 @@ body {
 .content {
   min-height:600px;
 }
-
+.row.info{
+  background-color:$gblueLight;
+  color:$gblueDark;
+  a{
+    color:$gblueDarkest;
+    text-decoration:underline;
+  }
+  height:30px;
+  padding-top:5px;
+  padding-left:30px;
+}
 .navbar-header {
 
   height: 45px;
@@ -173,7 +183,7 @@ body {
   margin-top: 25px;
   margin-bottom: 25px;
   min-height: 600px;
-  
+
   .user-unit {
     height: 200px;
   }
